@@ -47,7 +47,7 @@ module.exports = {
      * eventController.create()
      */
     create: function (req, res) {
-        var event = new eventModel({			userId : req.body.userId,			title : req.body.title,			description : req.body.description,			localization : req.body.localization,			permanent boolean : req.body.permanent boolean,			startDate : req.body.startDate,			endDate : req.body.endDate,			picture : req.body.picture
+        var event = new eventModel({			userId : req.body.userId,			title : req.body.title,			description : req.body.description,			localization : req.body.localization,			permanent : req.body.permanent,			startDate : req.body.startDate,			endDate : req.body.endDate,			picture : req.body.picture
         });
 
         event.save(function (err, event) {
@@ -79,7 +79,7 @@ module.exports = {
                 });
             }
 
-            event.userId = req.body.userId ? req.body.userId : event.userId;			event.title = req.body.title ? req.body.title : event.title;			event.description = req.body.description ? req.body.description : event.description;			event.localization = req.body.localization ? req.body.localization : event.localization;			event.permanent boolean = req.body.permanent boolean ? req.body.permanent boolean : event.permanent boolean;			event.startDate = req.body.startDate ? req.body.startDate : event.startDate;			event.endDate = req.body.endDate ? req.body.endDate : event.endDate;			event.picture = req.body.picture ? req.body.picture : event.picture;			
+            event.userId = req.body.userId ? req.body.userId : event.userId;			event.title = req.body.title ? req.body.title : event.title;			event.description = req.body.description ? req.body.description : event.description;			event.localization = req.body.localization ? req.body.localization : event.localization;			event.permanent = req.body.permanent ? req.body.permanent : event.permanent;			event.startDate = req.body.startDate ? req.body.startDate : event.startDate;			event.endDate = req.body.endDate ? req.body.endDate : event.endDate;			event.picture = req.body.picture ? req.body.picture : event.picture;
             event.save(function (err, event) {
                 if (err) {
                     return res.status(500).json({
