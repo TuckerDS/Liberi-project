@@ -6,11 +6,17 @@ const cookieParser = require('cookie-parser');
 const bodyParser   = require('body-parser');
 const layouts      = require('express-ejs-layouts');
 const mongoose     = require('mongoose');
+const user         = require('./user/userRoutes');
+const cors         = require('cors');
 
-
-mongoose.connect('mongodb://localhost/liberi');
+require('dotenv').config();
+const MONGO_URL = process.env.MONGO_URL;
+mongoose.connect(MONGO_URL);
+//mongoose.connect('mongodb://localhost/liberi');
 
 const app = express();
+
+app.use(cors());
 
 // view engine setup
 app.set('views', path.join(__dirname, 'views'));
@@ -30,6 +36,8 @@ app.use(layouts);
 
 const index = require('./routes/index');
 app.use('/', index);
+
+app.use('/api/user', user);
 
 // catch 404 and forward to error handler
 app.use((req, res, next) => {
