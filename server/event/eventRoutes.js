@@ -2,29 +2,19 @@ var express = require('express');
 var router = express.Router();
 var eventController = require('./eventController.js');
 
-/*
- * GET
- */
+//GET all events
 router.get('/', eventController.list);
 
-/*
- * GET
- */
+//GET single event
 router.get('/:id', eventController.show);
 
-/*
- * POST
- */
+//POST create a new event
 router.post('/', eventController.create);
 
-/*
- * PUT
- */
+//PUT update an event
 router.put('/:id', eventController.update);
 
-/*
- * DELETE
- */
+//DELETE remove an event
 router.delete('/:id', eventController.remove);
 
 module.exports = router;
