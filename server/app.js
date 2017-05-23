@@ -1,3 +1,5 @@
+/*jshint esversion: 6*/
+
 const express      = require('express');
 const path         = require('path');
 const favicon      = require('serve-favicon');
@@ -7,8 +9,10 @@ const bodyParser   = require('body-parser');
 const layouts      = require('express-ejs-layouts');
 const mongoose     = require('mongoose');
 
+require('dotenv').config();
+const MONGO_URL = process.env.MONGO_URL;
 
-mongoose.connect('mongodb://localhost/liberi');
+mongoose.connect(MONGO_URL);
 
 const app = express();
 
