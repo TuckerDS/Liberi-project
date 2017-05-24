@@ -15,6 +15,9 @@ import { EventComponent } from './event/event.component';
 import { SingleEventComponent } from './single-event/single-event.component';
 import { HeaderComponent } from './header/header.component';
 
+// Servicios
+import { SessionService } from './services/session.service';
+
 @NgModule({
   declarations: [
     AppComponent,
@@ -30,6 +33,7 @@ import { HeaderComponent } from './header/header.component';
     RouterModule.forRoot(routes)
   ],
   providers: [
+    SessionService,
     EventService,
     { provide: 'BASE_ENDPOINT', useValue: environment.baseEndpoint },
     { provide: 'API_ENDPOINT', useValue: environment.apiEndpoint }
