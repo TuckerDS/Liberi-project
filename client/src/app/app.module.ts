@@ -13,12 +13,14 @@ import { routes } from './app.routing';
 import { AppComponent } from './app.component';
 import { EventComponent } from './event/event.component';
 import { SingleEventComponent } from './single-event/single-event.component';
+import { HeaderComponent } from './header/header.component';
 
 @NgModule({
   declarations: [
     AppComponent,
     EventComponent,
-    SingleEventComponent
+    SingleEventComponent,
+    HeaderComponent
   ],
   imports: [
     BrowserModule,
