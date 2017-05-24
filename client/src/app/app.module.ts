@@ -5,7 +5,9 @@ import { HttpModule } from '@angular/http';
 import { MaterializeModule } from 'angular2-materialize';
 
 import { AppComponent } from './app.component';
-import { UserService } from './services/user.service';
+
+// Servicios
+import { SessionService } from './services/session.service';
 
 @NgModule({
   declarations: [
@@ -17,7 +19,7 @@ import { UserService } from './services/user.service';
     HttpModule,
     MaterializeModule
   ],
-  providers: [UserService],
+  providers: [SessionService],
   bootstrap: [AppComponent]
 })
 export class AppModule { }

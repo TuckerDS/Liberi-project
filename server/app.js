@@ -8,6 +8,8 @@ const layouts      = require('express-ejs-layouts');
 const mongoose     = require('mongoose');
 const user         = require('./user/userRoutes');
 const cors         = require('cors');
+const session         = require("express-session");
+const passport        = require("passport");
 
 require('dotenv').config();
 const MONGO_URL = process.env.MONGO_URL;
@@ -33,6 +35,12 @@ app.use(bodyParser.urlencoded({ extended: false }));
 app.use(cookieParser());
 app.use(express.static(path.join(__dirname, 'public')));
 app.use(layouts);
+
+
+app.use(passport.initialize());
+app.use(passport.session());
+
+
 
 const index = require('./routes/index');
 app.use('/', index);
