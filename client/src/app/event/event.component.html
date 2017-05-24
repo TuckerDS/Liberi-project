@@ -1,0 +1,13 @@
+<p>
+  events component works!
+</p>
+
+
+<h3> Events list </h3>
+<div>
+  <div *ngFor="let event of events">
+    <h4> {{ event.title }} </h4>
+    <p> {{ event.description }} </p>
+    <a routerLink="/event/{{event._id}}">Go to detail</a>
+  </div>
+</div>
