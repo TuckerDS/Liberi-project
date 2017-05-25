@@ -8,15 +8,15 @@ const cookieParser = require('cookie-parser');
 const bodyParser   = require('body-parser');
 const layouts      = require('express-ejs-layouts');
 const mongoose     = require('mongoose');
-const user         = require('./user/userRoutes');
 const cors         = require('cors');
-const session         = require("express-session");
-const passport        = require("passport");
+const session      = require("express-session");
+const passport     = require("passport");
 
 require('dotenv').config();
 const MONGO_URL = process.env.MONGO_URL;
 
 const event = require('./event/eventRoutes');
+const user  = require('./user/userRoutes');
 
 mongoose.connect(MONGO_URL);
 
@@ -56,8 +56,6 @@ app.use(passport.session());
 const index = require('./routes/index');
 app.use('/', index);
 app.use('/api/event', event);
-
-
 app.use('/api/user', user);
 
 // catch 404 and forward to error handler

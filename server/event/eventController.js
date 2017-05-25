@@ -1,4 +1,6 @@
 var eventModel = require('./eventModel.js');
+const CATEGORIES = require('./categories');
+const ObjectId = require('mongoose').Types.ObjectId;
 
 /**
  * eventController.js
@@ -23,6 +25,12 @@ module.exports = {
   // eventController.show()
   show: (req, res) => {
     var id = req.params.id;
+
+    if(!ObjectId.isValid(id)) {
+      res.status(400).json({ message: 'Specified id is not valid' });
+      return;
+    }
+
     eventModel.findOne({
       _id: id
     }, (err, event) => {
@@ -51,7 +59,8 @@ module.exports = {
       permanent: req.body.permanent,
       startDate: req.body.startDate,
       endDate: req.body.endDate,
-      picture: req.body.picture
+      picture: req.body.picture,
+      category: req.body.category
     });
 
     event.save((err, event) => {
@@ -68,6 +77,12 @@ module.exports = {
   //eventController.update()
   update: (req, res) => {
     var id = req.params.id;
+
+    if(!ObjectId.isValid(id)) {
+      res.status(400).json({ message: 'Specified id is not valid' });
+      return;
+    }
+
     eventModel.findOne({
       _id: id
     }, (err, event) => {
@@ -83,8 +98,9 @@ module.exports = {
         });
       }
 
-      event.userId = req.body.userId ? req.body.userId : event.userId;
+      //event.userId = req.body.userId ? req.body.userId : event.userId;
       event.title = req.body.title ? req.body.title : event.title;
+      event.category = req.body.category ? req.body.category : event.category;
       event.description = req.body.description ? req.body.description : event.description;
       event.localization = req.body.localization ? req.body.localization : event.localization;
       event.permanent = req.body.permanent ? req.body.permanent : event.permanent;
@@ -107,6 +123,12 @@ module.exports = {
   //eventController.remove()
   remove: (req, res) => {
     var id = req.params.id;
+
+    if(!ObjectId.isValid(id)) {
+      res.status(400).json({ message: 'Specified id is not valid' });
+      return;
+    }
+
     eventModel.findByIdAndRemove(id, (err, event) => {
       if (err) {
         return res.status(500).json({

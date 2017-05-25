@@ -1,6 +1,7 @@
 var express = require('express');
 var router = express.Router();
 var eventController = require('./eventController.js');
+const CATEGORIES = require('./categories');
 
 //GET all events
 router.get('/', eventController.list);
