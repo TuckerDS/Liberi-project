@@ -1,6 +1,7 @@
 var eventModel = require('./eventModel.js');
 const CATEGORIES = require('./categories');
 const ObjectId = require('mongoose').Types.ObjectId;
+const upload = require('../config/multer');
 
 /**
  * eventController.js
@@ -59,7 +60,7 @@ module.exports = {
       permanent: req.body.permanent,
       startDate: req.body.startDate,
       endDate: req.body.endDate,
-      picture: req.body.picture,
+      picture: `/uploads/${req.file.filename}`,
       category: req.body.category
     });
 

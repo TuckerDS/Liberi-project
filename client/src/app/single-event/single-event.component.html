@@ -1,7 +1,7 @@
-<p>
-  single-event works!
-</p>
-
-<p *ngIf="(singleEvent)">{{singleEvent.title}}</p>
-<p *ngIf="(singleEvent)">{{singleEvent.category}}</p>
-<p *ngIf="(singleEvent)">{{singleEvent.description}}</p>
+<h2 *ngIf="(singleEvent)">{{singleEvent.title}}</h2>
+<div *ngIf="(singleEvent)">
+  <p>{{singleEvent.category}}</p>
+  <p>{{singleEvent.description}}</p>
+  <button (click)="deleteEvent()">Delete</button>
+</div>
+<a routerLink="/event">Go back to list</a>
