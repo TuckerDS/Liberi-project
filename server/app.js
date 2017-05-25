@@ -8,7 +8,10 @@ const cookieParser = require('cookie-parser');
 const bodyParser   = require('body-parser');
 const layouts      = require('express-ejs-layouts');
 const mongoose     = require('mongoose');
+const user         = require('./user/userRoutes');
 const cors         = require('cors');
+const session         = require("express-session");
+const passport        = require("passport");
 
 require('dotenv').config();
 const MONGO_URL = process.env.MONGO_URL;
@@ -20,6 +23,13 @@ mongoose.connect(MONGO_URL);
 const app = express();
 
 app.use(cors());
+
+app.use(session({
+  secret: 'angular auth passport secret shh',
+  resave: true,
+  saveUninitialized: true,
+  cookie : { httpOnly: true, maxAge: 2419200000 }
+}));
 
 // view engine setup
 app.set('views', path.join(__dirname, 'views'));
@@ -37,10 +47,18 @@ app.use(cookieParser());
 app.use(express.static(path.join(__dirname, 'public')));
 app.use(layouts);
 
+
+app.use(passport.initialize());
+app.use(passport.session());
+
+
+
 const index = require('./routes/index');
 app.use('/', index);
 app.use('/api/event', event);
 
+
+app.use('/api/user', user);
 
 // catch 404 and forward to error handler
 app.use((req, res, next) => {
