@@ -1,0 +1,52 @@
+
+  <h1>SIGNUP</h1>
+
+
+<div class="signup_container">
+  <form action="">
+
+    <div class="field">
+      Username:
+      <input [(ngModel)]="formInfo.username" name="username" type="text" placeholder="username"/>
+    </div>
+
+    <div class="field">
+      Password:
+      <input [(ngModel)]="formInfo.password"name="password" type="password" placeholder="password"/>
+    </div>
+
+    <div class="field">
+      Email:
+      <input [(ngModel)]="formInfo.email" name="email" type="email" placeholder="email"/>
+    </div>
+
+    <div class="field">
+      Rol:
+
+    </div>
+
+
+    <div class="row">
+            <div class="input-field col s6">
+              <select [(ngModel)]="formInfo.role" name="rol" materialize="material_select" [materializeSelectOptions]="selectOptions" [attr.disabled]="isDisabled?true:null">
+                <option value="" disabled selected>Choose your option</option>
+                <option value="Particular">Particular</option>
+                <option value="Organizador">Organizador</option>
+                <option value="Artista">Artista</option>
+              </select>
+              <label>Materialize Select</label>
+            </div>
+
+    </div>
+
+    <div class="field">
+      Descripción:
+      <input [(ngModel)]="formInfo.description" name="description" type="text" placeholder="description">
+    </div>
+    <div class="button">
+      <button (click)="signup()"> Signup </button>
+    </div>
+
+  </form>
+  <p class="error"> {{ error }} </p>
+</div>

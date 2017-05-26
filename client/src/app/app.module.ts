@@ -3,11 +3,13 @@ import { BrowserModule } from '@angular/platform-browser';
 import { NgModule } from '@angular/core';
 import { FormsModule } from '@angular/forms';
 import { HttpModule } from '@angular/http';
+// import { HttpModule, Http } from '@angular/http';
 import { MaterializeModule } from 'angular2-materialize';
 
 import { EventService } from './services/event.service';
 
-import { RouterModule } from "@angular/router";
+//Routes
+import { RouterModule } from '@angular/router';
 import { routes } from './app.routing';
 
 import { AppComponent } from './app.component';
@@ -17,13 +19,18 @@ import { HeaderComponent } from './header/header.component';
 
 // Servicios
 import { SessionService } from './services/session.service';
+import {UserSignupComponent} from './signup/signup.component';
+import {UserLoginComponent} from './login/login.component';
+
 
 @NgModule({
   declarations: [
     AppComponent,
     EventComponent,
     SingleEventComponent,
-    HeaderComponent
+    HeaderComponent,
+    UserSignupComponent,
+    UserLoginComponent
   ],
   imports: [
     BrowserModule,

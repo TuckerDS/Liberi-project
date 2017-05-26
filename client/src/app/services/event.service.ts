@@ -15,12 +15,12 @@ export class EventService {
 
   constructor(
     @Inject('BASE_ENDPOINT') private BASE: string,
-    @Inject('API_ENDPOINT') private API : string,
+    @Inject('API_ENDPOINT') private API: string,
     private http: Http) {
       this.ENDPOINT = BASE + API;
     }
 
-    //Get all events
+    // Get all events
     getEvents(): Observable<any[]> {
       return this.http.get(`${this.ENDPOINT}${this.EVENT_ROUTE}/`)
         .map((res) => res.json())
@@ -31,7 +31,7 @@ export class EventService {
         .catch((err) => Observable.throw(err));
     }
 
-    getEventDetails(id: string){
+    getEventDetails(id: string) {
       return this.http.get(`${this.ENDPOINT}${this.EVENT_ROUTE}/${id}`)
         .map(res => res.json());
     }
