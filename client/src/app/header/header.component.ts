@@ -28,6 +28,7 @@ export class HeaderComponent implements OnInit {
 
   }
   logged(user) {
+    console.log(user)
       this.user = user;
       console.log("logged");
   }

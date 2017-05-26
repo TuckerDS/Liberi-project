@@ -10,6 +10,7 @@ const layouts      = require('express-ejs-layouts');
 const mongoose     = require('mongoose');
 const cors         = require('cors');
 const session      = require("express-session");
+const MongoStore = require('connect-mongo')(session);
 
 require('dotenv').config();
 const MONGO_URL = process.env.MONGO_URL;
@@ -40,7 +41,8 @@ app.use(session({
   secret: 'angular auth passport secret shh',
   resave: true,
   saveUninitialized: true,
-  cookie : { httpOnly: true, maxAge: 2419200000 }
+  cookie : { httpOnly: true, maxAge: 2419200000 },
+  store: new MongoStore({mongooseConnection: mongoose.connection})
 }));
 const passportSetup = require('./config/passport')();
 
