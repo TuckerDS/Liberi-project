@@ -16,7 +16,6 @@ export class SingleEventComponent implements OnInit {
 
   ngOnInit() {
     this.route.params.subscribe( params => { this.eventId = String(params['id']) } )
-    console.log(this.eventId);
     this.ev.getEventDetails(this.eventId).subscribe( event => {
       this.singleEvent = event})
   }
