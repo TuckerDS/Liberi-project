@@ -1,6 +1,6 @@
 
   <h1>LOGIN</h1>
-<div class="signup_container">
+<div *ngIf="(!user)" class="signup_container">
   <form action="">
 
     <div class="field">
@@ -20,3 +20,5 @@
   </form>
   <p class="error"> {{ error }} </p>
 </div>
+
+<div *ngIf="(user)" class="signup_container">Estas logeado como {{user.username}}</div>

@@ -10,7 +10,6 @@ const layouts      = require('express-ejs-layouts');
 const mongoose     = require('mongoose');
 const cors         = require('cors');
 const session      = require("express-session");
-const passport     = require("passport");
 
 require('dotenv').config();
 const MONGO_URL = process.env.MONGO_URL;
@@ -22,7 +21,20 @@ mongoose.connect(MONGO_URL).then(() => console.log("Connection to mongo successf
 
 const app = express();
 
+
 app.use(cors({credentials: true, origin: 'http://localhost:4200'}));
+
+
+
+app.use(logger('dev'));
+app.use(bodyParser.json());
+app.use(bodyParser.urlencoded({ extended: false }));
+app.use(cookieParser());
+app.use(express.static(path.join(__dirname, 'public')));
+app.use(layouts);
+// view engine setup
+app.set('views', path.join(__dirname, 'views'));
+app.set('view engine', 'ejs');
 
 app.use(session({
   secret: 'angular auth passport secret shh',
@@ -30,26 +42,19 @@ app.use(session({
   saveUninitialized: true,
   cookie : { httpOnly: true, maxAge: 2419200000 }
 }));
+const passportSetup = require('./config/passport')();
 
-// view engine setup
-app.set('views', path.join(__dirname, 'views'));
-app.set('view engine', 'ejs');
+
 
 // default value for title local
 app.locals.title = 'Express - Generated with IronGenerator';
 
 // uncomment after placing your favicon in /public
 //app.use(favicon(path.join(__dirname, 'public', 'favicon.ico')));
-app.use(logger('dev'));
-app.use(bodyParser.json());
-app.use(bodyParser.urlencoded({ extended: false }));
-app.use(cookieParser());
-app.use(express.static(path.join(__dirname, 'public')));
-app.use(layouts);
 
 
-app.use(passport.initialize());
-app.use(passport.session());
+app.use(passportSetup.initialize());
+app.use(passportSetup.session());
 
 
 

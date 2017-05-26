@@ -14,7 +14,7 @@ export const routes: Routes = [
   { path: 'event', component: EventComponent },
   { path: 'add', component: AddEventComponent },
   { path: 'event/:id', component: SingleEventComponent },
-  { path: '**', component: CategoriesPageComponent },
   { path: 'signup', component: UserSignupComponent },
-  { path: 'login', component: UserLoginComponent }
+  { path: 'login', component: UserLoginComponent },
+  { path: '**', component: CategoriesPageComponent }
 ];
