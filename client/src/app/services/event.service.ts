@@ -41,6 +41,11 @@ export class EventService {
         .map((res) => res.json());
     }
 
+    addEvent(event) {
+      return this.http.post(`${this.ENDPOINT}${this.EVENT_ROUTE}/`, event)
+        .map((res) => res.json());
+    }
+
     removeEvent(id: string) {
       return this.http.delete(`${this.ENDPOINT}${this.EVENT_ROUTE}/${id}`)
         .map((res) => res.json());

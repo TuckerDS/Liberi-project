@@ -52,15 +52,17 @@ module.exports = {
 
   //eventController.create()
   create: (req, res) => {
+    console.log("LLega aqui");
     var event = new eventModel({
-      userId: req.body.userId,
+      //userId: req.session.currentUser._id,
+      userId: new ObjectId("5927f4b4d21450e9e5706137"),
       title: req.body.title,
       description: req.body.description,
       localization: req.body.localization,
       permanent: req.body.permanent,
       startDate: req.body.startDate,
       endDate: req.body.endDate,
-      picture: `/uploads/${req.file.filename}`,
+      picture: req.file ? `/uploads/${req.file.filename}` : "",
       category: req.body.category
     });
 

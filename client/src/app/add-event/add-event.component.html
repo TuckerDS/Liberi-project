@@ -1,0 +1,39 @@
+<h2> Add a new event </h2>
+<a routerLink="/event"> Back to list </a>
+
+
+<!-- <form>
+  <fieldset>
+    <legend> Event info </legend>
+    <label> Title* </label>
+    <input type="text" [(ngModel)]="newEvent.title" name="title" required />
+
+    <label> Category* </label>
+    <input type="text" [(ngModel)]="newEvent.category" name="category" required />
+
+    <label> Description* </label>
+    <input type="text" [(ngModel)]="newEvent.description" name="description" required />
+
+     <input type="file" name="file" ng2FileSelect [uploader]="uploader" />
+
+  </fieldset>
+  <button (click)="submit()"> submit </button>
+</form>
+
+<p> {{ feedback }} </p> -->
+
+<form>
+      <p> Event title
+        <input type="text" name="title" [(ngModel)]="newEvent.title" required />
+      </p>
+      <p> Category
+        <input type="text" name="category" [(ngModel)]="newEvent.category" required />
+      </p>
+      <p> Description
+        <input type="text" name="description" [(ngModel)]="newEvent.description" required />
+      </p>
+      <p>
+        <input type="file" name="file" ng2FileSelect [uploader]="uploader" />
+      </p>
+      <button (click)="submit()"> Submit </button>
+</form>

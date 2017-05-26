@@ -23,12 +23,5 @@ export class Event {
         this.startDate = startDate;
         this.endDate = endDate;
         this.picture = picture;
-        // this.cards = cards.map(card=> {
-        //   var q = new Card(card);
-        //   console.log(q);
-        //   return q;
-        // });
     }
-
-
 }
