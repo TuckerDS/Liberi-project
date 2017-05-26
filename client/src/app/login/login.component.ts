@@ -39,6 +39,7 @@ export class UserLoginComponent implements OnInit {
   errorCb(err) {
      this.error = err;
      this.user = null;
+
    }
 
    successCb(user) {

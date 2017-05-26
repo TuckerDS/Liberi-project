@@ -25,12 +25,10 @@ module.exports = function () {
         next(err);
         return;
       }
-
       if (!foundUser) {
         next(null, false, { message: 'Incorrect username' });
         return;
       }
-
       if (!bcrypt.compareSync(password, foundUser.password)) {
         next(null, false, { message: 'Incorrect password' });
         return;
@@ -39,5 +37,5 @@ module.exports = function () {
       next(null, foundUser);
     });
   }));
-
+  return passport
 };

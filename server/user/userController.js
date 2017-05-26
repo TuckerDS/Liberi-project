@@ -205,7 +205,6 @@ module.exports = {
 
   //LOGGED IN
   loggedin: function(req, res) {
-    console.log("QUE COÑO PASA AKI");
     if(req.isAuthenticated()) {
       return res.status(200).json(req.user);
     }

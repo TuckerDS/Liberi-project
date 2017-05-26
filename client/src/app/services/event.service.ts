@@ -12,6 +12,7 @@ export class EventService {
   EVENT_ROUTE = '/event';
   ENDPOINT: string;
   events: Array<any> = [];
+  options: { withCredentials: true};
 
   constructor(
     @Inject('BASE_ENDPOINT') private BASE: string,
@@ -22,7 +23,7 @@ export class EventService {
 
     // Get all events
     getEvents(): Observable<any[]> {
-      return this.http.get(`${this.ENDPOINT}${this.EVENT_ROUTE}/`)
+      return this.http.get(`${this.ENDPOINT}${this.EVENT_ROUTE}/`, this.options)
         .map((res) => res.json())
         .map((events) => {
           this.events = events.map(e => new Event(e));
@@ -32,22 +33,22 @@ export class EventService {
     }
 
     getEventDetails(id: string) {
-      return this.http.get(`${this.ENDPOINT}${this.EVENT_ROUTE}/${id}`)
+      return this.http.get(`${this.ENDPOINT}${this.EVENT_ROUTE}/${id}`, this.options)
         .map(res => res.json());
     }
 
     editEvent(event) {
-      return this.http.put(`${this.ENDPOINT}${this.EVENT_ROUTE}/${event._id}`, event)
+      return this.http.put(`${this.ENDPOINT}${this.EVENT_ROUTE}/${event.id}`, event,this.options)
         .map((res) => res.json());
     }
 
     addEvent(event) {
-      return this.http.post(`${this.ENDPOINT}${this.EVENT_ROUTE}/`, event)
+      return this.http.post(`${this.ENDPOINT}${this.EVENT_ROUTE}/`, event, this.options)
         .map((res) => res.json());
     }
 
     removeEvent(id: string) {
-      return this.http.delete(`${this.ENDPOINT}${this.EVENT_ROUTE}/${id}`)
+      return this.http.delete(`${this.ENDPOINT}${this.EVENT_ROUTE}/${id}`, this.options)
         .map((res) => res.json());
     }
 

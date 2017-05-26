@@ -19,5 +19,4 @@ export const routes: Routes = [
   { path: 'signup', component: UserSignupComponent },
   { path: 'login', component: UserLoginComponent },
   { path: '**', component: CategoriesPageComponent }
-
 ];
