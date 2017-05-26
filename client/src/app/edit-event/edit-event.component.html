@@ -6,12 +6,26 @@
       <p> Event title
         <input type="text" name="title" [value]="currentEvent.title" [(ngModel)]="currentEvent.title" required />
       </p>
-      <p> Category
-        <input type="text" name="category" [value]="currentEvent.category" [(ngModel)]="currentEvent.category" required />
-      </p>
       <p> Description
         <input type="text" name="description" [value]="currentEvent.description" [(ngModel)]="currentEvent.description" required />
       </p>
+      <div class="field"> Category </div>
+      <div class="row">
+              <div class="input-field col s6">
+                <select [(ngModel)]="currentEvent.category" name="category" materialize="material_select" [materializeSelectOptions]="selectOptions" [attr.disabled]="isDisabled?true:null">
+                  <option value="" disabled selected>Choose the category of the event</option>
+                  <option value="Musica">Musica</option>
+                  <option value="Poesia">Poesia</option>
+                  <option value="Cine">Cine</option>
+                  <option value="Teatro">Teatro</option>
+                  <option value="Museos">Museos</option>
+                  <option value="Deporte">Deporte</option>
+                  <option value="Idiomas">Idiomas</option>
+                  <option value="Naturaleza">Naturaleza</option>
+                  <option value="Gastronomia">Gastronomia</option>
+                </select>
+              </div>
+      </div>
       <p>
         <input type="file" name="file" ng2FileSelect [uploader]="uploader" />
       </p>
