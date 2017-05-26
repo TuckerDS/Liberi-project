@@ -24,7 +24,7 @@ export class SingleEventComponent implements OnInit {
     if(window.confirm("Are you sure?")) {
       this.ev.removeEvent(this.eventId)
         .subscribe(() => {
-          this.router.navigate(['event']);
+          this.router.navigate(['']);
         });
     }
   }

@@ -1,4 +1,5 @@
 import { Component, OnInit } from '@angular/core';
+import { Router } from '@angular/router';
 
 @Component({
   selector: 'app-categories-page',
@@ -18,9 +19,13 @@ export class CategoriesPageComponent implements OnInit {
     'Gastronomia'
   ];
 
-  constructor() { }
+  constructor(private router: Router) { }
 
   ngOnInit() {
+  }
+
+  goToEvents() {
+    this.router.navigate(['/event']);
   }
 
 }

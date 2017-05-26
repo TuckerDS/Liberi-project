@@ -1,6 +1,5 @@
-
 <div>
-  <div class="categ" *ngFor="let category of categories">
-    <p> {{ category }} </p>
+  <div class="categ" *ngFor="let category of categories" (click)="goToEvents()">
+    <p>{{ category }} </p>
   </div>
 </div>
