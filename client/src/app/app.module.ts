@@ -3,10 +3,12 @@ import { BrowserModule } from '@angular/platform-browser';
 import { NgModule } from '@angular/core';
 import { FormsModule } from '@angular/forms';
 import { HttpModule } from '@angular/http';
+// import { HttpModule, Http } from '@angular/http';
 import { MaterializeModule } from 'angular2-materialize';
 import { FileSelectDirective } from "ng2-file-upload";
 
-import { RouterModule } from "@angular/router";
+//Routes
+import { RouterModule } from '@angular/router';
 import { routes } from './app.routing';
 
 import { AppComponent } from './app.component';
@@ -15,12 +17,13 @@ import { SingleEventComponent } from './single-event/single-event.component';
 import { HeaderComponent } from './header/header.component';
 import { AddEventComponent } from './add-event/add-event.component';
 import { CategoriesPageComponent } from './categories-page/categories-page.component';
+import {UserSignupComponent} from './signup/signup.component';
+import {UserLoginComponent} from './login/login.component';
 
 // Servicios
 import { EventService } from './services/event.service';
 import { SessionService } from './services/session.service';
 import { CategoriesService } from './services/categories.service';
-
 
 
 @NgModule({
@@ -31,7 +34,9 @@ import { CategoriesService } from './services/categories.service';
     HeaderComponent,
     FileSelectDirective,
     AddEventComponent,
-    CategoriesPageComponent
+    CategoriesPageComponent,
+    UserSignupComponent,
+    UserLoginComponent
   ],
   imports: [
     BrowserModule,

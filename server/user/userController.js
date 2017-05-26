@@ -61,7 +61,7 @@ module.exports = {
      * userController.create()
      */
     create: function (req, res) {
-        var user = new userModel({			username : req.body.username,			password : req.body.password,			email : req.body.email,			role : req.body.role,			validated : req.body.validated,			description : req.body.description
+        var user = new userModel({    			username : req.body.username,    			password : req.body.password,    			email : req.body.email,    			role : req.body.role,    			validated : req.body.validated,    			description : req.body.description
         });
 
         user.save(function (err, user) {
@@ -93,7 +93,8 @@ module.exports = {
                 });
             }
 
-            user.username = req.body.username ? req.body.username : user.username;			user.password = req.body.password ? req.body.password : user.password;			user.email = req.body.email ? req.body.email : user.email;			user.role = req.body.role ? req.body.role : user.role;			user.validated = req.body.validated ? req.body.validated : user.validated;			user.description = req.body.description ? req.body.description : user.description;
+            user.username = req.body.username ? req.body.username : user.username;      			user.password = req.body.password ? req.body.password : user.password;      			user.email = req.body.email ? req.body.email : user.email;      			user.role = req.body.role ? req.body.role : user.role;      			user.validated = req.body.validated ? req.body.validated : user.validated;      			user.description = req.body.description ? req.body.description : user.description;
+
             user.save(function (err, user) {
                 if (err) {
                     return res.status(500).json({
@@ -130,6 +131,9 @@ module.exports = {
     console.log(req.body);
     var username = req.body.username;
     var password = req.body.password;
+    var email = req.body.email;
+    var role = req.body.role;
+    var description = req.body.description;
 
     if (!username || !password) {
       res.status(400).json({ message: "Provide username and password" });
@@ -148,8 +152,13 @@ module.exports = {
 
       var newUser = userModel({
         username,
-        password: hashPass
+        password: hashPass,
+        email: email,
+        role: role,
+        description: description
       });
+
+      console.log("mi user: " + newUser);
 
       newUser.save((err) => {
         if (err) {
@@ -183,6 +192,7 @@ module.exports = {
           });
         }
         res.status(200).json(req.user);
+        console.log ("USUARIO LOGEADO: " + req.user);
       });
     })(req, res, next);
   },
@@ -195,11 +205,13 @@ module.exports = {
 
   //LOGGED IN
   loggedin: function(req, res) {
+    console.log("QUE COÑO PASA AKI");
     if(req.isAuthenticated()) {
       return res.status(200).json(req.user);
     }
     return res.status(403).json({ message: 'Unauthorized' });
   },
+
 
   //PRIVATE
   private: function(req, res) {

@@ -18,11 +18,11 @@ const MONGO_URL = process.env.MONGO_URL;
 const event = require('./event/eventRoutes');
 const user  = require('./user/userRoutes');
 
-mongoose.connect(MONGO_URL);
+mongoose.connect(MONGO_URL).then(() => console.log("Connection to mongo successful"));
 
 const app = express();
 
-app.use(cors());
+app.use(cors({credentials: true, origin: 'http://localhost:4200'}));
 
 app.use(session({
   secret: 'angular auth passport secret shh',
