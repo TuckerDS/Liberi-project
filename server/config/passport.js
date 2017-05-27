@@ -1,7 +1,7 @@
-const passport = require("passport");
+const passport      = require("passport");
 const LocalStrategy = require('passport-local').Strategy;
 const User          = require('../user/userModel');
-const bcrypt         = require("bcryptjs");
+const bcrypt        = require("bcryptjs");
 
 
 module.exports = function () {
@@ -37,5 +37,5 @@ module.exports = function () {
       next(null, foundUser);
     });
   }));
-  return passport
+  return passport;
 };

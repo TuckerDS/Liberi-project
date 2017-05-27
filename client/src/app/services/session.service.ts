@@ -20,6 +20,8 @@ const BASEURL = 'http://localhost:3000/api/user';
 @Injectable()
 export class SessionService {
 
+  loggedUser: any;
+
   // Creamos on objeto evento
   loginEvent: EventEmitter<any> = new EventEmitter();
 
@@ -46,13 +48,21 @@ export class SessionService {
 
   login(user) {
     return this.http.post(`${BASEURL}/login`, user, this.options)
-      .map(res => res.json())
+      .map(res => {
+        this.loggedUser = res.json();
+        this.loginEvent.emit(this.loggedUser);
+        return res.json()
+      })
       .catch(this.handleError);
   }
 
   logout() {
     return this.http.post(`${BASEURL}/logout`, {}, this.options)
-      .map(res => res.json())
+      .map(res => {
+        this.loggedUser = null;
+        this.loginEvent.emit(this.loggedUser);
+        return res.json();
+      })
       .catch(this.handleError);
   }
 
