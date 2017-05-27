@@ -12,7 +12,8 @@ import { UserLoginComponent } from './login/login.component';
 
 export const routes: Routes = [
   { path: '', component: CategoriesPageComponent },
-  { path: 'event', component: EventComponent },
+  // { path: 'event', component: EventComponent },
+  { path: 'events/:category', component: EventComponent },
   { path: 'add', component: AddEventComponent },
   { path: 'event/:id', component: SingleEventComponent },
   { path: 'event/:id/edit', component: EditEventComponent },

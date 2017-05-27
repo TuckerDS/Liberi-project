@@ -24,8 +24,8 @@ export class CategoriesPageComponent implements OnInit {
   ngOnInit() {
   }
 
-  goToEvents() {
-    this.router.navigate(['/event']);
+  goToEvents(category) {
+    this.router.navigate(['/events/'+category]);
   }
 
 }

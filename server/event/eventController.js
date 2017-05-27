@@ -23,6 +23,28 @@ module.exports = {
     });
   },
 
+  // eventController.filter()
+  filter: (req, res) => {
+    var category = req.params.category;
+
+    eventModel.find({
+      category: category
+    }, (err, events) => {
+      if (err) {
+        return res.status(500).json({
+          message: 'Error when getting events.',
+          error: err
+        });
+      }
+      if (!events) {
+        return res.status(404).json({
+          message: 'No such event'
+        });
+      }
+      return res.json(events);
+    });
+  },
+
   // eventController.show()
   show: (req, res) => {
     var id = req.params.id;

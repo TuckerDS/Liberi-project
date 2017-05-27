@@ -22,8 +22,19 @@ export class EventService {
     }
 
     // Get all events
-    getEvents(): Observable<any[]> {
-      return this.http.get(`${this.ENDPOINT}${this.EVENT_ROUTE}/`, this.options)
+    // getEvents(): Observable<any[]> {
+    //   return this.http.get(`${this.ENDPOINT}${this.EVENT_ROUTE}/`, this.options)
+    //     .map((res) => res.json())
+    //     .map((events) => {
+    //       this.events = events.map(e => new Event(e));
+    //       return this.events;
+    //     })
+    //     .catch((err) => Observable.throw(err));
+    // }
+
+    //Get all events with a category
+    getEventsByCategory(category: string): Observable<any[]> {
+      return this.http.get(`${this.ENDPOINT}${this.EVENT_ROUTE}/${category}`, this.options)
         .map((res) => res.json())
         .map((events) => {
           this.events = events.map(e => new Event(e));
@@ -33,7 +44,7 @@ export class EventService {
     }
 
     getEventDetails(id: string) {
-      return this.http.get(`${this.ENDPOINT}${this.EVENT_ROUTE}/${id}`, this.options)
+      return this.http.get(`${this.ENDPOINT}${this.EVENT_ROUTE}/single/${id}`, this.options)
         .map(res => res.json());
     }
 

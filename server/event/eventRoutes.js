@@ -7,8 +7,11 @@ const upload = require('../config/multer');
 //GET all events
 router.get('/', eventController.list);
 
+//GET all events of a category
+router.get('/:category', eventController.filter);
+
 //GET single event
-router.get('/:id', eventController.show);
+router.get('/single/:id', eventController.show);
 
 //POST create a new event
 router.post('/', upload.single('file'), eventController.create);
