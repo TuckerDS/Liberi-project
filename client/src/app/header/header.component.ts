@@ -8,38 +8,40 @@ import { Router } from '@angular/router';
   styleUrls: ['./header.component.css']
 })
 export class HeaderComponent implements OnInit {
-  user: any;
+  loggedUser: any;
 
   constructor(private sessionService: SessionService, private router: Router) {
 
   }
 
   ngOnInit() {
-    this.sessionService.isLoggedIn()
-    .subscribe(
-      (user) => this.logged(user)
-    );
+    // this.sessionService.isLoggedIn()
+    // .subscribe(
+    //   (user) => this.logged(user)
+    // );
 
     this.sessionService.getLogginEmitter().subscribe(
-      user => this.logged(user)
-
-    );
-
-
+      user => {
+        this.loggedUser = user;
+        console.log(this.loggedUser);
+      });
   }
+
   logged(user) {
-    console.log(user)
-      this.user = user;
-      console.log("logged");
-  }
+    console.log(user);
+    this.loggedUser = user;
+    console.log('LOOOOOOGEED');
+  };
 
   logError(err) {
+    console.log('ERROR EN NAVBAR' + err);
+  };
 
-    console.log("ERROR EN NAVBAR"+err);
-  }
+  logout() {
+    console.log('LOOOOOOUT');
+    this.sessionService.logout().subscribe(() => {
+      this.router.navigate(['/']);
+    });
+  };
 
-  logout(){
-    this.sessionService.logout();
-  }
-
-}
+};

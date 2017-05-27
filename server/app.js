@@ -25,8 +25,6 @@ const app = express();
 
 app.use(cors({credentials: true, origin: 'http://localhost:4200'}));
 
-
-
 app.use(logger('dev'));
 app.use(bodyParser.json());
 app.use(bodyParser.urlencoded({ extended: false }));
@@ -44,6 +42,7 @@ app.use(session({
   cookie : { httpOnly: true, maxAge: 2419200000 },
   store: new MongoStore({mongooseConnection: mongoose.connection})
 }));
+
 const passportSetup = require('./config/passport')();
 
 
@@ -57,8 +56,6 @@ app.locals.title = 'Express - Generated with IronGenerator';
 
 app.use(passportSetup.initialize());
 app.use(passportSetup.session());
-
-
 
 const index = require('./routes/index');
 app.use('/', index);
