@@ -1,0 +1,16 @@
+#ev-board {
+  margin: 5% 4%;
+}
+
+#title {
+  height: auto;
+  border: 2px solid black;
+  text-align: center;
+  margin: 1%;
+}
+
+.ev-info {
+  height: auto;
+  text-align: center;
+  margin: 1%;
+}

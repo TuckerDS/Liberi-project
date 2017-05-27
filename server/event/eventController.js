@@ -76,8 +76,8 @@ module.exports = {
   create: (req, res) => {
     console.log("LLega aqui");
     var event = new eventModel({
-      //userId: req.session.currentUser._id,
-      userId: new ObjectId("5927f4b4d21450e9e5706137"),
+      // userId: req.session.currentUser._id,
+      userId: new ObjectId("5929634d9260610e337e7978"),
       title: req.body.title,
       description: req.body.description,
       localization: req.body.localization,

@@ -1,7 +1,13 @@
-<h2 *ngIf="(singleEvent)">{{singleEvent.title}}</h2>
-<div *ngIf="(singleEvent)">
-  <p>{{singleEvent.category}}</p>
-  <p>{{singleEvent.description}}</p>
-  <button (click)="deleteEvent()">Delete</button>
+<div id="ev-board">
+  <a routerLink="/">Go back to categories</a>
+  <div id="title">
+    <h2 *ngIf="(singleEvent)">{{singleEvent.title}}</h2>
+  </div>
+  <div *ngIf="(singleEvent)">
+    <div  class="ev-info">
+      <p>{{singleEvent.category}}</p>
+      <p>{{singleEvent.description}}</p>
+    </div>
+    <button (click)="deleteEvent()">Delete</button>
+  </div>
 </div>
-<a routerLink="/">Go back to categories</a>
