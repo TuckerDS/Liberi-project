@@ -1,5 +1,7 @@
 <nav class="navbar sticky-top navbar-light navbar-custom bg-faded navbar-toggleable-md">
-  <a class="navbar-brand" href="#"> LIBERI </a>
-  <span *ngIf="user"><a (click)="logout()">Logout</a></span>
-  <span *ngIf="!user"><a [routerLink]="['/login']">Login</a>/<a [routerLink]="['/signup']">Signup</a></span>
+  <a class="navbar-brand" [routerLink]="['/']"> LIBERI </a>
+  <div>
+    <span *ngIf="user"><a (click)="logout()">Logout</a></span>
+    <span *ngIf="!user"><a [routerLink]="['/login']">Login</a>/<a [routerLink]="['/signup']">Signup</a></span>
+  </div>
 </nav>

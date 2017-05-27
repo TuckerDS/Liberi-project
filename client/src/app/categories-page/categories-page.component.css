@@ -1,7 +1,51 @@
 .categ {
   width: 200px;
   height: 200px;
-  background-color: blue;
   display: inline-block;
   text-align: center;
+  margin: 10px;
+  background-size: contain;
+  background-repeat: no-repeat;
+  background-position: center;
+}
+
+#board {
+  margin: 50px 40px;
+}
+
+.Musica{
+  background-image: url("http://dissenyaweb.com/blog/diseno_web/wp-content/uploads/519586-083_Music-512.png");
+  background-color: #33ccff;
+}
+.Poesia{
+  background-image: url("http://elan10.quebecelan.server277.com/wp-content/uploads/2014/08/poetry-1.png");
+  background-color: #d24dff;
+}
+.Cine{
+  background-image: url("https://image.flaticon.com/icons/png/512/2/2241.png");
+  background-color: #00e673;
+}
+.Teatro{
+  background-image: url("http://akademiarozwojutalentow.pl/wp-content/uploads/2015/09/teatr.png");
+  background-color: 	 #ffa64d;
+}
+.Museos{
+  background-image: url("https://image.flaticon.com/icons/png/512/8/8913.png");
+  background-color: #a3a3c2;
+}
+.Deporte{
+  background-image: url("https://image.flaticon.com/icons/png/512/8/8270.png");
+  background-color: #ff4d4d;
+}
+.Idiomas{
+  background-image: url("https://traductoressimultaneos.files.wordpress.com/2015/06/translation-icon.png");
+  background-color: #6666ff;
+}
+.Naturaleza{
+  background-image: url("https://cdn4.iconfinder.com/data/icons/nature-solid-icons-vol-2/72/75-512.png");
+  background-color: #79d2a6;
+}
+.Gastronomia{
+  background-image: url("http://www.mercadodesanildefonso.com/wp-content/uploads/2015/05/cocktail32.png");
+  background-color: #ffccff;
 }

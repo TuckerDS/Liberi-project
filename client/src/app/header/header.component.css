@@ -1,8 +1,19 @@
 .navbar-custom {
-    background-color: darken(rgb(0, 121, 191), 7%);
-    text-align: center;
+  background-color: darken(rgb(0, 121, 191), 7%);
+  text-align: center;
+  font-size: 3em;
+  color: white;
+  width: 100%;
 }
 
-.navbar-custom a, span {
-    color: white;
+.navbar-custom span {
+    font-size: 0.3em;
+}
+
+.navbar-custom div {
+  height: 20px;
+  width: 30px;
+  float: right;
+  display: inline-block;
+  margin-right: 80px;
 }

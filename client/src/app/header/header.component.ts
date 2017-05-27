@@ -19,14 +19,12 @@ export class HeaderComponent implements OnInit {
     .subscribe(
       (user) => this.logged(user)
     );
-
     this.sessionService.getLogginEmitter().subscribe(
       user => this.logged(user)
-
     );
-
-
   }
+
+
   logged(user) {
     console.log(user)
       this.user = user;
@@ -34,7 +32,6 @@ export class HeaderComponent implements OnInit {
   }
 
   logError(err) {
-
     console.log("ERROR EN NAVBAR"+err);
   }
 
