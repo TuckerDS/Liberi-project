@@ -17,3 +17,7 @@
   display: inline-block;
   margin-right: 80px;
 }
+
+.linked {
+  cursor: pointer;
+}

@@ -1,0 +1,15 @@
+#board {
+  margin: 5% 4%;
+}
+
+.event {
+  border: 2px solid blue;
+  margin: 10px 0;
+}
+.event div{
+  display: inline-block;
+}
+
+.pic {
+  width: 20%;
+}
