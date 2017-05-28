@@ -2,6 +2,7 @@ import { Component, OnInit } from '@angular/core';
 import { FileUploader } from "ng2-file-upload";
 import { Event } from '../event/event.model';
 import { EventService } from '../services/event.service';
+import { Router } from '@angular/router';
 
 @Component({
   selector: 'app-add-event',
@@ -25,7 +26,7 @@ export class AddEventComponent implements OnInit {
 
   feedback: string;
 
-  constructor(private ev: EventService) { }
+  constructor(private ev: EventService, private router: Router) { }
 
   ngOnInit() {
     this.uploader.onSuccessItem = (item, response) => {
@@ -52,7 +53,7 @@ export class AddEventComponent implements OnInit {
       form.append('startDate', this.newEvent.startDate);
       form.append('endDate', this.newEvent.endDate);
     };
-    console.log()
     this.uploader.uploadAll();
+    this.router.navigate(['']);
   }
 }

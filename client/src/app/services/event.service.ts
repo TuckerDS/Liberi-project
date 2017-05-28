@@ -49,7 +49,7 @@ export class EventService {
     }
 
     editEvent(event) {
-      return this.http.put(`${this.ENDPOINT}${this.EVENT_ROUTE}/${event.id}`, event,this.options)
+      return this.http.put(`${this.ENDPOINT}${this.EVENT_ROUTE}/${event._id}`, event,this.options)
         .map((res) => res.json());
     }
 

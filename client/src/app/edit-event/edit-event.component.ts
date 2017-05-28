@@ -39,6 +39,7 @@ export class EditEventComponent implements OnInit {
     this.ev.editEvent(this.currentEvent)
       .subscribe( event => {
         this.currentEvent = event;
+        this.router.navigate(['event/'+this.eventId]);
       })
     }
 
