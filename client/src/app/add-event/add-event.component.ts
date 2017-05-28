@@ -23,6 +23,8 @@ export class AddEventComponent implements OnInit {
     startDate: '',
     endDate: ''
   };
+  startHour = "";
+  endHour = "";
 
   feedback: string;
 
@@ -42,8 +44,8 @@ export class AddEventComponent implements OnInit {
   submit() {
     let start: Date = new Date();
     let end: Date = new Date();
-    start.setTime(Date.parse(this.newEvent.startDate));
-    end.setTime(Date.parse(this.newEvent.endDate));
+    start.setTime(Date.parse(this.newEvent.startDate + " " + this.startHour));
+    end.setTime(Date.parse(this.newEvent.endDate + " " + this.endHour));
 
     // this.ev.addEvent(this.newEvent)
     //   .subscribe( event => {
