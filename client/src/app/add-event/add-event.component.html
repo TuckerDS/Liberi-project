@@ -26,6 +26,12 @@
                 </select>
               </div>
       </div>
+      <div class="field">Start Date
+        <input type="text" class="datepicker" materialize="pickadate" [(ngModel)]="newEvent.startDate" name="stardDate"/>
+      </div>
+      <div class="field">End Date
+        <input type="text" class="datepicker" materialize="pickadate" [(ngModel)]="newEvent.endDate" name="endDate"/>
+      </div>
       <div class="field">
         <input type="file" class="form-control" name="file" ng2FileSelect [uploader]="uploader" />
       </div>

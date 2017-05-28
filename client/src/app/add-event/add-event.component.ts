@@ -40,6 +40,11 @@ export class AddEventComponent implements OnInit {
   }
 
   submit() {
+    let start: Date = new Date();
+    let end: Date = new Date();
+    start.setTime(Date.parse(this.newEvent.startDate));
+    end.setTime(Date.parse(this.newEvent.endDate));
+
     // this.ev.addEvent(this.newEvent)
     //   .subscribe( event => {
     //     this.newEvent = event;
@@ -50,8 +55,8 @@ export class AddEventComponent implements OnInit {
       form.append('category', this.newEvent.category);
       form.append('localization', this.newEvent.localization);
       form.append('permanent', this.newEvent.permanent);
-      form.append('startDate', this.newEvent.startDate);
-      form.append('endDate', this.newEvent.endDate);
+      form.append('startDate', start);
+      form.append('endDate', end);
     };
     this.uploader.uploadAll();
     this.router.navigate(['']);
