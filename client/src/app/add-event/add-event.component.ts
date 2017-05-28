@@ -10,7 +10,7 @@ import { EventService } from '../services/event.service';
 })
 export class AddEventComponent implements OnInit {
   uploader: FileUploader = new FileUploader({
-    url: `/event`
+    url: 'http://localhost:3000/api/event'
   });
 
   newEvent = {
@@ -39,25 +39,20 @@ export class AddEventComponent implements OnInit {
   }
 
   submit() {
-    this.ev.addEvent(this.newEvent)
-      .subscribe( event => {
-        this.newEvent = event;
-      })
-    // this.uploader.onBuildItemForm = (item, form) => {
-    //   form.append('title', this.newEvent.title);
-    //   form.append('description', this.newEvent.description);
-    //   form.append('category', this.newEvent.category);
-    //   form.append('localization', this.newEvent.localization);
-    //   form.append('permanent', this.newEvent.permanent);
-    //   form.append('startDate', this.newEvent.startDate);
-    //   form.append('endDate', this.newEvent.endDate);
-    // };
-    // console.log()
-    // this.uploader.uploadAll();
+    // this.ev.addEvent(this.newEvent)
+    //   .subscribe( event => {
+    //     this.newEvent = event;
+    //   })
+    this.uploader.onBuildItemForm = (item, form) => {
+      form.append('title', this.newEvent.title);
+      form.append('description', this.newEvent.description);
+      form.append('category', this.newEvent.category);
+      form.append('localization', this.newEvent.localization);
+      form.append('permanent', this.newEvent.permanent);
+      form.append('startDate', this.newEvent.startDate);
+      form.append('endDate', this.newEvent.endDate);
+    };
+    console.log()
+    this.uploader.uploadAll();
   }
-
-
-  // submitForm(myForm) {
-  //   console.log(myForm);
-  // }
 }
