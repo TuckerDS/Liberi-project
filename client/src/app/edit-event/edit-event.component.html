@@ -1,4 +1,4 @@
-<h2> Add a new event </h2>
+<h2> Edit the event </h2>
 <a routerLink="/event"> Back to list </a>
 
 
@@ -26,8 +26,8 @@
                 </select>
               </div>
       </div>
-      <p>
-        <input type="file" name="file" ng2FileSelect [uploader]="uploader" />
-      </p>
-      <button (click)="submitEdition()"> Submit </button>
+      <!-- <div class="field">
+        <input type="file" class="form-control" name="file" [(ngModel)]="pictureEdited" ng2FileSelect [uploader]="uploader" />
+      </div> -->
+      <button type="button" (click)="submitEdition()"> Submit </button>
 </form>

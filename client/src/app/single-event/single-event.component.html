@@ -5,7 +5,8 @@
   </div>
   <div *ngIf="(singleEvent)">
     <div  class="ev-info">
-      <p>{{singleEvent.category}}</p>
+      <p>Inicio: {{singleEvent.startDate | date: 'dd/MM/y  HH:mm'}}</p>
+      <p>Fin: {{singleEvent.endDate | date: 'dd/MM/y  HH:mm'}}</p>
       <p>{{singleEvent.description}}</p>
       <img [src]="singleEvent.picture">
     </div>

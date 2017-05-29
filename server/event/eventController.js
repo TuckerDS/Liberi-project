@@ -84,7 +84,7 @@ module.exports = {
       permanent: req.body.permanent,
       startDate: req.body.startDate,
       endDate: req.body.endDate,
-      picture: req.file ? `${req.file.filename}` : ""
+      picture: req.file ? `${req.file.filename}` : "ocio-madrid.jpg"
     });
 
     event.save((err, event) => {
@@ -130,7 +130,7 @@ module.exports = {
       event.permanent = req.body.permanent ? req.body.permanent : event.permanent;
       event.startDate = req.body.startDate ? req.body.startDate : event.startDate;
       event.endDate = req.body.endDate ? req.body.endDate : event.endDate;
-      event.picture = req.body.picture ? req.body.picture : event.picture;
+      event.picture = req.file ? `${req.file.filename}` : event.picture;
       event.save((err, event) => {
         if (err) {
           return res.status(500).json({

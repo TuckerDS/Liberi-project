@@ -21,7 +21,8 @@ export class AddEventComponent implements OnInit {
     localization: '',
     permanent: false,
     startDate: '',
-    endDate: ''
+    endDate: '',
+    picture: ''
   };
   startHour = "";
   endHour = "";
@@ -47,20 +48,24 @@ export class AddEventComponent implements OnInit {
     start.setTime(Date.parse(this.newEvent.startDate + " " + this.startHour));
     end.setTime(Date.parse(this.newEvent.endDate + " " + this.endHour));
 
-    // this.ev.addEvent(this.newEvent)
-    //   .subscribe( event => {
-    //     this.newEvent = event;
-    //   })
-    this.uploader.onBuildItemForm = (item, form) => {
-      form.append('title', this.newEvent.title);
-      form.append('description', this.newEvent.description);
-      form.append('category', this.newEvent.category);
-      form.append('localization', this.newEvent.localization);
-      form.append('permanent', this.newEvent.permanent);
-      form.append('startDate', start);
-      form.append('endDate', end);
-    };
-    this.uploader.uploadAll();
-    this.router.navigate(['']);
+    if(!this.newEvent.picture){
+      this.ev.addEvent(this.newEvent)
+        .subscribe( event => {
+          this.newEvent = event;
+          this.router.navigate(['']);
+        })
+    } else {
+      this.uploader.onBuildItemForm = (item, form) => {
+        form.append('title', this.newEvent.title);
+        form.append('description', this.newEvent.description);
+        form.append('category', this.newEvent.category);
+        form.append('localization', this.newEvent.localization);
+        form.append('permanent', this.newEvent.permanent);
+        form.append('startDate', start);
+        form.append('endDate', end);
+      };
+      this.uploader.uploadAll();
+      this.router.navigate(['']);
+    }
   }
 }
