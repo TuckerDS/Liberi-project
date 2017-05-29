@@ -32,9 +32,9 @@ export class EventService {
     //     .catch((err) => Observable.throw(err));
     // }
 
-    //Get all events with a category
+    // Get all events with a category
     getEventsByCategory(category: string): Observable<any[]> {
-      return this.http.get(`${this.ENDPOINT}${this.EVENT_ROUTE}/${category}`, this.options)
+      return this.http.get(`${this.ENDPOINT}${this.EVENT_ROUTE}/${category}`)
         .map((res) => res.json())
         .map((events) => {
           this.events = events.map(e => new Event(e));
@@ -49,7 +49,7 @@ export class EventService {
     }
 
     editEvent(event) {
-      return this.http.put(`${this.ENDPOINT}${this.EVENT_ROUTE}/${event.id}`, event,this.options)
+      return this.http.put(`${this.ENDPOINT}${this.EVENT_ROUTE}/${event.id}`, event, this.options)
         .map((res) => res.json());
     }
 
@@ -62,6 +62,4 @@ export class EventService {
       return this.http.delete(`${this.ENDPOINT}${this.EVENT_ROUTE}/${id}`, this.options)
         .map((res) => res.json());
     }
-
-
 }

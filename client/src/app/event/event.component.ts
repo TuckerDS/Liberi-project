@@ -15,6 +15,9 @@ export class EventComponent implements OnInit {
   constructor(private evs: EventService, private route: ActivatedRoute, private router: Router) { }
 
   ngOnInit() {
+
+  
+
     this.route.params.subscribe( params => { this.eventsCategory = String(params['category']) } )
     this.evs.getEventsByCategory(this.eventsCategory).subscribe( eventsArray => {
       this.events = eventsArray})

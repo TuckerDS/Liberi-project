@@ -13,6 +13,7 @@ import {EventEmitter} from '@angular/core';
 // Importar la clase Observable desde la librería rxjs
 // import { Observable }     from 'rxjs/Observable';
 
+import { Cookie } from 'ng2-cookies/ng2-cookies';
 
 // Fuera
 const BASEURL = 'http://localhost:3000/api/user';
@@ -21,12 +22,14 @@ const BASEURL = 'http://localhost:3000/api/user';
 export class SessionService {
 
   loggedUser: any;
+  activeSession: any;
+  serviceSessionID: any;
 
   // Creamos on objeto evento
   loginEvent: EventEmitter<any> = new EventEmitter();
 
-  //BASEURL: 'http://localhost:3000/api/user';
-  options: { withCredentials: true};
+  // BASEURL: 'http://localhost:3000/api/user';
+options: {withCredentials: true};
 
 
   constructor(private http: Http) { }
@@ -49,17 +52,21 @@ export class SessionService {
   login(user) {
     return this.http.post(`${BASEURL}/login`, user, this.options)
       .map(res => {
-        this.loggedUser = res.json();
+        this.loggedUser = res.json().user;
+        this.activeSession = res.json().session;
+        this.serviceSessionID = res.json().sID;
+        this.setCookie();
         this.loginEvent.emit(this.loggedUser);
-        return res.json()
+        return res.json();
       })
       .catch(this.handleError);
   }
 
   logout() {
-    return this.http.post(`${BASEURL}/logout`, {}, this.options)
+    return this.http.post(`${BASEURL}/logout`, {'sID': this.serviceSessionID})
       .map(res => {
         this.loggedUser = null;
+        this.deleteCookie();
         this.loginEvent.emit(this.loggedUser);
         return res.json();
       })
@@ -67,9 +74,14 @@ export class SessionService {
   }
 
   isLoggedIn() {
-    return this.http.get(`${BASEURL}/loggedin`, this.options)
-      .map(res => res.json())
-      .catch((err) => this.handleError(err));
+    return this.http.post(`${BASEURL}/loggedin`, {'sID': this.serviceSessionID})
+      .map(res => {
+        this.loggedUser = res.json().user;
+        res.json();
+        this.loginEvent.emit(this.loggedUser);
+        return;
+      })
+      .catch(this.handleError);
   }
 
   getPrivateData() {
@@ -77,4 +89,24 @@ export class SessionService {
       .map(res => res.json())
       .catch(this.handleError);
   }
+
+  setCookie() {
+    Cookie.set('liberi', this.serviceSessionID);
+    // Cookie.set('cookieName', 'cookieValue');
+    // Cookie.set('cookieName', 'cookieValue', 10 /*days from now*/);
+    // Cookie.set('cookieName', 'cookieValue', 10, '/myapp/', 'mydomain.com');
+  }
+
+  getCookie() {
+    const myCookie = Cookie.get('liberi');
+    this.serviceSessionID = myCookie;
+    this.isLoggedIn();
+    // return myCookie;
+  }
+
+  deleteCookie() {
+    Cookie.delete('liberi');
+    this.loginEvent.emit(this.loggedUser);
+  }
+
 }

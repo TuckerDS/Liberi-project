@@ -1,11 +1,9 @@
 /*jshint esversion: 6*/
+const passport        = require('passport');
+const userModel = require('./userModel.js');
+const sessionModel = require('../models/sessionModel.js');
 
-var userModel = require('./userModel.js');
-
-//passport
-const passport = require('passport');
-const passportConfig  = require("../config/passport");
-passportConfig();
+const ObjectId = require('mongoose').Types.ObjectId;
 
 // multer
 const upload = require('../config/multer');
@@ -14,6 +12,8 @@ const upload = require('../config/multer');
 const bcrypt         = require("bcryptjs");
 const bcryptSalt     = 10;
 
+
+const session      = require("express-session");
 /**
  * userController.js
  *
@@ -180,10 +180,16 @@ module.exports = {
 
   //LOGIN
   login: function(req, res, next) {
-    passport.authenticate('local', function(err, user, info) {
-      if (err) { return next(err); }
 
-      if (!user) { return res.status(401).json(info); }
+    passport.authenticate('local', function(err, user, info) {
+      if (err) {
+        //return next(err);
+        return res.status(500).json({message: 'Something Wrong'});
+      }
+
+      if (!user) {
+        return res.status(401).json(info);
+      }
 
       req.login(user, function(err) {
         if (err) {
@@ -191,24 +197,92 @@ module.exports = {
             message: 'something went wrong :('
           });
         }
-        res.status(200).json(req.user);
-        console.log ("USUARIO LOGEADO: " + req.user);
+
+        let loggedUser = {
+          _id: req.user._id,
+          username: req.user.username,
+          email: req.user.email,
+          description: req.user.description,
+          validated: req.user.validated,
+          role: req.user.role
+        };
+
+
+
+
+        res.status(200).json({user: loggedUser, session: req.session, sID: req.sessionID});
+
+
+        console.log ("----------LOGIN CONTROLLER--------------");
+        console.log ("---USUARIO LOGEADO: " + req.user);
+        console.log ("---req.session");
+        console.log (req.session);
+        //console.log ("---req");
+        //console.log(req);
+        console.log ("---res");
+        console.log(res);
+        console.log("---SESION ID (req): "+req.sessionID);
+        console.log("---SESION ID (res): "+req.sessionID);
+        console.log ("-----------------------------");
       });
     })(req, res, next);
   },
 
   //LOGOUT
   logout: function(req, res) {
+
+    //console.log("Logouy sID:" + req.sessionID);
+    let sID = req.body.sID;
     req.logout();
-    res.status(200).json({ message: 'Success' });
+    sessionModel.findOneAndRemove({_id: sID}, (err, session) => {
+        if (session) {
+          res.status(200).json({ message: 'Success logout of session ' + session});
+        }
+        if (err) {
+          res.status(400).json("Error at logout" + err);
+        }
+    });
   },
 
   //LOGGED IN
   loggedin: function(req, res) {
-    if(req.isAuthenticated()) {
-      return res.status(200).json(req.user);
-    }
-    return res.status(403).json({ message: 'Unauthorized' });
+
+    //console.log("req.sessionID: " + req.sessionID);
+    //console.log("sID: "+ req.body.sID);
+    let sID = req.body.sID;
+
+    sessionModel.findOne({ _id: sID }, (err, session) => {
+
+      if (session !== null) {
+        let userID = JSON.parse(session.session).passport.user;
+
+        userModel.findOne({ _id: userID }, (err, user) => {
+          if (user) {
+            let loggedUser = {
+              _id: user._id,
+              username: user.username,
+              email: user.email,
+              description: user.description,
+              validated: user.validated,
+              role: user.role
+            };
+            res.status(200).json({ session, "user":loggedUser });
+          }
+          return;
+        });
+        return;
+      } else {
+        res.status(400).json({ message: 'Unauthorized: Session do not exist' });
+        return;
+      }
+
+      if (err) {
+        res.status(400).json({ message: 'Error checking LoggedIn' });
+        return;
+      }
+
+    });
+
   },
 
 
