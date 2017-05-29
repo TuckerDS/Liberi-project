@@ -6,10 +6,16 @@
   border: 2px solid blue;
   margin: 10px 0;
 }
-.event div{
+.info{
+  display: inline-block;
+  width: 79%;
+}
+
+.pic{
+  width: 20%;
   display: inline-block;
 }
 
-.pic {
-  width: 20%;
+.pic img {
+  width: 95%;
 }

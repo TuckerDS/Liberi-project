@@ -1,4 +1,5 @@
 import { Component, OnInit } from '@angular/core';
+import { Injectable, Inject } from '@angular/core';
 import { Router, ActivatedRoute } from '@angular/router';
 import { Event } from './event.model';
 import { EventService } from '../services/event.service';
@@ -8,16 +9,16 @@ import { EventService } from '../services/event.service';
   templateUrl: './event.component.html',
   styleUrls: ['./event.component.css']
 })
+@Injectable()
 export class EventComponent implements OnInit {
   eventsCategory: string;
   events: Array<any> = [];
+  baseUrl: string;
 
-  constructor(private evs: EventService, private route: ActivatedRoute, private router: Router) { }
+  constructor(@Inject('BASE_ENDPOINT') private BASE: string, private evs: EventService, private route: ActivatedRoute, private router: Router) { }
 
   ngOnInit() {
-
-  
-
+    this.baseUrl = this.BASE + "/uploads/";
     this.route.params.subscribe( params => { this.eventsCategory = String(params['category']) } )
     this.evs.getEventsByCategory(this.eventsCategory).subscribe( eventsArray => {
       this.events = eventsArray})
