@@ -3,6 +3,8 @@ var router = express.Router();
 var eventController = require('./eventController.js');
 const CATEGORIES = require('./categories');
 const upload = require('../config/multer');
+const authChecker = require('../middlewares/authCheckerMiddleware');
+const { ensureLoggedIn } = require('connect-ensure-login');
 
 //GET all events
 router.get('/', eventController.list);

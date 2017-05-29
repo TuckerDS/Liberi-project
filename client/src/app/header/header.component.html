@@ -1,6 +1,9 @@
 <nav class="navbar sticky-top navbar-light navbar-custom bg-faded navbar-toggleable-md">
   <a class="navbar-brand" [routerLink]="['/']"> LIBERI </a>
+  <span><a class="linked" (click)="isLoggedIN()">Is?</a></span>
+  <span *ngIf="loggedUser">{{loggedUser.username}}</span>
 <div>
+
   <span *ngIf="loggedUser"><a class="linked" (click)="logout()">Logout</a></span>
   <span *ngIf="!loggedUser"><a [routerLink]="['/login']">Login</a>/<a [routerLink]="['/signup']">Signup</a></span>
 </div>

@@ -22,7 +22,7 @@ export class UserLoginComponent implements OnInit {
   ngOnInit() {
     this.sessionService.isLoggedIn()
     .subscribe(
-    (user) => this.successCb(user)
+    (user) => this.successCb(user),
   );
 
   }
@@ -45,7 +45,7 @@ export class UserLoginComponent implements OnInit {
    successCb(user) {
      this.user = user;
      this.error = null;
-     this.router.navigate(['/'])
+     this.router.navigate(['/']);
    }
 
 }

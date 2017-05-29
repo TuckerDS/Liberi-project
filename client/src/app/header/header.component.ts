@@ -44,4 +44,8 @@ export class HeaderComponent implements OnInit {
     });
   };
 
+
+  isLoggedIN(){
+    this.sessionService.isLoggedIn().subscribe(user => console.log(user));
+  }
 };
