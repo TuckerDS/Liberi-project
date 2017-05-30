@@ -14,16 +14,25 @@ import { SessionService } from '../services/session.service';
 export class SingleEventComponent implements OnInit {
   eventId: string;
   singleEvent: any;
+  loggedUser: any;
 
-  constructor(@Inject('BASE_ENDPOINT') private BASE: string, private session: SessionService, private ev: EventService, private route: ActivatedRoute, private router: Router) { }
+  constructor(@Inject('BASE_ENDPOINT') private BASE: string, private sessionService: SessionService, private ev: EventService, private route: ActivatedRoute, private router: Router) { }
 
   ngOnInit() {
-    this.session.isLoggedIn()
-       .subscribe(
-         (session) => this.successCb(session),
-         (err) => this.errorCb(err)
-       );
+    // this.session.isLoggedIn()
+    //    .subscribe(
+    //      (session) => this.successCb(session),
+    //      (err) => this.errorCb(err)
+    //    );
 
+    this.loggedUser = this.sessionService.loggedUser;
+
+    this.sessionService.getLogginEmitter().subscribe(
+      user => {
+        this.loggedUser = user;
+        console.log("USUARIO LOGADO EMMITER");
+        console.log(this.loggedUser);
+      });
 
     this.route.params.subscribe( params => { this.eventId = String(params['id']) } )
     this.ev.getEventDetails(this.eventId).subscribe( event => {
@@ -45,10 +54,16 @@ export class SingleEventComponent implements OnInit {
   }
 
   errorCb(err) {
-    this.session.logout();
+    this.sessionService.logout();
     this.router.navigate(['/login']);
      // this.error = err;
      // this.user = null;
    }
+
+   logged(user) {
+     console.log(user);
+     this.loggedUser = user;
+     console.log('LOOOOOOGEED');
+   }; 
 
 }

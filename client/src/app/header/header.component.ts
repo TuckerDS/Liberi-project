@@ -1,6 +1,9 @@
 import { Component, OnInit } from '@angular/core';
 import { SessionService } from '../services/session.service';
 import { Router } from '@angular/router';
+import { MaterializeAction } from 'angular2-materialize';
+import { Event } from '../event/event.model';
+import { EventService } from '../services/event.service';
 
 @Component({
   selector: 'app-header',
@@ -15,6 +18,7 @@ export class HeaderComponent implements OnInit {
   }
 
   ngOnInit() {
+
     // this.sessionService.isLoggedIn()
     // .subscribe(
     //   (user) => this.logged(user)
@@ -23,6 +27,7 @@ export class HeaderComponent implements OnInit {
     this.sessionService.getLogginEmitter().subscribe(
       user => {
         this.loggedUser = user;
+        console.log('USUARIO LOGADO EMMITER');
         console.log(this.loggedUser);
       });
   }
@@ -38,14 +43,13 @@ export class HeaderComponent implements OnInit {
   };
 
   logout() {
-    console.log('LOOOOOOUT');
     this.sessionService.logout().subscribe(() => {
       this.router.navigate(['/']);
     });
   };
 
 
-  isLoggedIN(){
+  isLoggedIN() {
     this.sessionService.isLoggedIn().subscribe(user => console.log(user));
   }
 };
