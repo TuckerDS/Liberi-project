@@ -1,4 +1,5 @@
 <h2> Add a new event </h2>
+<h3>{{loggedUser}}</h3>
 <a routerLink="/event"> Back to list </a>
 
 <div class="form-container">
@@ -11,20 +12,20 @@
       </div>
       <div class="field"> Category </div>
       <div class="row">
-              <div class="input-field col s6">
-                <select [(ngModel)]="newEvent.category" name="category" materialize="material_select" [materializeSelectOptions]="selectOptions" [attr.disabled]="isDisabled?true:null">
-                  <option value="" disabled selected>Choose the category of the event</option>
-                  <option value="Musica">Musica</option>
-                  <option value="Poesia">Poesia</option>
-                  <option value="Cine">Cine</option>
-                  <option value="Teatro">Teatro</option>
-                  <option value="Museos">Museos</option>
-                  <option value="Deporte">Deporte</option>
-                  <option value="Idiomas">Idiomas</option>
-                  <option value="Naturaleza">Naturaleza</option>
-                  <option value="Gastronomia">Gastronomia</option>
-                </select>
-              </div>
+        <div class="input-field col s6">
+          <select [(ngModel)]="newEvent.category" name="category" materialize="material_select" [materializeSelectOptions]="selectOptions" [attr.disabled]="isDisabled?true:null">
+            <option value="" disabled selected>Choose the category of the event</option>
+            <option value="Musica">Musica</option>
+            <option value="Poesia">Poesia</option>
+            <option value="Cine">Cine</option>
+            <option value="Teatro">Teatro</option>
+            <option value="Museos">Museos</option>
+            <option value="Deporte">Deporte</option>
+            <option value="Idiomas">Idiomas</option>
+            <option value="Naturaleza">Naturaleza</option>
+            <option value="Gastronomia">Gastronomia</option>
+          </select>
+        </div>
       </div>
       <div class="field">Start Date
         <input type="date" class="datepicker" materialize="pickadate" [(ngModel)]="newEvent.startDate" name="stardDate" />

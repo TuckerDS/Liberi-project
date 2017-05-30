@@ -1,8 +1,9 @@
 import { Component, OnInit } from '@angular/core';
-import { FileUploader } from "ng2-file-upload";
+import { FileUploader } from 'ng2-file-upload';
 import { Event } from '../event/event.model';
 import { EventService } from '../services/event.service';
 import { Router } from '@angular/router';
+import { SessionService } from '../services/session.service';
 
 @Component({
   selector: 'app-add-event',
@@ -29,26 +30,37 @@ export class AddEventComponent implements OnInit {
 
   feedback: string;
 
-  constructor(private ev: EventService, private router: Router) { }
+  user_id: any;
+  loggedUser: any;
+
+  constructor(private ev: EventService, private router: Router, private sessionService: SessionService) { }
 
   ngOnInit() {
+
+    this.sessionService.getLogginEmitter().subscribe(
+      user => {
+        this.loggedUser = user;
+        this.user_id = user._id;
+        console.log("ID DEL USUARIO? "+ user._id);
+      });
+
     this.uploader.onSuccessItem = (item, response) => {
       this.feedback = JSON.parse(response).message;
     };
 
     this.uploader.onErrorItem = (item, response, status, headers) => {
-      console.log(response)
+      console.log(response);
       this.feedback = JSON.parse(response).message;
     };
   }
 
   submit() {
-    let start: Date = new Date();
-    let end: Date = new Date();
+    const start: Date = new Date();
+    const end: Date = new Date();
     start.setTime(Date.parse(this.newEvent.startDate + " " + this.startHour));
     end.setTime(Date.parse(this.newEvent.endDate + " " + this.endHour));
 
-    if(!this.newEvent.picture){
+    if (!this.newEvent.picture){
       this.ev.addEvent(this.newEvent)
         .subscribe( event => {
           this.newEvent = event;
@@ -56,6 +68,7 @@ export class AddEventComponent implements OnInit {
         })
     } else {
       this.uploader.onBuildItemForm = (item, form) => {
+        form.append('user_id', this.user_id);
         form.append('title', this.newEvent.title);
         form.append('description', this.newEvent.description);
         form.append('category', this.newEvent.category);

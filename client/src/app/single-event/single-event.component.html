@@ -10,6 +10,8 @@
       <p>{{singleEvent.description}}</p>
       <img [src]="singleEvent.picture">
     </div>
-    <button (click)="deleteEvent()">Delete</button>
+    <div *ngIf="loggedUser">
+      <button (click)="deleteEvent()">Delete</button>
+    </div>
   </div>
 </div>

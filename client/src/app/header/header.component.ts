@@ -23,6 +23,7 @@ export class HeaderComponent implements OnInit {
     this.sessionService.getLogginEmitter().subscribe(
       user => {
         this.loggedUser = user;
+        console.log('USUARIO LOGADO EMMITER');
         console.log(this.loggedUser);
       });
   }
@@ -38,14 +39,13 @@ export class HeaderComponent implements OnInit {
   };
 
   logout() {
-    console.log('LOOOOOOUT');
     this.sessionService.logout().subscribe(() => {
       this.router.navigate(['/']);
     });
   };
 
 
-  isLoggedIN(){
+  isLoggedIN() {
     this.sessionService.isLoggedIn().subscribe(user => console.log(user));
   }
 };

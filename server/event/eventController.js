@@ -76,7 +76,8 @@ module.exports = {
   create: (req, res) => {
     var event = new eventModel({
       // userId: req.session.currentUser._id,
-      userId: new ObjectId("5929634d9260610e337e7978"),
+      //userId: new ObjectId("5929634d9260610e337e7978"),
+      userId: new ObjectId(req.body.user_id),
       title: req.body.title,
       category: req.body.category,
       description: req.body.description,
