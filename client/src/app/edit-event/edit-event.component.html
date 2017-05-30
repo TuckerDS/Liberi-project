@@ -1,33 +1,36 @@
 <h2> Edit the event </h2>
 <a routerLink="/event"> Back to list </a>
 
-
-<form *ngIf="currentEvent">
-      <p> Event title
+<div class="form-container">
+  <form *ngIf="currentEvent" (ngSubmit)="submitEdition()" #myform="ngForm">
+    <div class="row">
+      <div class="input-field col s12">Event title
         <input type="text" name="title" [value]="currentEvent.title" [(ngModel)]="currentEvent.title" required />
-      </p>
-      <p> Description
-        <input type="text" name="description" [value]="currentEvent.description" [(ngModel)]="currentEvent.description" required />
-      </p>
-      <div class="field"> Category </div>
-      <div class="row">
-              <div class="input-field col s6">
-                <select [(ngModel)]="currentEvent.category" name="category" materialize="material_select" [materializeSelectOptions]="selectOptions" [attr.disabled]="isDisabled?true:null">
-                  <option value="" disabled selected>Choose the category of the event</option>
-                  <option value="Musica">Musica</option>
-                  <option value="Poesia">Poesia</option>
-                  <option value="Cine">Cine</option>
-                  <option value="Teatro">Teatro</option>
-                  <option value="Museos">Museos</option>
-                  <option value="Deporte">Deporte</option>
-                  <option value="Idiomas">Idiomas</option>
-                  <option value="Naturaleza">Naturaleza</option>
-                  <option value="Gastronomia">Gastronomia</option>
-                </select>
-              </div>
       </div>
-      <!-- <div class="field">
-        <input type="file" class="form-control" name="file" [(ngModel)]="pictureEdited" ng2FileSelect [uploader]="uploader" />
-      </div> -->
-      <button type="button" (click)="submitEdition()"> Submit </button>
-</form>
+    </div>
+    <div class="row">
+      <div class="input-field col s12">Description
+        <input type="text" name="description" [value]="currentEvent.description" [(ngModel)]="currentEvent.description" required />
+      </div>
+    </div>
+    <div class="row">
+      <div class="input-field col s6">
+        <div class="field"> Category </div>
+        <select [(ngModel)]="currentEvent.category" name="category" materialize="material_select" [materializeSelectOptions]="selectOptions" [attr.disabled]="isDisabled?true:null">
+          <option value="" disabled selected>Choose the category of the event</option>
+          <option value="Musica">Musica</option>
+          <option value="Poesia">Poesia</option>
+          <option value="Cine">Cine</option>
+          <option value="Teatro">Teatro</option>
+          <option value="Museos">Museos</option>
+          <option value="Deporte">Deporte</option>
+          <option value="Idiomas">Idiomas</option>
+          <option value="Naturaleza">Naturaleza</option>
+          <option value="Gastronomia">Gastronomia</option>
+        </select>
+      </div>
+    </div>
+
+    <button type="submit"> Submit </button>
+  </form>
+</div>

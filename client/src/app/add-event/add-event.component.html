@@ -3,7 +3,8 @@
 
 <div class="form-container">
   <form (ngSubmit)="submitForm(myForm)" #myform="ngForm">
-      <div class="field"> Event title
+    <div class="row">
+      <div class="input-field col s12"> Event title*
         <input type="text" name="title" [(ngModel)]="newEvent.title" #myTitle="ngModel" required />
       </div>
       <div *ngIf="myTitle.errors && (myTitle.dirty || myTitle.touched)">
@@ -11,42 +12,79 @@
           Title is required
         </p>
       </div>
-      <div class="field"> Description
-        <input type="text" name="description" [(ngModel)]="newEvent.description" required />
+    </div>
+    <div class="row">
+      <div class="input-field col s12"> Description*
+        <input type="text" name="description" [(ngModel)]="newEvent.description" #myDesc="ngModel" required />
       </div>
-      <div class="field"> Category </div>
-      <div class="row">
-              <div class="input-field col s6">
-                <select [(ngModel)]="newEvent.category" name="category" materialize="material_select" [materializeSelectOptions]="selectOptions" [attr.disabled]="isDisabled?true:null" required>
-                  <option value="" disabled selected>Choose the category of the event</option>
-                  <option value="Musica">Musica</option>
-                  <option value="Poesia">Poesia</option>
-                  <option value="Cine">Cine</option>
-                  <option value="Teatro">Teatro</option>
-                  <option value="Museos">Museos</option>
-                  <option value="Deporte">Deporte</option>
-                  <option value="Idiomas">Idiomas</option>
-                  <option value="Naturaleza">Naturaleza</option>
-                  <option value="Gastronomia">Gastronomia</option>
-                </select>
-              </div>
+      <div *ngIf="myDesc.errors && (myDesc.dirty || myDesc.touched)">
+        <p class="error" [hidden]="!myDesc.errors.required">
+          A description is required
+        </p>
       </div>
-      <div class="field">Start Date
-        <input type="date" class="datepicker" materialize="pickadate" [(ngModel)]="newEvent.startDate" name="stardDate" required />
-      </div>
-      <div class="field">Start Hour
-        <input type="time" class="timepicker" [(ngModel)]="startHour" name="startHour" required/>
-      </div>
-      <div class="field">End Date
-        <input type="date" class="datepicker" materialize="pickadate" [(ngModel)]="newEvent.endDate" name="endDate" required/>
-      </div>
-      <div class="field">End Hour
-        <input type="time" class="timepicker" [(ngModel)]="endHour" name="endHour" required/>
-      </div>
-      <div class="field">
-        <input type="file" class="form-control" name="file" [(ngModel)]="newEvent.picture" ng2FileSelect [uploader]="uploader" />
-      </div>
+    </div>
 
-      <button type="submit"> Submit </button>
+
+    <div class="row">
+      <div class="input-field col s6">
+        <div class="field"> Category* </div>
+        <select [(ngModel)]="newEvent.category" name="category" materialize="material_select" [materializeSelectOptions]="selectOptions" [attr.disabled]="isDisabled?true:null" required>
+          <option value="" disabled selected>Choose the category of the event</option>
+          <option value="Musica">Musica</option>
+          <option value="Poesia">Poesia</option>
+          <option value="Cine">Cine</option>
+          <option value="Teatro">Teatro</option>
+          <option value="Museos">Museos</option>
+          <option value="Deporte">Deporte</option>
+          <option value="Idiomas">Idiomas</option>
+          <option value="Naturaleza">Naturaleza</option>
+          <option value="Gastronomia">Gastronomia</option>
+        </select>
+      </div>
+    </div>
+
+    <div class="row">
+      <div class="input-field col s6"> Start Date*
+        <input type="date" class="datepicker" materialize="pickadate" [(ngModel)]="newEvent.startDate" #stDate="ngModel" name="startDate" required />
+        <div *ngIf="stDate.errors && (stDate.dirty || stDate.touched)">
+          <p class="error" [hidden]="!stDate.errors.required">
+            A starting date is required
+          </p>
+        </div>
+      </div>
+      <div class="input-field col s6">Start Hour*
+        <input type="time" class="timepicker" [(ngModel)]="startHour" #stHour="ngModel" name="startHour" required/>
+        <div *ngIf="stHour.errors && (stHour.dirty || stHour.touched)">
+          <p class="error" [hidden]="!stHour.errors.required">
+            A starting time is required
+          </p>
+        </div>
+      </div>
+    </div>
+
+    <div class="row">
+      <div class="input-field col s6">End Date*
+        <input type="date" class="datepicker" materialize="pickadate" [(ngModel)]="newEvent.endDate" #endDate="ngModel" name="endDate" required/>
+        <div *ngIf="endDate.errors && (endDate.dirty || endDate.touched)">
+          <p class="error" [hidden]="!endDate.errors.required">
+            A ending date is required
+          </p>
+        </div>
+      </div>
+      <div class="input-field col s6">End Hour*
+        <input type="time" class="timepicker" [(ngModel)]="endHour" #enHour="ngModel" name="endHour" required/>
+        <div *ngIf="enHour.errors && (enHour.dirty || enHour.touched)">
+          <p class="error" [hidden]="!enHour.errors.required">
+            A ending time is required
+          </p>
+        </div>
+      </div>
+    </div>
+    <div class="field">
+      <input type="file" class="form-control" name="file" [(ngModel)]="newEvent.picture" ng2FileSelect [uploader]="uploader" />
+    </div>
+    <br />
+    <button type="submit"> Submit </button>
   </form>
+  <br /><br />
 </div>
