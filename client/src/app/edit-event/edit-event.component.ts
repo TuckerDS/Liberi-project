@@ -1,4 +1,5 @@
 import { Component, OnInit } from '@angular/core';
+import { Injectable, Inject } from '@angular/core';
 import { Router, ActivatedRoute } from '@angular/router';
 import { FileUploader } from "ng2-file-upload";
 import { Event } from '../event/event.model';
@@ -10,17 +11,27 @@ import { EventService } from '../services/event.service';
   styleUrls: ['./edit-event.component.css']
 })
 export class EditEventComponent implements OnInit {
+  EVENT_ROUTE = '/event';
+  ENDPOINT: string;
   eventId: string;
   currentEvent: any;
   pictureEdited: any;
 
-  uploader: FileUploader = new FileUploader({
-    url: 'http://localhost:3000/api/event'
-  });
+  uploader: FileUploader;
 
   feedback: string;
 
-  constructor(private ev: EventService, private route: ActivatedRoute, private router: Router) {   }
+  constructor(
+    @Inject('BASE_ENDPOINT') private BASE: string,
+    @Inject('API_ENDPOINT') private API: string,
+    private ev: EventService,
+    private route: ActivatedRoute,
+    private router: Router) {
+      this.ENDPOINT = BASE + API;
+      this.uploader = new FileUploader({
+        url: this.ENDPOINT+this.EVENT_ROUTE
+      });
+    }
 
   ngOnInit() {
     this.route.params.subscribe( params => { this.eventId = String(params['id']) } )

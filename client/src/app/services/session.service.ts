@@ -1,4 +1,4 @@
-import { Injectable } from '@angular/core';
+import { Injectable, Inject } from '@angular/core';
 // Importar objetos de la librería http
 import { Http, Response } from '@angular/http';
 import 'rxjs/add/operator/map';
@@ -15,11 +15,11 @@ import {EventEmitter} from '@angular/core';
 
 import { Cookie } from 'ng2-cookies/ng2-cookies';
 
-// Fuera
-const BASEURL = 'http://localhost:3000/api/user';
 
 @Injectable()
 export class SessionService {
+  USER_ROUTE = '/user';
+  ENDPOINT: string;
 
   loggedUser: any;
   activeSession: any;
@@ -32,7 +32,12 @@ export class SessionService {
 options: {withCredentials: true};
 
 
-  constructor(private http: Http) { }
+  constructor(
+    @Inject('BASE_ENDPOINT') private BASE: string,
+    @Inject('API_ENDPOINT') private API: string,
+    private http: Http) {
+      this.ENDPOINT = BASE + API;
+    }
 
   // Escucha eventos
   getLogginEmitter(): EventEmitter<any> {
@@ -44,13 +49,13 @@ options: {withCredentials: true};
   }
 
   signup(user) {
-    return this.http.post(`${BASEURL}/signup`, user, this.options)
+    return this.http.post(`${this.ENDPOINT}${this.USER_ROUTE}/signup`, user, this.options)
       .map(res => res.json())
       .catch(this.handleError);
   }
 
   login(user) {
-    return this.http.post(`${BASEURL}/login`, user, this.options)
+    return this.http.post(`${this.ENDPOINT}${this.USER_ROUTE}/login`, user, this.options)
       .map(res => {
         this.loggedUser = res.json().user;
         this.activeSession = res.json().session;
@@ -63,7 +68,7 @@ options: {withCredentials: true};
   }
 
   logout() {
-    return this.http.post(`${BASEURL}/logout`, {'sID': this.serviceSessionID})
+    return this.http.post(`${this.ENDPOINT}${this.USER_ROUTE}/logout`, {'sID': this.serviceSessionID})
       .map(res => {
         this.loggedUser = null;
         this.deleteCookie();
@@ -74,7 +79,7 @@ options: {withCredentials: true};
   }
 
   isLoggedIn() {
-    return this.http.post(`${BASEURL}/loggedin`, {'sID': this.serviceSessionID})
+    return this.http.post(`${this.ENDPOINT}${this.USER_ROUTE}/loggedin`, {'sID': this.serviceSessionID})
       .map(res => {
         this.loggedUser = res.json().user;
         res.json();
@@ -85,7 +90,7 @@ options: {withCredentials: true};
   }
 
   getPrivateData() {
-    return this.http.get(`${BASEURL}/private`, this.options)
+    return this.http.get(`${this.ENDPOINT}${this.USER_ROUTE}/private`, this.options)
       .map(res => res.json())
       .catch(this.handleError);
   }

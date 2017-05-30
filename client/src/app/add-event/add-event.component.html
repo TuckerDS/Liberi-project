@@ -2,9 +2,14 @@
 <a routerLink="/event"> Back to list </a>
 
 <div class="form-container">
-  <form>
+  <form (ngSubmit)="submitForm(myForm)" #myform="ngForm">
       <div class="field"> Event title
-        <input type="text" name="title" [(ngModel)]="newEvent.title" required />
+        <input type="text" name="title" [(ngModel)]="newEvent.title" #myTitle="ngModel" required />
+      </div>
+      <div *ngIf="myTitle.errors && (myTitle.dirty || myTitle.touched)">
+        <p class="error" [hidden]="!myTitle.errors.required">
+          Title is required
+        </p>
       </div>
       <div class="field"> Description
         <input type="text" name="description" [(ngModel)]="newEvent.description" required />
@@ -12,7 +17,7 @@
       <div class="field"> Category </div>
       <div class="row">
               <div class="input-field col s6">
-                <select [(ngModel)]="newEvent.category" name="category" materialize="material_select" [materializeSelectOptions]="selectOptions" [attr.disabled]="isDisabled?true:null">
+                <select [(ngModel)]="newEvent.category" name="category" materialize="material_select" [materializeSelectOptions]="selectOptions" [attr.disabled]="isDisabled?true:null" required>
                   <option value="" disabled selected>Choose the category of the event</option>
                   <option value="Musica">Musica</option>
                   <option value="Poesia">Poesia</option>
@@ -27,21 +32,21 @@
               </div>
       </div>
       <div class="field">Start Date
-        <input type="date" class="datepicker" materialize="pickadate" [(ngModel)]="newEvent.startDate" name="stardDate" />
+        <input type="date" class="datepicker" materialize="pickadate" [(ngModel)]="newEvent.startDate" name="stardDate" required />
       </div>
       <div class="field">Start Hour
-        <input type="time" class="timepicker" [(ngModel)]="startHour" name="startHour"/>
+        <input type="time" class="timepicker" [(ngModel)]="startHour" name="startHour" required/>
       </div>
       <div class="field">End Date
-        <input type="date" class="datepicker" materialize="pickadate" [(ngModel)]="newEvent.endDate" name="endDate"/>
+        <input type="date" class="datepicker" materialize="pickadate" [(ngModel)]="newEvent.endDate" name="endDate" required/>
       </div>
       <div class="field">End Hour
-        <input type="time" class="timepicker" [(ngModel)]="endHour" name="endHour"/>
+        <input type="time" class="timepicker" [(ngModel)]="endHour" name="endHour" required/>
       </div>
       <div class="field">
         <input type="file" class="form-control" name="file" [(ngModel)]="newEvent.picture" ng2FileSelect [uploader]="uploader" />
       </div>
 
-      <button type="button" (click)="submit()"> Submit </button>
+      <button type="submit"> Submit </button>
   </form>
 </div>

@@ -1,4 +1,5 @@
 import { Component, OnInit } from '@angular/core';
+import { Injectable, Inject } from '@angular/core';
 import { FileUploader } from "ng2-file-upload";
 import { Event } from '../event/event.model';
 import { EventService } from '../services/event.service';
@@ -9,10 +10,12 @@ import { Router } from '@angular/router';
   templateUrl: './add-event.component.html',
   styleUrls: ['./add-event.component.css']
 })
+@Injectable()
 export class AddEventComponent implements OnInit {
-  uploader: FileUploader = new FileUploader({
-    url: 'http://localhost:3000/api/event'
-  });
+  EVENT_ROUTE = '/event';
+  ENDPOINT: string;
+  uploader: FileUploader;
+
 
   newEvent = {
     title: '',
@@ -29,7 +32,18 @@ export class AddEventComponent implements OnInit {
 
   feedback: string;
 
-  constructor(private ev: EventService, private router: Router) { }
+  constructor(
+    @Inject('BASE_ENDPOINT') private BASE: string,
+    @Inject('API_ENDPOINT') private API: string,
+    private ev: EventService,
+    private router: Router) {
+      this.ENDPOINT = BASE + API;
+      this.uploader = new FileUploader({
+        url: this.ENDPOINT+this.EVENT_ROUTE
+      });
+    }
+
+
 
   ngOnInit() {
     this.uploader.onSuccessItem = (item, response) => {
@@ -42,13 +56,14 @@ export class AddEventComponent implements OnInit {
     };
   }
 
-  submit() {
+  submitForm(myForm) {
+    console.log(this.uploader.queue)
     let start: Date = new Date();
     let end: Date = new Date();
     start.setTime(Date.parse(this.newEvent.startDate + " " + this.startHour));
     end.setTime(Date.parse(this.newEvent.endDate + " " + this.endHour));
 
-    if(!this.newEvent.picture){
+    if(this.uploader.queue.length === 0){
       this.ev.addEvent(this.newEvent)
         .subscribe( event => {
           this.newEvent = event;
