@@ -1,6 +1,9 @@
 import { Component, OnInit } from '@angular/core';
 import { SessionService } from '../services/session.service';
 import { Router } from '@angular/router';
+import { MaterializeAction } from 'angular2-materialize';
+import { Event } from '../event/event.model';
+import { EventService } from '../services/event.service';
 
 @Component({
   selector: 'app-header',
@@ -15,6 +18,7 @@ export class HeaderComponent implements OnInit {
   }
 
   ngOnInit() {
+
     // this.sessionService.isLoggedIn()
     // .subscribe(
     //   (user) => this.logged(user)

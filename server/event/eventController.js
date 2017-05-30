@@ -74,6 +74,7 @@ module.exports = {
 
   //eventController.create()
   create: (req, res) => {
+    console.log("EL JODIDO ID DE USUARIO: " + req.body.user_id);
     var event = new eventModel({
       // userId: req.session.currentUser._id,
       //userId: new ObjectId("5929634d9260610e337e7978"),

@@ -16,6 +16,7 @@ export class AddEventComponent implements OnInit {
   });
 
   newEvent = {
+    user_id: '',
     title: '',
     description: '',
     category: '',
@@ -25,8 +26,8 @@ export class AddEventComponent implements OnInit {
     endDate: '',
     picture: ''
   };
-  startHour = "";
-  endHour = "";
+  startHour = '';
+  endHour = '';
 
   feedback: string;
 
@@ -37,11 +38,13 @@ export class AddEventComponent implements OnInit {
 
   ngOnInit() {
 
+    this.loggedUser = this.sessionService.loggedUser;
+    this.newEvent.user_id =  this.sessionService.loggedUser._id;
+
     this.sessionService.getLogginEmitter().subscribe(
       user => {
         this.loggedUser = user;
-        this.user_id = user._id;
-        console.log("ID DEL USUARIO? "+ user._id);
+        this.newEvent.user_id = user._id;
       });
 
     this.uploader.onSuccessItem = (item, response) => {
@@ -68,7 +71,7 @@ export class AddEventComponent implements OnInit {
         })
     } else {
       this.uploader.onBuildItemForm = (item, form) => {
-        form.append('user_id', this.user_id);
+        form.append('user_id', this.loggedUser._id);
         form.append('title', this.newEvent.title);
         form.append('description', this.newEvent.description);
         form.append('category', this.newEvent.category);
