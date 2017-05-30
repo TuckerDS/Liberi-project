@@ -15,6 +15,7 @@ export class SingleEventComponent implements OnInit {
   eventId: string;
   singleEvent: any;
   loggedUser: any;
+  eventuser: any;
 
   constructor(@Inject('BASE_ENDPOINT') private BASE: string, private sessionService: SessionService, private ev: EventService, private route: ActivatedRoute, private router: Router) { }
 
@@ -64,6 +65,6 @@ export class SingleEventComponent implements OnInit {
      console.log(user);
      this.loggedUser = user;
      console.log('LOOOOOOGEED');
-   }; 
+   };
 
 }

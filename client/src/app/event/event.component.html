@@ -9,6 +9,12 @@
         <p> Fecha: {{ event.category }} </p>
         <p> Lugar: {{ event.description }} </p>
       </div>
+      <div *ngIf="loggedUser && (loggedUser._id == event.userId)">
+        {{loggedUser._id}} <br>
+        {{event.userId}}
+        <button (click)="editEvent(event._id)">Edit</button>
+        <button (click)="deleteEvent(event._id)" >Delete</button>
+      </div>
     </div>
   </div>
 </div>

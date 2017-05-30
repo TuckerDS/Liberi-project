@@ -1,6 +1,6 @@
 import { Component, OnInit } from '@angular/core';
 import { Injectable, Inject } from '@angular/core';
-import { FileUploader } from "ng2-file-upload";
+import { FileUploader } from 'ng2-file-upload';
 import { Event } from '../event/event.model';
 import { EventService } from '../services/event.service';
 import { Router } from '@angular/router';
@@ -16,7 +16,12 @@ export class AddEventComponent implements OnInit {
   EVENT_ROUTE = '/event';
   ENDPOINT: string;
   uploader: FileUploader;
-
+  
+  // Corrige los errores de compilación de angular,
+  // las propiedades deben existir previamente.
+  myForm: any;
+  selectOptions: any;
+  isDisabled: any;
 
   newEvent = {
     user_id: '',
@@ -37,14 +42,15 @@ export class AddEventComponent implements OnInit {
   user_id: any;
   loggedUser: any;
 
-  constructor(
+  constructor (
     @Inject('BASE_ENDPOINT') private BASE: string,
     @Inject('API_ENDPOINT') private API: string,
     private ev: EventService,
-    private router: Router) {
+    private router: Router,
+    private sessionService: SessionService) {
       this.ENDPOINT = BASE + API;
       this.uploader = new FileUploader({
-        url: this.ENDPOINT+this.EVENT_ROUTE
+        url: this.ENDPOINT + this.EVENT_ROUTE
       });
     }
 
@@ -73,10 +79,10 @@ export class AddEventComponent implements OnInit {
     console.log(this.uploader.queue)
     const start: Date = new Date();
     const end: Date = new Date();
-    start.setTime(Date.parse(this.newEvent.startDate + " " + this.startHour));
-    end.setTime(Date.parse(this.newEvent.endDate + " " + this.endHour));
+    start.setTime(Date.parse(this.newEvent.startDate + ' ' + this.startHour));
+    end.setTime(Date.parse(this.newEvent.endDate + ' ' + this.endHour));
 
-    if(this.uploader.queue.length === 0){
+    if (this.uploader.queue.length === 0) {
       this.ev.addEvent(this.newEvent)
         .subscribe( event => {
           this.newEvent = event;

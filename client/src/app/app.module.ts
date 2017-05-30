@@ -4,9 +4,9 @@ import { NgModule } from '@angular/core';
 import { FormsModule } from '@angular/forms';
 import { HttpModule } from '@angular/http';
 import { MaterializeModule } from 'angular2-materialize';
-import { FileSelectDirective } from "ng2-file-upload";
+import { FileUploadModule } from 'ng2-file-upload';
 
-//Routes
+// Routes
 import { RouterModule } from '@angular/router';
 import { routes } from './app.routing';
 
@@ -16,6 +16,7 @@ import { SingleEventComponent } from './single-event/single-event.component';
 import { HeaderComponent } from './header/header.component';
 import { AddEventComponent } from './add-event/add-event.component';
 import { CategoriesPageComponent } from './categories-page/categories-page.component';
+import { UserComponent } from './user/user.component';
 import { UserSignupComponent } from './signup/signup.component';
 import { UserLoginComponent } from './login/login.component';
 import { EditEventComponent } from './edit-event/edit-event.component';
@@ -32,9 +33,9 @@ import { CategoriesService } from './services/categories.service';
     EventComponent,
     SingleEventComponent,
     HeaderComponent,
-    FileSelectDirective,
     AddEventComponent,
     CategoriesPageComponent,
+    UserComponent,
     UserSignupComponent,
     UserLoginComponent,
     EditEventComponent
@@ -42,6 +43,7 @@ import { CategoriesService } from './services/categories.service';
   imports: [
     BrowserModule,
     FormsModule,
+    FileUploadModule,
     HttpModule,
     MaterializeModule,
     RouterModule.forRoot(routes)

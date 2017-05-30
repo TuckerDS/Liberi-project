@@ -19,6 +19,11 @@ export class UserSignupComponent implements OnInit {
   error: string;
   privateData: any = '';
 
+  // Corrige los errores de compilación de angular,
+  // las propiedades deben existir previamente.
+  selectOptions: any;
+  isDisabled: any;
+
   constructor(private sessionService: SessionService,
               private router: Router
               ) { }
