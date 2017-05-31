@@ -46,7 +46,7 @@
 
     <div class="row">
       <div class="input-field col s6"> Start Date*
-        <input type="date" class="datepicker" materialize="pickadate" [(ngModel)]="newEvent.startDate" #stDate="ngModel" name="startDate" required />
+        <input type="date" class="datepicker" materialize="pickadate" [(ngModel)]="start" #stDate="ngModel" name="startDate" required />
         <div *ngIf="stDate.errors && (stDate.dirty || stDate.touched)">
           <p class="error" [hidden]="!stDate.errors.required">
             A starting date is required
@@ -65,7 +65,7 @@
 
     <div class="row">
       <div class="input-field col s6">End Date*
-        <input type="date" class="datepicker" materialize="pickadate" [(ngModel)]="newEvent.endDate" #endDate="ngModel" name="endDate" required/>
+        <input type="date" class="datepicker" materialize="pickadate" [(ngModel)]="end" #endDate="ngModel" name="endDate" required/>
         <div *ngIf="endDate.errors && (endDate.dirty || endDate.touched)">
           <p class="error" [hidden]="!endDate.errors.required">
             A ending date is required

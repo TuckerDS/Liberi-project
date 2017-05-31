@@ -15,7 +15,10 @@ export class EditEventComponent implements OnInit {
   ENDPOINT: string;
   eventId: string;
   currentEvent: any;
-  pictureEdited: any;
+  startHour = '';
+  endHour = '';
+  starDate = '';
+  enDate = '';
 
   uploader: FileUploader;
 
@@ -36,7 +39,10 @@ export class EditEventComponent implements OnInit {
   ngOnInit() {
     this.route.params.subscribe( params => { this.eventId = String(params['id']) } )
     this.ev.getEventDetails(this.eventId).subscribe( event => {
-      this.currentEvent = event})
+      this.currentEvent = event;
+
+    })
+
 
     this.uploader.onSuccessItem = (item, response) => {
       this.feedback = JSON.parse(response).message;
@@ -48,14 +54,33 @@ export class EditEventComponent implements OnInit {
   }
 
   submitEdition() {
+    this.currentEvent.startDate = new Date(this.currentEvent.startDate)
+    this.currentEvent.endDate = new Date(this.currentEvent.endDate)
+    if(this.starDate){
+      const h = this.currentEvent.startDate.getHours();
+      const m = this.currentEvent.startDate.getMinutes();
+      const start: Date = new Date();
+      start.setTime(Date.parse(this.starDate + " " + h + ":" + m));
+      this.currentEvent.starDate = start;
+    }
 
-    if(!this.pictureEdited){
+    console.log(this.starDate)
+    console.log(this.startHour)
+    console.log(this.enDate)
+    console.log(this.endHour.split(':'))
+
+    // const start: Date = new Date();
+    // const end: Date = new Date();
+    // start.setTime(Date.parse(this.newEvent.startDate + " " + this.startHour));
+    // end.setTime(Date.parse(this.newEvent.endDate + " " + this.endHour));
+
+
       this.ev.editEvent(this.currentEvent)
         .subscribe( event => {
           this.currentEvent = event;
           this.router.navigate(['event/'+this.eventId]);
         })
-      }
+
   //   else {
   //     this.uploader.onBuildItemForm = (item, form) => {
   //       form.append('title', this.currentEvent.title);
