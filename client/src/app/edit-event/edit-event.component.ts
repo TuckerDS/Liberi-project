@@ -56,24 +56,34 @@ export class EditEventComponent implements OnInit {
   submitEdition() {
     this.currentEvent.startDate = new Date(this.currentEvent.startDate)
     this.currentEvent.endDate = new Date(this.currentEvent.endDate)
+
     if(this.starDate){
       const h = this.currentEvent.startDate.getHours();
       const m = this.currentEvent.startDate.getMinutes();
       const start: Date = new Date();
       start.setTime(Date.parse(this.starDate + " " + h + ":" + m));
-      this.currentEvent.starDate = start;
+      this.currentEvent.startDate = start;
     }
 
-    console.log(this.starDate)
-    console.log(this.startHour)
-    console.log(this.enDate)
-    console.log(this.endHour.split(':'))
+    if(this.startHour){
+      const h1 = this.startHour.split(':');
+      this.currentEvent.startDate.setHours(h1[0]);
+      this.currentEvent.startDate.setMinutes(h1[1]);
+    }
 
-    // const start: Date = new Date();
-    // const end: Date = new Date();
-    // start.setTime(Date.parse(this.newEvent.startDate + " " + this.startHour));
-    // end.setTime(Date.parse(this.newEvent.endDate + " " + this.endHour));
+    if(this.enDate){
+      const h = this.currentEvent.endDate.getHours();
+      const m = this.currentEvent.endDate.getMinutes();
+      const end: Date = new Date();
+      end.setTime(Date.parse(this.enDate + " " + h + ":" + m));
+      this.currentEvent.endDate = end;
+    }
 
+    if(this.endHour){
+      const h2 = this.endHour.split(':');
+      this.currentEvent.endDate.setHours(h2[0]);
+      this.currentEvent.endDate.setMinutes(h2[1]);
+    }
 
       this.ev.editEvent(this.currentEvent)
         .subscribe( event => {
