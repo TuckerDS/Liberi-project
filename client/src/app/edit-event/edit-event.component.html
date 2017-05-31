@@ -31,6 +31,25 @@
       </div>
     </div>
 
+    <div class="row">
+      <div class="input-field col s6"> Start Date*
+        <input type="date" class="datepicker" materialize="pickadate" [(ngModel)]="starDate" #stDate="ngModel" name="startDate" />
+      </div>
+      <div class="input-field col s6">Start Hour*
+        <input type="time" class="timepicker" [(ngModel)]="startHour" #stHour="ngModel" name="startHour" />
+      </div>
+    </div>
+
+    <div class="row">
+      <div class="input-field col s6">End Date*
+        <input type="date" class="datepicker" materialize="pickadate" [(ngModel)]="enDate" #endDate="ngModel" name="endDate" />
+      </div>
+      <div class="input-field col s6">End Hour*
+        <input type="time" class="timepicker" [(ngModel)]="endHour" #enHour="ngModel" name="endHour" />
+      </div>
+    </div>
+
     <button type="submit"> Submit </button>
   </form>
+  <br /><br />
 </div>

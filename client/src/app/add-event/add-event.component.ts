@@ -16,7 +16,7 @@ export class AddEventComponent implements OnInit {
   EVENT_ROUTE = '/event';
   ENDPOINT: string;
   uploader: FileUploader;
-  
+
   // Corrige los errores de compilación de angular,
   // las propiedades deben existir previamente.
   myForm: any;
@@ -30,12 +30,14 @@ export class AddEventComponent implements OnInit {
     category: '',
     localization: '',
     permanent: false,
-    startDate: '',
-    endDate: '',
+    startDate: new Date(),
+    endDate: new Date(),
     picture: ''
   };
   startHour = '';
   endHour = '';
+  start = '';
+  end = '';
 
   feedback: string;
 
@@ -76,11 +78,9 @@ export class AddEventComponent implements OnInit {
   }
 
   submitForm(myForm) {
-    console.log(this.uploader.queue)
-    const start: Date = new Date();
-    const end: Date = new Date();
-    start.setTime(Date.parse(this.newEvent.startDate + ' ' + this.startHour));
-    end.setTime(Date.parse(this.newEvent.endDate + ' ' + this.endHour));
+
+    this.newEvent.startDate.setTime(Date.parse(this.start + " " + this.startHour));
+    this.newEvent.endDate.setTime(Date.parse(this.end + " " + this.endHour));
 
     if (this.uploader.queue.length === 0) {
       this.ev.addEvent(this.newEvent)
@@ -96,8 +96,8 @@ export class AddEventComponent implements OnInit {
         form.append('category', this.newEvent.category);
         form.append('localization', this.newEvent.localization);
         form.append('permanent', this.newEvent.permanent);
-        form.append('startDate', start);
-        form.append('endDate', end);
+        form.append('startDate', this.newEvent.startDate);
+        form.append('endDate', this.newEvent.endDate);
       };
       this.uploader.uploadAll();
       this.router.navigate(['']);
