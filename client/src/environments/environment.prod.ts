@@ -1,5 +1,5 @@
 export const environment = {
   production: true,
-  baseEndpoint: 'http://localhost:3000',
+  baseEndpoint: 'https://liberi.herokuapp.com',
   apiEndpoint: '/api'
 };
