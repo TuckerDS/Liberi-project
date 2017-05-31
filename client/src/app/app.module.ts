@@ -20,11 +20,14 @@ import { UserComponent } from './user/user.component';
 import { UserSignupComponent } from './signup/signup.component';
 import { UserLoginComponent } from './login/login.component';
 import { EditEventComponent } from './edit-event/edit-event.component';
-
+// Maps
+import { AgmCoreModule } from 'angular2-google-maps/core';
 // Servicios
 import { EventService } from './services/event.service';
 import { SessionService } from './services/session.service';
 import { CategoriesService } from './services/categories.service';
+import { MapComponent } from './map/map.component';
+import { MapService } from './services/map.service';
 
 
 @NgModule({
@@ -38,7 +41,9 @@ import { CategoriesService } from './services/categories.service';
     UserComponent,
     UserSignupComponent,
     UserLoginComponent,
-    EditEventComponent
+    EditEventComponent,
+    MapComponent,
+
   ],
   imports: [
     BrowserModule,
@@ -46,9 +51,13 @@ import { CategoriesService } from './services/categories.service';
     FileUploadModule,
     HttpModule,
     MaterializeModule,
-    RouterModule.forRoot(routes)
+    RouterModule.forRoot(routes),
+    AgmCoreModule.forRoot({
+      apiKey: 'AIzaSyBWclYtJVZNhJujjVs64dIc_mz7N_wUpz0', libraries: ['places']
+    })
   ],
   providers: [
+    MapService,
     SessionService,
     EventService,
     CategoriesService,

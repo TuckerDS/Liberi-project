@@ -1,0 +1,37 @@
+<div class="container-fluid location-form">
+  <div class="row first-row">
+    <input autocorrect="off" autocapitalize="off" spellcheck="off" type="text" class="form-control" #search />
+  </div>
+
+  <div class="row third-row">
+    <div class="map-row">
+      <sebm-google-map [latitude]="latitude"
+                       [longitude]="longitude"
+                       [zoom]="zoom"
+                       [scrollwheel]="false"
+                       [zoomControl]="true"
+                       (mapClick)="mapClicked($event)">
+
+            <sebm-google-map-marker [latitude]="latitude"
+                                    [longitude]="longitude">
+                    <sebm-google-map-info-window>
+                            <strong>InfoWindow content</strong>
+                    </sebm-google-map-info-window>
+            </sebm-google-map-marker>
+
+            <sebm-google-map-circle [latitude]="latitude"
+                                    [longitude]="longitude"
+                                    [radius]="5000"
+                                    [fillColor]="'red'"
+                                    [circleDraggable]="true"
+                                    [editable]="true">
+            </sebm-google-map-circle>
+    </sebm-google-map>
+    </div>
+    <div class="button-row">
+        <button (click)="editGym()" class="edit-button"> Done! </button>
+        <button (click)="onSubmit()" class="edit-button"> Save </button>
+        <button (click)="notifyChangePosition()" class="edit-button"> Position </button>
+    </div>
+  </div>
+</div>

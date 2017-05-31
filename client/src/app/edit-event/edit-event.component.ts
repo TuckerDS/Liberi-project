@@ -10,6 +10,7 @@ import { EventService } from '../services/event.service';
   templateUrl: './edit-event.component.html',
   styleUrls: ['./edit-event.component.css']
 })
+
 export class EditEventComponent implements OnInit {
   EVENT_ROUTE = '/event';
   ENDPOINT: string;

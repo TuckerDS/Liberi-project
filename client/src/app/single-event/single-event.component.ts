@@ -30,9 +30,14 @@ export class SingleEventComponent implements OnInit {
 
     this.sessionService.getLogginEmitter().subscribe(
       user => {
-        this.loggedUser = user;
-        console.log("USUARIO LOGADO EMMITER");
-        console.log(this.loggedUser);
+        if (user) {
+          this.loggedUser = user;
+          console.log("USUARIO LOGADO EMMITER");
+          console.log(this.loggedUser);
+        } else {
+          this.router.navigate(['/login']);
+        }
+
       });
 
     this.route.params.subscribe( params => { this.eventId = String(params['id']) } )
