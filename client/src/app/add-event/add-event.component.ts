@@ -59,7 +59,6 @@ export class AddEventComponent implements OnInit {
     }
 
   ngOnInit() {
-
     // Route Guard
     this.loggedUser = this.sessionService.loggedUser;
     this.newEvent.user_id =  this.sessionService.loggedUser._id;
@@ -70,13 +69,11 @@ export class AddEventComponent implements OnInit {
         } else { this.router.navigate(['/login']); }
       });
 
-
     this.uploader.onSuccessItem = (item, response) => {
       this.feedback = JSON.parse(response).message;
     };
 
     this.uploader.onErrorItem = (item, response, status, headers) => {
-      console.log(response);
       this.feedback = JSON.parse(response).message;
     };
   }

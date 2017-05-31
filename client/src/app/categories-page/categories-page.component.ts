@@ -9,7 +9,6 @@ import { EventService } from '../services/event.service';
 })
 export class CategoriesPageComponent implements OnInit {
   events: Array<any> = [];
-  eventsToDelete: Array<any> = [];
 
   categories: Array<any> = [
     'Musica',
@@ -48,5 +47,4 @@ export class CategoriesPageComponent implements OnInit {
         console.log("Borrado");
       });
   }
-
 }

@@ -11,17 +11,9 @@ import { MaterializeAction } from 'angular2-materialize';
 export class HeaderComponent implements OnInit {
   loggedUser: any;
 
-  constructor(private sessionService: SessionService, private router: Router) {
-
-  }
+  constructor(private sessionService: SessionService, private router: Router) { }
 
   ngOnInit() {
-
-    // this.sessionService.isLoggedIn()
-    // .subscribe(
-    //   (user) => this.logged(user)
-    // );
-
     this.loggedUser = this.sessionService.loggedUser;
     this.sessionService.getLogginEmitter().subscribe(
       user => {
@@ -31,9 +23,7 @@ export class HeaderComponent implements OnInit {
   }
 
   logged(user) {
-    console.log(user);
     this.loggedUser = user;
-    console.log('LOOOOOOGEED');
   };
 
   logError(err) {
@@ -45,7 +35,6 @@ export class HeaderComponent implements OnInit {
       this.router.navigate(['/']);
     });
   };
-
 
   isLoggedIN() {
     this.sessionService.isLoggedIn().subscribe(user => console.log(user));

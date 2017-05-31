@@ -1,5 +1,3 @@
-/*jshint esversion: 6*/
-
 const express      = require('express');
 const path         = require('path');
 const favicon      = require('serve-favicon');
@@ -16,6 +14,7 @@ const passport     = require('passport');
 require('dotenv').config();
 const MONGO_URL = process.env.MONGO_URL;
 
+const index = require('./routes/index');
 const event = require('./event/eventRoutes');
 const user  = require('./user/userRoutes');
 
@@ -34,7 +33,6 @@ app.use(layouts);
 app.set('views', path.join(__dirname, 'views'));
 app.set('view engine', 'ejs');
 
-
 //cors
 const corsOptions = { credentials: true, origin: true};
 
@@ -44,8 +42,6 @@ app.use(session({
   name: "liberi", //Imprescindible para encontrar la sesion
   resave: true,
   saveUninitialized: false,
-  //saveUninitialized: true,
-  //cookie : { httpOnly: true, maxAge: 2419200000 },
   cookie : { maxAge: 1800000 },
   store: new MongoStore({mongooseConnection: mongoose.connection, ttl: 24 * 60 * 60})
 }));
@@ -55,12 +51,8 @@ require('./config/passport')(passport);
 // default value for title local
 app.locals.title = 'liberi';
 
-// uncomment after placing your favicon in /public
-//app.use(favicon(path.join(__dirname, 'public', 'favicon.ico')));
-
 app.use(passport.initialize());
 app.use(passport.session());
-
 
 //cors
 app.use(cors(corsOptions));
@@ -70,14 +62,10 @@ app.options('*', cors(corsOptions));
 //Send objct user from req to res
 app.use(function(req, res, next){
   res.locals.user = req.user;
-  //res.locals.authenticated = ! req.user.anonymous;
   next();
 });
 
 
-
-
-const index = require('./routes/index');
 app.use('/', index);
 app.use('/api/event', event);
 app.use('/api/user', user);

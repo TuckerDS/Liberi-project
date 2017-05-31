@@ -1,19 +1,16 @@
-/*jshint esversion: 6*/
-const passport        = require('passport');
+const passport = require('passport');
 const userModel = require('./userModel.js');
 const sessionModel = require('../models/sessionModel.js');
-
 const ObjectId = require('mongoose').Types.ObjectId;
+const session = require("express-session");
 
 // multer
-const upload = require('../config/multer');
+// const upload = require('../config/multer');
 
 // Bcrypt let us encrypt passwords
-const bcrypt         = require("bcryptjs");
-const bcryptSalt     = 10;
+const bcrypt = require("bcryptjs");
+const bcryptSalt = 10;
 
-
-const session      = require("express-session");
 /**
  * userController.js
  *
@@ -21,113 +18,118 @@ const session      = require("express-session");
  */
 module.exports = {
 
-    /**
-     * userController.list()
-     */
-    list: function (req, res) {
-        userModel.find(function (err, users) {
-            if (err) {
-                return res.status(500).json({
-                    message: 'Error when getting user.',
-                    error: err
-                });
-            }
-            return res.json(users);
+  // userController.list()
+  list: function(req, res) {
+    userModel.find(function(err, users) {
+      if (err) {
+        return res.status(500).json({
+          message: 'Error when getting user.',
+          error: err
         });
-    },
+      }
+      return res.json(users);
+    });
+  },
 
-    /**
-     * userController.show()
-     */
-    show: function (req, res) {
-        var id = req.params.id;
-        userModel.findOne({_id: id}, function (err, user) {
-            if (err) {
-                return res.status(500).json({
-                    message: 'Error when getting user.',
-                    error: err
-                });
-            }
-            if (!user) {
-                return res.status(404).json({
-                    message: 'No such user'
-                });
-            }
-            return res.json(user);
+  // userController.show()
+  show: function(req, res) {
+    var id = req.params.id;
+    userModel.findOne({
+      _id: id
+    }, function(err, user) {
+      if (err) {
+        return res.status(500).json({
+          message: 'Error when getting user.',
+          error: err
         });
-    },
-
-    /**
-     * userController.create()
-     */
-    create: function (req, res) {
-        var user = new userModel({    			username : req.body.username,    			password : req.body.password,    			email : req.body.email,    			role : req.body.role,    			validated : req.body.validated,    			description : req.body.description
+      }
+      if (!user) {
+        return res.status(404).json({
+          message: 'No such user'
         });
+      }
+      return res.json(user);
+    });
+  },
 
-        user.save(function (err, user) {
-            if (err) {
-                return res.status(500).json({
-                    message: 'Error when creating user',
-                    error: err
-                });
-            }
-            return res.status(201).json(user);
+  // userController.create()
+  create: function(req, res) {
+    var user = new userModel({
+      username: req.body.username,
+      password: req.body.password,
+      email: req.body.email,
+      role: req.body.role,
+      validated: req.body.validated,
+      description: req.body.description
+    });
+
+    user.save(function(err, user) {
+      if (err) {
+        return res.status(500).json({
+          message: 'Error when creating user',
+          error: err
         });
-    },
+      }
+      return res.status(201).json(user);
+    });
+  },
 
-    /**
-     * userController.update()
-     */
-    update: function (req, res) {
-        var id = req.params.id;
-        userModel.findOne({_id: id}, function (err, user) {
-            if (err) {
-                return res.status(500).json({
-                    message: 'Error when getting user',
-                    error: err
-                });
-            }
-            if (!user) {
-                return res.status(404).json({
-                    message: 'No such user'
-                });
-            }
-
-            user.username = req.body.username ? req.body.username : user.username;      			user.password = req.body.password ? req.body.password : user.password;      			user.email = req.body.email ? req.body.email : user.email;      			user.role = req.body.role ? req.body.role : user.role;      			user.validated = req.body.validated ? req.body.validated : user.validated;      			user.description = req.body.description ? req.body.description : user.description;
-
-            user.save(function (err, user) {
-                if (err) {
-                    return res.status(500).json({
-                        message: 'Error when updating user.',
-                        error: err
-                    });
-                }
-
-                return res.json(user);
-            });
+  // userController.update()
+  update: function(req, res) {
+    var id = req.params.id;
+    userModel.findOne({
+      _id: id
+    }, function(err, user) {
+      if (err) {
+        return res.status(500).json({
+          message: 'Error when getting user',
+          error: err
         });
-    },
-
-    /**
-     * userController.remove()
-     */
-    remove: function (req, res) {
-        var id = req.params.id;
-        userModel.findByIdAndRemove(id, function (err, user) {
-            if (err) {
-                return res.status(500).json({
-                    message: 'Error when deleting the user.',
-                    error: err
-                });
-            }
-            return res.status(204).json();
+      }
+      if (!user) {
+        return res.status(404).json({
+          message: 'No such user'
         });
-    },
+      }
 
+      user.username = req.body.username ? req.body.username : user.username;
+      user.password = req.body.password ? req.body.password : user.password;
+      user.email = req.body.email ? req.body.email : user.email;
+      user.role = req.body.role ? req.body.role : user.role;
+      user.validated = req.body.validated ? req.body.validated : user.validated;
+      user.description = req.body.description ? req.body.description : user.description;
 
-//--------AUTH user
-// SIGNUP
-  signup: function (req, res, next) {
+      user.save(function(err, user) {
+        if (err) {
+          return res.status(500).json({
+            message: 'Error when updating user.',
+            error: err
+          });
+        }
+
+        return res.json(user);
+      });
+    });
+  },
+
+  // userController.remove()
+  remove: function(req, res) {
+    var id = req.params.id;
+    userModel.findByIdAndRemove(id, function(err, user) {
+      if (err) {
+        return res.status(500).json({
+          message: 'Error when deleting the user.',
+          error: err
+        });
+      }
+      return res.status(204).json();
+    });
+  },
+
+  //AUTH user
+
+  // userController.signup()
+  signup: function(req, res, next) {
     console.log(req.body);
     var username = req.body.username;
     var password = req.body.password;
@@ -136,33 +138,38 @@ module.exports = {
     var description = req.body.description;
 
     if (!username || !password) {
-      res.status(400).json({ message: "Provide username and password" });
+      res.status(400).json({
+        message: "Provide username and password"
+      });
       return;
     }
 
-    userModel.findOne({ username }, "username", (err, user) => {
-
+    userModel.findOne({
+      username
+    }, "username", (err, user) => {
       if (user !== null) {
-        res.status(400).json({ message: "The username already exists" });
+        res.status(400).json({
+          message: "The username already exists"
+        });
         return;
       }
 
-      var salt     = bcrypt.genSaltSync(bcryptSalt);
+      var salt = bcrypt.genSaltSync(bcryptSalt);
       var hashPass = bcrypt.hashSync(password, salt);
 
       var newUser = userModel({
-        username,
+        username: username,
         password: hashPass,
         email: email,
         role: role,
         description: description
       });
 
-      console.log("mi user: " + newUser);
-
       newUser.save((err) => {
         if (err) {
-          res.status(400).json({ message: "Something went wrong" });
+          res.status(400).json({
+            message: "Something went wrong"
+          });
         } else {
           req.login(newUser, function(err) {
             if (err) {
@@ -178,15 +185,14 @@ module.exports = {
     });
   },
 
-  //LOGIN
+  // userController.login()
   login: function(req, res, next) {
-
     passport.authenticate('local', function(err, user, info) {
       if (err) {
-        //return next(err);
-        return res.status(500).json({message: 'Something Wrong'});
+        return res.status(500).json({
+          message: 'Something Wrong'
+        });
       }
-
       if (!user) {
         return res.status(401).json(info);
       }
@@ -207,56 +213,46 @@ module.exports = {
           role: req.user.role
         };
 
-
-
-
-        res.status(200).json({user: loggedUser, session: req.session, sID: req.sessionID});
-
-
-        console.log ("----------LOGIN CONTROLLER--------------");
-        console.log ("---USUARIO LOGEADO: " + req.user);
-        console.log ("---req.session");
-        console.log (req.session);
-        //console.log ("---req");
-        //console.log(req);
-        console.log ("---res");
-        console.log(res);
-        console.log("---SESION ID (req): "+req.sessionID);
-        console.log("---SESION ID (res): "+req.sessionID);
-        console.log ("-----------------------------");
+        res.status(200).json({
+          user: loggedUser,
+          session: req.session,
+          sID: req.sessionID
+        });
       });
     })(req, res, next);
   },
 
-  //LOGOUT
+  // userController.logout()
   logout: function(req, res) {
-
-    //console.log("Logouy sID:" + req.sessionID);
     let sID = req.body.sID;
     req.logout();
-    sessionModel.findOneAndRemove({_id: sID}, (err, session) => {
-        if (session) {
-          res.status(200).json({ message: 'Success logout of session ' + session});
-        }
-        if (err) {
-          res.status(400).json("Error at logout" + err);
-        }
+    sessionModel.findOneAndRemove({
+      _id: sID
+    }, (err, session) => {
+      if (session) {
+        res.status(200).json({
+          message: 'Success logout of session ' + session
+        });
+      }
+      if (err) {
+        res.status(400).json("Error at logout" + err);
+      }
     });
   },
 
-  //LOGGED IN
+  // userController.loggedin()
   loggedin: function(req, res) {
-
-    //console.log("req.sessionID: " + req.sessionID);
-    //console.log("sID: "+ req.body.sID);
     let sID = req.body.sID;
 
-    sessionModel.findOne({ _id: sID }, (err, session) => {
-
+    sessionModel.findOne({
+      _id: sID
+    }, (err, session) => {
       if (session !== null) {
         let userID = JSON.parse(session.session).passport.user;
 
-        userModel.findOne({ _id: userID }, (err, user) => {
+        userModel.findOne({
+          _id: userID
+        }, (err, user) => {
           if (user) {
             let loggedUser = {
               _id: user._id,
@@ -266,32 +262,38 @@ module.exports = {
               validated: user.validated,
               role: user.role
             };
-            res.status(200).json({ session, "user":loggedUser });
+            res.status(200).json({
+              session,
+              "user": loggedUser
+            });
           }
           return;
         });
         return;
       } else {
-        res.status(400).json({ message: 'Unauthorized: Session do not exist' });
+        res.status(400).json({
+          message: 'Unauthorized: Session do not exist'
+        });
         return;
       }
-
       if (err) {
-        res.status(400).json({ message: 'Error checking LoggedIn' });
+        res.status(400).json({
+          message: 'Error checking LoggedIn'
+        });
         return;
       }
-
     });
-
   },
 
-
-  //PRIVATE
+  // userController.private()
   private: function(req, res) {
-    console.log(req.session);
-    if(req.isAuthenticated()) {
-      return res.json({ message: 'This is a private message' });
+    if (req.isAuthenticated()) {
+      return res.json({
+        message: 'This is a private message'
+      });
     }
-    return res.status(403).json({ message: 'Unauthorized' });
+    return res.status(403).json({
+      message: 'Unauthorized'
+    });
   }
 };

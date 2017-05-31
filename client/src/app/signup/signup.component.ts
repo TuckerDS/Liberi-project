@@ -24,17 +24,13 @@ export class UserSignupComponent implements OnInit {
   selectOptions: any;
   isDisabled: any;
 
-  constructor(private sessionService: SessionService,
-              private router: Router
-              ) { }
+  constructor(private sessionService: SessionService, private router: Router) { }
 
   ngOnInit() {
-
     this.sessionService.isLoggedIn()
-    .subscribe(
-      (user) => this.successCb(user)
-    );
-
+      .subscribe(
+        (user) => this.successCb(user)
+      );
   }
 
   signup() {
@@ -55,5 +51,4 @@ export class UserSignupComponent implements OnInit {
      this.error = null;
      this.router.navigate(['/login']);
    }
-
 }

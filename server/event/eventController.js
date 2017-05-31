@@ -1,4 +1,4 @@
-var eventModel = require('./eventModel.js');
+const eventModel = require('./eventModel.js');
 const CATEGORIES = require('./categories');
 const ObjectId = require('mongoose').Types.ObjectId;
 const upload = require('../config/multer');
@@ -76,8 +76,6 @@ module.exports = {
   create: (req, res) => {
     console.log("EL JODIDO ID DE USUARIO: " + req.body.user_id);
     var event = new eventModel({
-      // userId: req.session.currentUser._id,
-      //userId: new ObjectId("5929634d9260610e337e7978"),
       userId: new ObjectId(req.body.user_id),
       title: req.body.title,
       category: req.body.category,
@@ -124,7 +122,6 @@ module.exports = {
         });
       }
 
-      //event.userId = req.body.userId ? req.body.userId : event.userId;
       event.title = req.body.title ? req.body.title : event.title;
       event.category = req.body.category ? req.body.category : event.category;
       event.description = req.body.description ? req.body.description : event.description;
@@ -140,7 +137,6 @@ module.exports = {
             error: err
           });
         }
-
         return res.json(event);
       });
     });

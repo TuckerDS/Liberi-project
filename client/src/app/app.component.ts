@@ -10,18 +10,8 @@ import { Router } from '@angular/router';
 })
 export class AppComponent {
   constructor (private sessionService: SessionService, private router: Router) {
-
     sessionService.getCookie();
-
   }
 
-  ngOnInit() {
-    // this.sessionService.isLoggedIn()
-    // .subscribe(
-    //   (user) => this.successCb(user)
-    // );
-  }
-
-
-
+  ngOnInit() {  }
 }

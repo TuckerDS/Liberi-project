@@ -20,24 +20,15 @@ export class SingleEventComponent implements OnInit {
   constructor(@Inject('BASE_ENDPOINT') private BASE: string, private sessionService: SessionService, private ev: EventService, private route: ActivatedRoute, private router: Router) { }
 
   ngOnInit() {
-    // this.session.isLoggedIn()
-    //    .subscribe(
-    //      (session) => this.successCb(session),
-    //      (err) => this.errorCb(err)
-    //    );
-
     this.loggedUser = this.sessionService.loggedUser;
 
     this.sessionService.getLogginEmitter().subscribe(
       user => {
         if (user) {
           this.loggedUser = user;
-          console.log("USUARIO LOGADO EMMITER");
-          console.log(this.loggedUser);
         } else {
           this.router.navigate(['/login']);
         }
-
       });
 
     this.route.params.subscribe( params => { this.eventId = String(params['id']) } )
@@ -53,14 +44,9 @@ export class SingleEventComponent implements OnInit {
   errorCb(err) {
     this.sessionService.logout();
     this.router.navigate(['/login']);
-     // this.error = err;
-     // this.user = null;
    }
 
    logged(user) {
-     console.log(user);
      this.loggedUser = user;
-     console.log('LOOOOOOGEED');
    };
-
 }

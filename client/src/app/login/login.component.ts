@@ -8,7 +8,6 @@ import { Router } from '@angular/router';
   styleUrls: ['./login.component.css']
 })
 export class UserLoginComponent implements OnInit {
-
   user: any;
   formInfo = {
     username: '',
@@ -21,10 +20,9 @@ export class UserLoginComponent implements OnInit {
 
   ngOnInit() {
     this.sessionService.isLoggedIn()
-    .subscribe(
-    (user) => this.successCb(user),
-  );
-
+      .subscribe(
+        (user) => this.successCb(user),
+      );
   }
 
   login() {
@@ -32,20 +30,18 @@ export class UserLoginComponent implements OnInit {
       .subscribe(
         (user) => this.successCb(user),
         (err) => this.errorCb(err)
-    );
-
+      );
   }
 
   errorCb(err) {
-     this.error = err;
-     this.user = null;
+    this.error = err;
+    this.user = null;
+  }
 
-   }
-
-   successCb(user) {
-     this.user = user;
-     this.error = null;
-     this.router.navigate(['/']);
-   }
+  successCb(user) {
+    this.user = user;
+    this.error = null;
+    this.router.navigate(['/']);
+  }
 
 }

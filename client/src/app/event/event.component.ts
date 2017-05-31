@@ -24,7 +24,6 @@ export class EventComponent implements OnInit {
               private sessionService: SessionService) { }
 
   ngOnInit() {
-
     this.loggedUser = this.sessionService.loggedUser;
 
     this.baseUrl = this.BASE + "/uploads/";
@@ -35,7 +34,6 @@ export class EventComponent implements OnInit {
 
   editEvent(e) {
     this.router.navigate(['/event/'+e+'/edit']);
-    //alert(e);
   }
 
 }
