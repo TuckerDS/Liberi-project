@@ -1,9 +1,6 @@
 .categ {
-  width: 200px;
-  height: 200px;
   display: inline-block;
   text-align: center;
-  margin: 10px;
   background-size: contain;
   background-repeat: no-repeat;
   background-position: center;
@@ -11,8 +8,9 @@
 }
 
 #board {
-  margin: 50px 40px;
+  margin: 3% 5%;
 }
+
 
 .Musica{
   background-image: url("http://dissenyaweb.com/blog/diseno_web/wp-content/uploads/519586-083_Music-512.png");
@@ -28,7 +26,7 @@
 }
 .Teatro{
   background-image: url("http://akademiarozwojutalentow.pl/wp-content/uploads/2015/09/teatr.png");
-  background-color: 	 #ffa64d;
+  background-color: #ffa64d;
 }
 .Museos{
   background-image: url("https://image.flaticon.com/icons/png/512/8/8913.png");
@@ -49,4 +47,37 @@
 .Gastronomia{
   background-image: url("http://www.mercadodesanildefonso.com/wp-content/uploads/2015/05/cocktail32.png");
   background-color: #ffccff;
+}
+
+@media (min-width: 1025px) {
+  #board {
+    padding: 0 20%;
+  }
+  .categ {
+    width: 200px;
+    height: 200px;
+    margin: 10px;
+  }
+}
+
+@media (min-width: 450px) and (max-width: 1024px) {
+  #board {
+    padding: 0;
+  }
+  .categ {
+    width: 200px;
+    height: 200px;
+    margin: 10px 15px;
+  }
+}
+
+@media (max-width: 450px) {
+  #board {
+    padding: 0;
+  }
+  .categ {
+    width: 90px;
+    height: 90px;
+    margin: 5px;
+  }
 }
