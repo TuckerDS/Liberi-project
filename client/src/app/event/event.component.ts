@@ -31,20 +31,6 @@ export class EventComponent implements OnInit {
     this.route.params.subscribe( params => { this.eventsCategory = String(params['category']) } )
     this.evs.getEventsByCategory(this.eventsCategory).subscribe( eventsArray => {
       this.events = eventsArray})
-
-
-    // this.evs.getEvents().subscribe(eventsArray => this.events = eventsArray);
-  }
-
-  deleteEvent(e) {
-
-    //alert(e);
-     if (window.confirm('Are you sure?')) {
-       this.evs.removeEvent(e)
-         .subscribe(() => {
-           this.router.navigate(['/events/'+this.eventsCategory+'/']);
-         });
-     }
   }
 
   editEvent(e) {

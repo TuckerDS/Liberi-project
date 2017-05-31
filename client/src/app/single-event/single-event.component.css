@@ -15,7 +15,25 @@
   margin: 1%;
 }
 
-.pict {
-  height: auto;
-  width: 100%;
+
+
+@media (min-width: 1024px) {
+  .pict {
+    height: 500px;
+    width: 80%;
+  }
+}
+
+@media (min-width: 450px) and (max-width: 1024px) {
+  .pict {
+    height: 300px;
+    width: 80%;
+  }
+}
+
+@media (max-width: 450px) {
+  .pict {
+    height: 200px;
+    width: 100%;
+  }
 }

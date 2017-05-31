@@ -1,6 +1,8 @@
 <h2> Edit the event </h2>
 <a routerLink="/event"> Back to list </a>
 
+<button (click)="deleteEvent(currentEvent._id)">Delete</button>
+
 <div class="form-container">
   <form *ngIf="currentEvent" (ngSubmit)="submitEdition()" #myform="ngForm">
     <div class="row">

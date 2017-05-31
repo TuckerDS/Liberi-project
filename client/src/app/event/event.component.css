@@ -13,9 +13,14 @@
 
 .pic{
   width: 20%;
+  height: inherit;
   display: inline-block;
+  margin-top: 1%;
 }
 
 .pic img {
-  width: 95%;
+  /*width: 95%;*/
+  display: block;
+  margin: auto;
+  width: 90%;
 }

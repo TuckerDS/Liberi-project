@@ -53,6 +53,15 @@ export class EditEventComponent implements OnInit {
     };
   }
 
+  deleteEvent(evId) {
+    if (window.confirm('Are you sure?')) {
+      this.ev.removeEvent(evId)
+        .subscribe(() => {
+          this.router.navigate(['']);
+        });
+    }
+  }
+
   submitEdition() {
     this.currentEvent.startDate = new Date(this.currentEvent.startDate)
     this.currentEvent.endDate = new Date(this.currentEvent.endDate)
