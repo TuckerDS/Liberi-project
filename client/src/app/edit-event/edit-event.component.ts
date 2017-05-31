@@ -106,7 +106,7 @@ export class EditEventComponent implements OnInit {
   //       form.append('title', this.currentEvent.title);
   //       form.append('description', this.currentEvent.description);
   //       form.append('category', this.currentEvent.category);
-  //       form.append('localization', this.currentEvent.localization);
+  //       form.append('location', this.currentEvent.location);
   //       form.append('permanent', this.currentEvent.permanent);
   //       form.append('startDate', this.currentEvent.startDate);
   //       form.append('endDate', this.currentEvent.endDate);

@@ -75,8 +75,6 @@ app.use(function(req, res, next){
 });
 
 
-
-
 const index = require('./routes/index');
 app.use('/', index);
 app.use('/api/event', event);

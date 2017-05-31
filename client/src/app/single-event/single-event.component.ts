@@ -32,8 +32,6 @@ export class SingleEventComponent implements OnInit {
       user => {
         if (user) {
           this.loggedUser = user;
-          console.log("USUARIO LOGADO EMMITER");
-          console.log(this.loggedUser);
         } else {
           this.router.navigate(['/login']);
         }
@@ -58,9 +56,7 @@ export class SingleEventComponent implements OnInit {
    }
 
    logged(user) {
-     console.log(user);
      this.loggedUser = user;
-     console.log('LOOOOOOGEED');
    };
 
 }

@@ -75,6 +75,8 @@ module.exports = {
   //eventController.create()
   create: (req, res) => {
     console.log("EL JODIDO ID DE USUARIO: " + req.body.user_id);
+    console.log("LA JODIDA lng"+ req.body.longitude);
+    console.log("LA JODIDA lat"+ req.body.latitude);
     var event = new eventModel({
       // userId: req.session.currentUser._id,
       //userId: new ObjectId("5929634d9260610e337e7978"),
@@ -82,7 +84,8 @@ module.exports = {
       title: req.body.title,
       category: req.body.category,
       description: req.body.description,
-      localization: req.body.localization,
+      latitude: req.body.latitude,
+      longitude: req.body.longitude,
       permanent: req.body.permanent,
       startDate: req.body.startDate,
       endDate: req.body.endDate,
@@ -128,7 +131,7 @@ module.exports = {
       event.title = req.body.title ? req.body.title : event.title;
       event.category = req.body.category ? req.body.category : event.category;
       event.description = req.body.description ? req.body.description : event.description;
-      event.localization = req.body.localization ? req.body.localization : event.localization;
+      event.location = req.body.location ? req.body.location : event.location;
       event.permanent = req.body.permanent ? req.body.permanent : event.permanent;
       event.startDate = req.body.startDate ? req.body.startDate : event.startDate;
       event.endDate = req.body.endDate ? req.body.endDate : event.endDate;

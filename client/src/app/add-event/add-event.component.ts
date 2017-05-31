@@ -30,7 +30,8 @@ export class AddEventComponent implements OnInit {
     title: '',
     description: '',
     category: '',
-    location: { latitude: String, longitude: String },
+    latitude: 0,
+    longitude: 0,
     permanent: false,
     startDate: new Date(),
     endDate: new Date(),
@@ -87,18 +88,25 @@ export class AddEventComponent implements OnInit {
     this.newEvent.endDate.setTime(Date.parse(this.end + " " + this.endHour));
 
     if (this.uploader.queue.length === 0) {
+      console.log("lalocalizacion que se envia sin foto")
+      console.log(this.newEvent.latitude);
+      console.log(this.newEvent.longitude);
       this.ev.addEvent(this.newEvent)
         .subscribe( event => {
           this.newEvent = event;
           this.router.navigate(['']);
         })
     } else {
+      console.log("lalocalizacion que se envia CON foto")
+      console.log(this.newEvent.latitude);
+      console.log(this.newEvent.longitude);
       this.uploader.onBuildItemForm = (item, form) => {
         form.append('user_id', this.loggedUser._id);
         form.append('title', this.newEvent.title);
         form.append('description', this.newEvent.description);
         form.append('category', this.newEvent.category);
-        form.append('localization', this.newEvent.location);
+        form.append('latitude', this.newEvent.latitude);
+        form.append('longitude', this.newEvent.longitude);
         form.append('permanent', this.newEvent.permanent);
         form.append('startDate', this.newEvent.startDate);
         form.append('endDate', this.newEvent.endDate);
@@ -109,8 +117,8 @@ export class AddEventComponent implements OnInit {
   }
 
   updatePosition(e) {
-    this.newEvent.location.longitude = e.longitude;
-    this.newEvent.location.latitude = e.latitude;
+    this.newEvent.latitude = e.latitude;
+     this.newEvent.longitude = e.longitude ;
     this.longitude = e.longitude;
     this.latitude = e.latitude;
     console.log('updatePosition!!!!!');
