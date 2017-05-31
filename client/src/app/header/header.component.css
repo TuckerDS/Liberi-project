@@ -11,13 +11,17 @@
 }
 
 .navbar-custom div {
-  height: 20px;
-  width: 30px;
   float: right;
   display: inline-block;
-  margin-right: 80px;
+  margin-right: 2%;
 }
 
 .linked {
   cursor: pointer;
+}
+
+p {
+  display: inline-block;
+  font-size: 0.5em;
+  margin-top: 0;
 }
