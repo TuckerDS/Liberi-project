@@ -16,6 +16,8 @@ export class AddEventComponent implements OnInit {
   EVENT_ROUTE = '/event';
   ENDPOINT: string;
   uploader: FileUploader;
+  longitude: number;
+  latitude: number;
 
   // Corrige los errores de compilación de angular,
   // las propiedades deben existir previamente.
@@ -28,7 +30,7 @@ export class AddEventComponent implements OnInit {
     title: '',
     description: '',
     category: '',
-    localization: '',
+    location: { latitude: String, longitude: String },
     permanent: false,
     startDate: new Date(),
     endDate: new Date(),
@@ -58,14 +60,16 @@ export class AddEventComponent implements OnInit {
 
   ngOnInit() {
 
+    // Route Guard
     this.loggedUser = this.sessionService.loggedUser;
     this.newEvent.user_id =  this.sessionService.loggedUser._id;
-
     this.sessionService.getLogginEmitter().subscribe(
       user => {
-        this.loggedUser = user;
-        this.newEvent.user_id = user._id;
+        if (user) {
+          this.loggedUser = user;
+        } else { this.router.navigate(['/login']); }
       });
+
 
     this.uploader.onSuccessItem = (item, response) => {
       this.feedback = JSON.parse(response).message;
@@ -94,7 +98,7 @@ export class AddEventComponent implements OnInit {
         form.append('title', this.newEvent.title);
         form.append('description', this.newEvent.description);
         form.append('category', this.newEvent.category);
-        form.append('localization', this.newEvent.localization);
+        form.append('localization', this.newEvent.location);
         form.append('permanent', this.newEvent.permanent);
         form.append('startDate', this.newEvent.startDate);
         form.append('endDate', this.newEvent.endDate);
@@ -102,5 +106,14 @@ export class AddEventComponent implements OnInit {
       this.uploader.uploadAll();
       this.router.navigate(['']);
     }
+  }
+
+  updatePosition(e) {
+    this.newEvent.location.longitude = e.longitude;
+    this.newEvent.location.latitude = e.latitude;
+    this.longitude = e.longitude;
+    this.latitude = e.latitude;
+    console.log('updatePosition!!!!!');
+    console.log(e);
   }
 }

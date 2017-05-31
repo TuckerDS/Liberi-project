@@ -88,4 +88,12 @@
     <button type="submit"> Submit </button>
   </form>
   <br /><br />
+  <div>
+    <p>Longitud: {{longitude}}</p>
+    <p>Latitud: {{latitude}}</p>
+    <p>Longitud e: {{newEvent.location.longitude}}</p>
+    <p>Latitud e: {{newEvent.location.latitude}}</p>
+
+  </div>
+  <app-map (onChangePosition)='updatePosition($event)'></app-map>
 </div>

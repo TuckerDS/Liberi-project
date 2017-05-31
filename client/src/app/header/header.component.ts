@@ -22,12 +22,12 @@ export class HeaderComponent implements OnInit {
     //   (user) => this.logged(user)
     // );
 
+    this.loggedUser = this.sessionService.loggedUser;
     this.sessionService.getLogginEmitter().subscribe(
       user => {
         this.loggedUser = user;
-        console.log('USUARIO LOGADO EMMITER');
-        console.log(this.loggedUser);
-      });
+      }
+    );
   }
 
   logged(user) {
