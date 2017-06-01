@@ -3,7 +3,11 @@
   <h2> Editar el evento </h2>
   <a routerLink="/event"> Inicio </a>
 
-  <button (click)="deleteEvent(currentEvent._id)">Borrar</button>
+  <div class="button">
+    <button class="btn waves-effect waves-light" type="submit" name="action" (click)="deleteEvent(currentEvent._id)">Borrar
+      <i class="material-icons right">send</i>
+    </button>
+  </div>
 
   <div class="form-container">
     <form *ngIf="currentEvent" action="" #myform="ngForm">
