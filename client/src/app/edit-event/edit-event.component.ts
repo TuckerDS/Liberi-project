@@ -1,7 +1,6 @@
 import { Component, OnInit } from '@angular/core';
 import { Injectable, Inject } from '@angular/core';
 import { Router, ActivatedRoute } from '@angular/router';
-import { FileUploader } from 'ng2-file-upload';
 import { Event } from '../event/event.model';
 import { EventService } from '../services/event.service';
 import { SessionService } from '../services/session.service';
@@ -21,7 +20,7 @@ export class EditEventComponent implements OnInit {
   starDate = '';
   enDate = '';
   loggedUser: any;
-  uploader: FileUploader;
+
 
   constructor(
     @Inject('BASE_ENDPOINT') private BASE: string,
@@ -31,9 +30,7 @@ export class EditEventComponent implements OnInit {
     private sessionService: SessionService,
     private router: Router) {
       this.ENDPOINT = BASE + API;
-      this.uploader = new FileUploader({
-        url: this.ENDPOINT + this.EVENT_ROUTE
-      });
+
     }
 
   ngOnInit() {
@@ -58,15 +55,6 @@ export class EditEventComponent implements OnInit {
       this.currentEvent = event;
 
     })
-
-
-    this.uploader.onSuccessItem = (item, response) => {
-      this.feedback = JSON.parse(response).message;
-    };
-
-    this.uploader.onErrorItem = (item, response, status, headers) => {
-      this.feedback = JSON.parse(response).message;
-    };
   }
 
   deleteEvent(evId) {
