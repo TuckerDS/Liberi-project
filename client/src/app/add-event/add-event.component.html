@@ -1,5 +1,6 @@
+<div *ngIf="loggedUser">
 <div id="board">
-  <h2> Añadir un nuevo evento </h2>
+  <h2> Nuevo evento </h2>
   <a routerLink="/event"> Inicio </a>
 
   <div class="form-container">
@@ -84,9 +85,16 @@
         <input type="file" class="form-control" name="file" [(ngModel)]="newEvent.picture" ng2FileSelect [uploader]="uploader" />
       </div>
       <app-map (onChangePosition)='updatePosition($event)'></app-map>
-      <br />
-      <button class='edit-button' type="submit"> Enviar </button>
-    </form>
-    <br /><br />
+    <br />
+
+
+    <button class="btn waves-effect waves-light" type="submit" name="action" (click)="login()">Save
+      <i class="material-icons right">send</i>
+    </button>
+
+  </form>
+  <br /><br />
+  <div>
   </div>
+</div>
 </div>

@@ -5,14 +5,3 @@
 .error {
   color: red;
 }
-
-.edit-button {
-  color: #fff;
-  background-color: rgb(255, 84, 77);
-  padding: 20px 90px;
-  border: 0px;
-  font-size: 2rem;
-  border-radius: 50px;
-  margin: 20px 0px 0px 38%;
-  text-align: center;
-}

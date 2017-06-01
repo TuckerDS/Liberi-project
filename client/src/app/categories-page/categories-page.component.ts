@@ -25,6 +25,7 @@ export class CategoriesPageComponent implements OnInit {
   constructor(private evs: EventService, private router: Router) { }
 
   ngOnInit() {
+    console.log("Initiating categories");
     this.evs.getEvents().subscribe( eventsArray => {
       this.events = eventsArray;
       this.events.map(e => {

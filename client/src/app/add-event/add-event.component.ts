@@ -57,12 +57,19 @@ export class AddEventComponent implements OnInit {
       this.uploader = new FileUploader({
         url: this.ENDPOINT + this.EVENT_ROUTE
       });
+
+
+
     }
 
   ngOnInit() {
     // Route Guard
     this.loggedUser = this.sessionService.loggedUser;
-    this.newEvent.user_id =  this.sessionService.loggedUser._id;
+    if( this.loggedUser ){
+      this.newEvent.user_id =  this.sessionService.loggedUser._id;
+    } else {
+      this.router.navigate(['/login']);
+    }
     this.sessionService.getLogginEmitter().subscribe(
       user => {
         if (user) {
@@ -71,6 +78,7 @@ export class AddEventComponent implements OnInit {
           this.router.navigate(['/login']);
         }
       });
+
 
     this.uploader.onSuccessItem = (item, response) => {
       this.feedback = JSON.parse(response).message;

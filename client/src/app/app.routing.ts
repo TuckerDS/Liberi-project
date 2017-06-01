@@ -7,7 +7,6 @@ import { CategoriesPageComponent } from './categories-page/categories-page.compo
 import { EditEventComponent } from './edit-event/edit-event.component';
 
 // USER Routes
-import { UserComponent } from './user/user.component';
 import { UserSignupComponent } from './signup/signup.component';
 import { UserLoginComponent } from './login/login.component';
 import { EditUserComponent } from './edit-user/edit-user.component';

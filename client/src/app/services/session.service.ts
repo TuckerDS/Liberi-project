@@ -52,8 +52,8 @@ export class SessionService {
       .catch(this.handleError);
   }
 
-  login(user) {
-    return this.http.post(`${this.ENDPOINT}${this.USER_ROUTE}/login`, user, this.options)
+  login({username, password}:any) {
+    return this.http.post(`${this.ENDPOINT}${this.USER_ROUTE}/login`, {username, password}, this.options)
       .map(res => {
         this.loggedUser = res.json().user;
         this.activeSession = res.json().session;
