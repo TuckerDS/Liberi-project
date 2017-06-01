@@ -22,3 +22,6 @@ p {
   font-size: 0.5em;
   margin-top: 0;
 }
+.no-margin{
+  margin:0px;
+}

@@ -6,19 +6,19 @@
   <button (click)="deleteEvent(currentEvent._id)">Borrar</button>
 
   <div class="form-container">
-    <form *ngIf="currentEvent" (ngSubmit)="submitEdition()" #myform="ngForm">
+    <form *ngIf="currentEvent" action="" #myform="ngForm">
       <div class="row">
-        <div class="input-field col s12">Título del evento
+        <div class="input-field col s12 m12 l12">Título del evento
           <input type="text" name="title" [value]="currentEvent.title" [(ngModel)]="currentEvent.title" required />
         </div>
       </div>
       <div class="row">
-        <div class="input-field col s12">Descripción
+        <div class="input-field col s12 m12 l12">Descripción
           <input type="text" name="description" [value]="currentEvent.description" [(ngModel)]="currentEvent.description" required />
         </div>
       </div>
       <div class="row">
-        <div class="input-field col s6">
+        <div class="input-field col s12 m6 l6">
           <div class="field"> Categoría </div>
           <select [(ngModel)]="currentEvent.category" name="category" materialize="material_select" [materializeSelectOptions]="selectOptions" [attr.disabled]="isDisabled?true:null">
             <option value="" disabled selected>Elige la categoría del evento</option>
@@ -36,26 +36,27 @@
       </div>
 
       <div class="row">
-        <div class="input-field col s6"> Fecha de inicio
+        <div class="input-field col s6 m6 l6"> Fecha de inicio
           <input type="date" class="datepicker" materialize="pickadate" [(ngModel)]="starDate" #stDate="ngModel" name="startDate" />
         </div>
-        <div class="input-field col s6">Hora de inicio
+        <div class="input-field col s6 m6 l6">Hora de inicio
           <input type="time" class="timepicker" [(ngModel)]="startHour" #stHour="ngModel" name="startHour" />
         </div>
       </div>
 
       <div class="row">
-        <div class="input-field col s6">Fecha de fin
+        <div class="input-field col s6 m6 l6">Fecha de fin
           <input type="date" class="datepicker" materialize="pickadate" [(ngModel)]="enDate" #endDate="ngModel" name="endDate" />
         </div>
-        <div class="input-field col s6">Hora de fin
+        <div class="input-field col s6 m6 l6">Hora de fin
           <input type="time" class="timepicker" [(ngModel)]="endHour" #enHour="ngModel" name="endHour" />
         </div>
       </div>
-
-      <button class="btn waves-effect waves-light" type="submit" name="action">Enviar
-        <i class="material-icons right">send</i>
-      </button>
+      <div class="button">
+        <button class="btn waves-effect waves-light" type="submit" name="action" (click)="submitEdition()">Enviar
+          <i class="material-icons right">send</i>
+        </button>
+      </div>
     </form>
     <br /><br />
   </div>

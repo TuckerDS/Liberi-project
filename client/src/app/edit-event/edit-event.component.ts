@@ -4,6 +4,7 @@ import { Router, ActivatedRoute } from '@angular/router';
 import { Event } from '../event/event.model';
 import { EventService } from '../services/event.service';
 import { SessionService } from '../services/session.service';
+
 @Component({
   selector: 'app-edit-event',
   templateUrl: './edit-event.component.html',
@@ -21,7 +22,6 @@ export class EditEventComponent implements OnInit {
   enDate = '';
   loggedUser: any;
 
-
   constructor(
     @Inject('BASE_ENDPOINT') private BASE: string,
     @Inject('API_ENDPOINT') private API: string,
@@ -30,7 +30,6 @@ export class EditEventComponent implements OnInit {
     private sessionService: SessionService,
     private router: Router) {
       this.ENDPOINT = BASE + API;
-
     }
 
   ngOnInit() {
@@ -103,19 +102,5 @@ export class EditEventComponent implements OnInit {
           this.currentEvent = event;
           this.router.navigate(['event/'+this.eventId]);
         })
-
-  //   else {
-  //     this.uploader.onBuildItemForm = (item, form) => {
-  //       form.append('title', this.currentEvent.title);
-  //       form.append('description', this.currentEvent.description);
-  //       form.append('category', this.currentEvent.category);
-  //       form.append('location', this.currentEvent.location);
-  //       form.append('permanent', this.currentEvent.permanent);
-  //       form.append('startDate', this.currentEvent.startDate);
-  //       form.append('endDate', this.currentEvent.endDate);
-  //     };
-  //     this.uploader.uploadAll();
-  //     this.router.navigate(['event/'+this.eventId]);
-  //   }
   }
 }

@@ -9,6 +9,7 @@ import { EditEventComponent } from './edit-event/edit-event.component';
 // USER Routes
 import { UserSignupComponent } from './signup/signup.component';
 import { UserLoginComponent } from './login/login.component';
+import { UserComponent } from './user/user.component';
 import { EditUserComponent } from './edit-user/edit-user.component';
 import { UserComponent } from './user/user.component';
 
