@@ -1,10 +1,10 @@
 import { Component, OnInit } from '@angular/core';
 import { Injectable, Inject } from '@angular/core';
 import { Router, ActivatedRoute } from '@angular/router';
-import { FileUploader } from "ng2-file-upload";
+import { FileUploader } from 'ng2-file-upload';
 import { Event } from '../event/event.model';
 import { EventService } from '../services/event.service';
-
+import { SessionService } from '../services/session.service';
 @Component({
   selector: 'app-edit-event',
   templateUrl: './edit-event.component.html',
@@ -20,6 +20,8 @@ export class EditEventComponent implements OnInit {
   endHour = '';
   starDate = '';
   enDate = '';
+  loggedUser: any;
+  uploader: FileUploader;
 
   feedback: string;
 
@@ -28,15 +30,45 @@ export class EditEventComponent implements OnInit {
     @Inject('API_ENDPOINT') private API: string,
     private ev: EventService,
     private route: ActivatedRoute,
+    private sessionService: SessionService,
     private router: Router) {
       this.ENDPOINT = BASE + API;
+      this.uploader = new FileUploader({
+        url: this.ENDPOINT + this.EVENT_ROUTE
+      });
     }
 
   ngOnInit() {
+
+    this.loggedUser = this.sessionService.loggedUser;
+    if( this.loggedUser ){
+      //this.newEvent.user_id =  this.sessionService.loggedUser._id;
+    } else {
+      this.router.navigate(['/login']);
+    }
+    this.sessionService.getLogginEmitter().subscribe(
+      user => {
+        if (user) {
+          this.loggedUser = user;
+        } else {
+          this.router.navigate(['/login']);
+        }
+      });
+
     this.route.params.subscribe( params => { this.eventId = String(params['id']) } )
     this.ev.getEventDetails(this.eventId).subscribe( event => {
       this.currentEvent = event;
+
     })
+
+
+    this.uploader.onSuccessItem = (item, response) => {
+      this.feedback = JSON.parse(response).message;
+    };
+
+    this.uploader.onErrorItem = (item, response, status, headers) => {
+      this.feedback = JSON.parse(response).message;
+    };
   }
 
   deleteEvent(evId) {
@@ -80,10 +112,24 @@ export class EditEventComponent implements OnInit {
       this.currentEvent.endDate.setMinutes(h2[1]);
     }
 
-    this.ev.editEvent(this.currentEvent)
-      .subscribe( event => {
-        this.currentEvent = event;
-        this.router.navigate(['event/'+this.eventId]);
-      })
+      this.ev.editEvent(this.currentEvent)
+        .subscribe( event => {
+          this.currentEvent = event;
+          this.router.navigate(['event/'+this.eventId]);
+        })
+
+  //   else {
+  //     this.uploader.onBuildItemForm = (item, form) => {
+  //       form.append('title', this.currentEvent.title);
+  //       form.append('description', this.currentEvent.description);
+  //       form.append('category', this.currentEvent.category);
+  //       form.append('location', this.currentEvent.location);
+  //       form.append('permanent', this.currentEvent.permanent);
+  //       form.append('startDate', this.currentEvent.startDate);
+  //       form.append('endDate', this.currentEvent.endDate);
+  //     };
+  //     this.uploader.uploadAll();
+  //     this.router.navigate(['event/'+this.eventId]);
+  //   }
   }
 }

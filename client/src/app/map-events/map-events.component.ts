@@ -9,7 +9,7 @@ import {} from '@types/googlemaps';
 import { AgmCoreModule } from 'angular2-google-maps/core';
 import { MapService } from '../services/map.service';
 import { SessionService } from '../services/session.service';
-
+import { EventService } from '../services/event.service';
 import { BrowserModule } from '@angular/platform-browser';
 import { NgModule } from '@angular/core';
 
@@ -21,34 +21,17 @@ import { NgModule } from '@angular/core';
 export class MapEventsComponent implements OnInit {
 
   // google maps zoom level
-  zoom: 8;
+  zoom = 10;
 
   // initial center position for the map
-  lat: 51.673858;
-  lng: 7.815982;
+  lat = 51.673858;
+  lng = 7.815982;
 
-  markers = [
-  {
-    lat: 51.673858,
-    lng: 7.815982,
-    label: 'A',
-    draggable: true
-  },
-  {
-    lat: 51.373858,
-    lng: 7.215982,
-    label: 'B',
-    draggable: false
-  },
-  {
-    lat: 51.723858,
-    lng: 7.895982,
-    label: 'C',
-    draggable: true
-  }
-  ];
+  markers = [];
 
-//
+  events: Array<any> = [];
+
+  // marker
   public latitude: number = 40.3919186;
   public longitude: number = -3.6990989;
 
@@ -56,6 +39,7 @@ export class MapEventsComponent implements OnInit {
   locationUser: any;
 
   constructor(private mapService: MapService,
+              private eventService: EventService,
               private router: Router,
               private route: ActivatedRoute, myElement: ElementRef,
               private mapsAPILoader: MapsAPILoader,
@@ -64,6 +48,25 @@ export class MapEventsComponent implements OnInit {
   ) { }
 
   ngOnInit() {
+
+    this.eventService.getEvents().subscribe( eventsArray => {
+      this.events = eventsArray;
+      this.events.map(e => {
+        let currentDate = new Date();
+        let endDate = new Date(e.endDate)
+        let startDate = new Date(e.startDate)
+        //if(endDate <= currentDate && startDate >= currentDate) {
+          this.markers.push({
+            id: e._id,
+            lat: e.latitude,
+            lng: e.longitude,
+            label: e.title,
+            draggable: false
+          });
+        //}
+      })
+    })
+
 
 
 
@@ -74,6 +77,8 @@ export class MapEventsComponent implements OnInit {
     // load Places Autocomplete
     const instance = this;
     this.mapsAPILoader.load().then(() => {
+
+
       // let autocomplete = new google.maps.places.Autocomplete(this.searchElementRef.nativeElement, {
       //   types: ["address"]
       // });
@@ -101,19 +106,14 @@ export class MapEventsComponent implements OnInit {
           // // set latitude, longitude and zoom
           // this.latitude = place.geometry.location.lat();
           // this.longitude = place.geometry.location.lng();
-//          this.zoom = 14;
+          this.zoom = 10;
 //          this.city = place.address_components[2].long_name;
 //          this.country = place.address_components[5].long_name;
 //          this.adress = place.address_components[1].long_name + ', ' + place.address_components[0].long_name;
       //   });
       // });
     });
-
-
-
-
   }
-
 
   addLocation(location) {
     this.locationUser = location;
@@ -126,28 +126,31 @@ export class MapEventsComponent implements OnInit {
   private setNewPosition(position) {
     this.latitude = position.lat;
     this.longitude = position.lon;
-    //this.zoom = 12;
+    this.zoom = 10;
   }
 
-
-
-  clickedMarker(label: string, index: number) {
+  clickedMarker(label: string, index: number, lat: number, lng: number) {
+    window.location.href = 'https://www.google.es/maps?q=' + lat + '+' + lng;
     console.log(`clicked the marker: ${label || index}`)
   }
 
   mapClicked($event: MouseEvent) {
-    this.markers.push({
-      lat: $event['coords'].lat,
-      lng: $event['coords'].lng,
-      label: 'Evento',
-      draggable: false
-    });
+    console.log("map clicked");
+    console.log(this.markers);
+    // this.markers.push({
+    //   lat: $event['coords'].lat,
+    //   lng: $event['coords'].lng,
+    //   label: 'Evento',
+    //   draggable: false
+    // });
   }
 
   markerDragEnd(m, $event: MouseEvent) {
     console.log('dragEnd', m, $event);
   }
 
-
+  goBack() {
+      this.router.navigate(['/categories']);
+  };
 
 }

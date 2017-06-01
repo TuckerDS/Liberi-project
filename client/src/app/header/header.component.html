@@ -7,7 +7,7 @@
   <ul id='dropdown1' class='dropdown-content'>
     <li><a [routerLink]="['/map/now']">Today!</a></li>
     <li *ngIf="loggedUser"><a [routerLink]="['/add']">Add new event</a></li>
-    <li *ngIf="loggedUser"><a [routerLink]="['/user']">Edit profile</a></li>
+    <li *ngIf="loggedUser"><a [routerLink]="['/api/user/edit']">Edit profile</a></li>
     <li class="divider"></li>
     <li *ngIf="loggedUser"><a class="linked" (click)="logout()">Logout</a></li>
     <li *ngIf="!loggedUser"><a [routerLink]="['/login']">Login</a></li>
