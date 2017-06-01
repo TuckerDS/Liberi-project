@@ -1,4 +1,4 @@
-<div class="container-fluid location-form">
+<<div class="container-fluid location-form">
   <div class="row first-row">
     <input autocorrect="off" autocapitalize="off" spellcheck="off" type="text" class="form-control" #search />
   </div>
@@ -18,8 +18,20 @@
                             <strong>InfoWindow content</strong>
                     </sebm-google-map-info-window>
             </sebm-google-map-marker>
+
+            <sebm-google-map-circle [latitude]="latitude"
+                                    [longitude]="longitude"
+                                    [radius]="5000"
+                                    [fillColor]="'red'"
+                                    [circleDraggable]="true"
+                                    [editable]="true">
+            </sebm-google-map-circle>
     </sebm-google-map>
     </div>
-
+    <div class="button-row">
+        <button (click)="editGym()" class="edit-button"> Done! </button>
+        <button (click)="onSubmit()" class="edit-button"> Save </button>
+        <button (click)="notifyChangePosition()" class="edit-button"> Position </button>
+    </div>
   </div>
 </div>

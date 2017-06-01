@@ -5,6 +5,7 @@
   <a class='dropdown-button btn' href='#' data-activates='dropdown1'>Menu</a>
   <!-- Dropdown Structure -->
   <ul id='dropdown1' class='dropdown-content'>
+    <li><a [routerLink]="['/map/now']">Today!</a></li>
     <li *ngIf="loggedUser"><a [routerLink]="['/add']">Add new event</a></li>
     <li *ngIf="loggedUser"><a [routerLink]="['/api/user/edit']">Edit profile</a></li>
     <li class="divider"></li>

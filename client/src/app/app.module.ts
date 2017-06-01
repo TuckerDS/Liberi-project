@@ -28,6 +28,7 @@ import { SessionService } from './services/session.service';
 import { CategoriesService } from './services/categories.service';
 import { MapComponent } from './map/map.component';
 import { MapService } from './services/map.service';
+import { MapEventsComponent } from './map-events/map-events.component';
 
 
 @NgModule({
@@ -43,6 +44,7 @@ import { MapService } from './services/map.service';
     UserLoginComponent,
     EditEventComponent,
     MapComponent,
+    MapEventsComponent,
 
   ],
   imports: [

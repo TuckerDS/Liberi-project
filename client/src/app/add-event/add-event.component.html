@@ -84,16 +84,15 @@
     <div class="field">
       <input type="file" class="form-control" name="file" [(ngModel)]="newEvent.picture" ng2FileSelect [uploader]="uploader" />
     </div>
+      <app-map (onChangePosition)='updatePosition($event)'></app-map>
     <br />
-    <button type="submit"> Submit </button>
+
+    <button class='edit-button' type="submit"> Submit </button>
   </form>
   <br /><br />
   <div>
-    <p>Longitud: {{longitude}}</p>
-    <p>Latitud: {{latitude}}</p>
-    <p>Longitud e: {{newEvent.longitude}}</p>
-    <p>Latitud e: {{newEvent.latitude}}</p>
+
 
   </div>
-  <app-map (onChangePosition)='updatePosition($event)'></app-map>
+
 </div>
