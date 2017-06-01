@@ -1,0 +1,15 @@
+<div id="ev-board">
+  <a routerLink="/">Inicio</a>
+  <div id="title">
+    <h2 *ngIf="(singleEvent)">{{singleEvent.title}}</h2>
+  </div>
+  <div *ngIf="(singleEvent)">
+    <div  class="ev-info">
+      <p>Comienzo: {{singleEvent.startDate | date: 'dd/MM/y  HH:mm'}}</p>
+      <p>Fin: {{singleEvent.endDate | date: 'dd/MM/y  HH:mm'}}</p>
+      <p>{{singleEvent.description}}</p>
+      <img class="pict" [src]="singleEvent.picture">
+    </div>
+    <div><a href='https://www.google.es/maps?q={{singleEvent.latitude}}+{{singleEvent.longitude}}' target="_blank"> Ver en Google Maps</a></div>
+  </div>
+</div>

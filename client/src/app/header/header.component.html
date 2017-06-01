@@ -1,0 +1,21 @@
+<nav class="navbar sticky-top navbar-light navbar-custom bg-faded navbar-toggleable-md">
+  <a class="navbar-brand" [routerLink]="['/']"> LIBERI </a>
+
+<div>
+  <a class='dropdown-button btn' href='#' data-activates='dropdown1'>Menu</a>
+  <!-- Dropdown Structure -->
+  <ul id='dropdown1' class='dropdown-content'>
+    <li><a [routerLink]="['/map/now']">Today!</a></li>
+    <li *ngIf="loggedUser"><a [routerLink]="['/add']">Añadir evento</a></li>
+    <li *ngIf="loggedUser"><a [routerLink]="['/user']">Mi Perfil</a></li>
+    <li class="divider"></li>
+    <li *ngIf="loggedUser"><a class="linked" (click)="logout()">Logout</a></li>
+    <li *ngIf="!loggedUser"><a [routerLink]="['/login']">Login</a></li>
+    <li *ngIf="!loggedUser"><a [routerLink]="['/signup']">Signup</a></li>
+
+  </ul>
+</div>
+<div>
+  <p class='no-margin' *ngIf="loggedUser">¡Hola {{loggedUser.username}}! </p>
+</div>
+</nav>

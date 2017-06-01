@@ -1,0 +1,27 @@
+.navbar-custom {
+  background-color: darken(rgb(0, 121, 191), 7%);
+  text-align: center;
+  font-size: 3em;
+  color: white;
+  width: 100%;
+}
+
+.navbar-custom div {
+  float: right;
+  display: inline-block;
+  margin-right: 2%;
+}
+
+
+.linked {
+  cursor: pointer;
+}
+
+p {
+  display: inline-block;
+  font-size: 0.5em;
+  margin-top: 0;
+}
+.no-margin{
+  margin:0px;
+}

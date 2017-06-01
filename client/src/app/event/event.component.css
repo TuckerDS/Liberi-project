@@ -1,0 +1,31 @@
+#board {
+  margin: 5% 4%;
+}
+
+.Musica{
+  background-color: #33ccff;
+}
+.Poesia{
+  background-color: #d24dff;
+}
+.Cine{
+  background-color: #00e673;
+}
+.Teatro{
+  background-color: 	 #ffa64d;
+}
+.Museos{
+  background-color: #a3a3c2;
+}
+.Deporte{
+  background-color: #ff4d4d;
+}
+.Idiomas{
+  background-color: #6666ff;
+}
+.Naturaleza{
+  background-color: #79d2a6;
+}
+.Gastronomia{
+  background-color: #ffccff;
+}

@@ -1,0 +1,42 @@
+<div class="container-fluid location-form">
+
+  <div class="container-fluid map-container">
+    <div class="map-row">
+      <sebm-google-map [latitude]="latitude"
+                       [longitude]="longitude"
+                       [zoom]="zoom"
+                       [scrollwheel]="false"
+                       [zoomControl]="true"
+                       (mapClick)="mapClicked($event)">
+
+            <sebm-google-map-marker [latitude]="latitude"
+                                    [longitude]="longitude">
+                    <sebm-google-map-info-window>
+                            <strong>InfoWindow content</strong>
+                    </sebm-google-map-info-window>
+            </sebm-google-map-marker>
+
+
+            <sebm-google-map-marker
+          *ngFor="let m of markers; let i = index"
+          (markerClick)="clickedMarker(m.label, i, m.lat, m.lng)"
+          [latitude]="m.lat"
+          [longitude]="m.lng"
+          [label]="m.label"
+
+          [markerDraggable]="m.draggable"
+          (dragEnd)="markerDragEnd(m, $event)">
+          </sebm-google-map-marker>
+
+
+    </sebm-google-map>
+    </div>
+
+    <div class="button-row">
+      <button (click)="goBack()" class="btn waves-effect waves-light" type="submit" name="action">Back to Categories
+        <i class="material-icons left">home</i>
+      </button>
+    </div>
+
+  </div>
+</div>

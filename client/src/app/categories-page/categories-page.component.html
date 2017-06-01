@@ -1,0 +1,4 @@
+<div id="board">
+  <div class="categ" *ngFor="let category of categories" [ngClass]="category" [title]="category" (click)="goToEvents(category)">
+  </div>
+</div>

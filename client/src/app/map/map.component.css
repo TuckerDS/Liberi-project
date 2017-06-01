@@ -1,0 +1,21 @@
+
+.location-form {
+  height: 100vh;
+}
+
+.first-row{
+  padding: 0px 50px;
+}
+
+.map-row {
+  margin: 0px;
+}
+
+.sebm-google-map-container {
+  width: 100%;
+  height: 80vh;
+}
+
+.button-row {
+  padding: 10px;
+}
