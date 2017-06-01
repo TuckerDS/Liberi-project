@@ -1,6 +1,6 @@
 <div id="board">
-  <h3> {{eventsCategory}} Event list </h3>
-  <a routerLink="/">Go back to categories</a>
+  <h3> Lista de eventos de {{eventsCategory}} </h3>
+  <a routerLink="/">Inicio</a>
   <div>
     <div *ngFor="let event of events" class="event">
       <div class="row">
@@ -17,7 +17,7 @@
             </div>
             <div class="card-action" [ngClass]="eventsCategory">
               <div *ngIf="loggedUser && (loggedUser._id == event.userId)">
-                <button (click)="editEvent(event._id)">Edit / Delete Event</button>
+                <button (click)="editEvent(event._id)">Editar / Borrar Evento</button>
               </div>
             </div>
           </div>

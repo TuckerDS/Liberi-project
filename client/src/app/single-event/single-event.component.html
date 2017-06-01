@@ -1,11 +1,11 @@
 <div id="ev-board">
-  <a routerLink="/">Go back to categories</a>
+  <a routerLink="/">Inicio</a>
   <div id="title">
     <h2 *ngIf="(singleEvent)">{{singleEvent.title}}</h2>
   </div>
   <div *ngIf="(singleEvent)">
     <div  class="ev-info">
-      <p>Inicio: {{singleEvent.startDate | date: 'dd/MM/y  HH:mm'}}</p>
+      <p>Comienzo: {{singleEvent.startDate | date: 'dd/MM/y  HH:mm'}}</p>
       <p>Fin: {{singleEvent.endDate | date: 'dd/MM/y  HH:mm'}}</p>
       <p>{{singleEvent.description}}</p>
       <img class="pict" [src]="singleEvent.picture">

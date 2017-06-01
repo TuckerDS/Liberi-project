@@ -67,7 +67,9 @@ export class AddEventComponent implements OnInit {
       user => {
         if (user) {
           this.loggedUser = user;
-        } else { this.router.navigate(['/login']); }
+        } else {
+          this.router.navigate(['/login']);
+        }
       });
 
     this.uploader.onSuccessItem = (item, response) => {
@@ -78,6 +80,7 @@ export class AddEventComponent implements OnInit {
       this.feedback = JSON.parse(response).message;
     };
   }
+
 
   submitForm(myForm) {
 

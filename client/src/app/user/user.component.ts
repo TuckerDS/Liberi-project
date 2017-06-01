@@ -8,12 +8,21 @@ import { SessionService } from '../services/session.service';
   styleUrls: ['./user.component.css']
 })
 export class UserComponent implements OnInit {
+  loggedUser: any;
 
   constructor(
     private router: Router,
     private sessionService: SessionService) { }
 
   ngOnInit() {
+    this.loggedUser = this.sessionService.loggedUser;
+    this.sessionService.getLogginEmitter().subscribe(
+      user => {
+        if (user) {
+          this.loggedUser = user;
+        } else { this.router.navigate(['/login']); }
+        console.log(this.loggedUser)
+      });
   }
 
 }
