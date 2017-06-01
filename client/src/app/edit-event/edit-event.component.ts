@@ -1,10 +1,10 @@
 import { Component, OnInit } from '@angular/core';
 import { Injectable, Inject } from '@angular/core';
 import { Router, ActivatedRoute } from '@angular/router';
-import { FileUploader } from 'ng2-file-upload';
 import { Event } from '../event/event.model';
 import { EventService } from '../services/event.service';
 import { SessionService } from '../services/session.service';
+
 @Component({
   selector: 'app-edit-event',
   templateUrl: './edit-event.component.html',
@@ -21,7 +21,6 @@ export class EditEventComponent implements OnInit {
   starDate = '';
   enDate = '';
   loggedUser: any;
-  uploader: FileUploader;
 
   constructor(
     @Inject('BASE_ENDPOINT') private BASE: string,
@@ -31,9 +30,6 @@ export class EditEventComponent implements OnInit {
     private sessionService: SessionService,
     private router: Router) {
       this.ENDPOINT = BASE + API;
-      this.uploader = new FileUploader({
-        url: this.ENDPOINT + this.EVENT_ROUTE
-      });
     }
 
   ngOnInit() {
@@ -58,15 +54,6 @@ export class EditEventComponent implements OnInit {
       this.currentEvent = event;
 
     })
-
-
-    this.uploader.onSuccessItem = (item, response) => {
-      this.feedback = JSON.parse(response).message;
-    };
-
-    this.uploader.onErrorItem = (item, response, status, headers) => {
-      this.feedback = JSON.parse(response).message;
-    };
   }
 
   deleteEvent(evId) {
@@ -115,19 +102,5 @@ export class EditEventComponent implements OnInit {
           this.currentEvent = event;
           this.router.navigate(['event/'+this.eventId]);
         })
-
-  //   else {
-  //     this.uploader.onBuildItemForm = (item, form) => {
-  //       form.append('title', this.currentEvent.title);
-  //       form.append('description', this.currentEvent.description);
-  //       form.append('category', this.currentEvent.category);
-  //       form.append('location', this.currentEvent.location);
-  //       form.append('permanent', this.currentEvent.permanent);
-  //       form.append('startDate', this.currentEvent.startDate);
-  //       form.append('endDate', this.currentEvent.endDate);
-  //     };
-  //     this.uploader.uploadAll();
-  //     this.router.navigate(['event/'+this.eventId]);
-  //   }
   }
 }

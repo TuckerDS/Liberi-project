@@ -150,7 +150,7 @@ export class MapEventsComponent implements OnInit {
   }
 
   goBack() {
-      this.router.navigate(['/categories']);
+      this.router.navigate(['/']);
   };
 
 }
