@@ -55,7 +55,7 @@ export class MapEventsComponent implements OnInit {
         let currentDate = new Date();
         let endDate = new Date(e.endDate)
         let startDate = new Date(e.startDate)
-        //if(endDate <= currentDate && startDate >= currentDate) {
+        if(currentDate <= endDate && currentDate  >= startDate ) {
           this.markers.push({
             id: e._id,
             lat: e.latitude,
@@ -63,7 +63,7 @@ export class MapEventsComponent implements OnInit {
             label: e.title,
             draggable: false
           });
-        //}
+        }
       })
     })
 

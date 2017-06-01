@@ -1,9 +1,6 @@
 <div class="container-fluid location-form">
-  <div class="row first-row">
-    <input autocorrect="off" autocapitalize="off" spellcheck="off" type="text" class="form-control" #search />
-  </div>
 
-  <div class="row third-row">
+  <div class="container-fluid map-container">
     <div class="map-row">
       <sebm-google-map [latitude]="latitude"
                        [longitude]="longitude"
@@ -34,9 +31,12 @@
 
     </sebm-google-map>
     </div>
-    <div class="button-row">
-        <button (click)="goBack()" class="edit-button"> Back to Categories </button>
 
+    <div class="button-row">
+      <button (click)="goBack()" class="btn waves-effect waves-light" type="submit" name="action">Back to Categories
+        <i class="material-icons left">home</i>
+      </button>
     </div>
+
   </div>
 </div>

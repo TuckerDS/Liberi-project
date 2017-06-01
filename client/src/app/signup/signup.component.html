@@ -35,9 +35,10 @@
         <input [(ngModel)]="formInfo.description" name="description" type="text" placeholder="description">
       </div>
     </div>
-    <div class="button">
-      <button (click)="signup()"> Signup </button>
-    </div>
+
+    <button class="btn waves-effect waves-light" type="submit" name="action" (click)="signup()">Signup
+      <i class="material-icons right">send</i>
+    </button>
   </form>
   <p class="error"> {{ error }} </p>
 </div>
