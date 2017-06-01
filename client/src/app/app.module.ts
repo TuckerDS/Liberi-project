@@ -20,6 +20,7 @@ import { UserComponent } from './user/user.component';
 import { UserSignupComponent } from './signup/signup.component';
 import { UserLoginComponent } from './login/login.component';
 import { EditEventComponent } from './edit-event/edit-event.component';
+import { EditUserComponent } from './edit-user/edit-user.component';
 // Maps
 import { AgmCoreModule } from 'angular2-google-maps/core';
 import { MapComponent } from './map/map.component';
@@ -46,7 +47,7 @@ import { MapService } from './services/map.service';
     EditEventComponent,
     MapComponent,
     MapEventsComponent,
-
+    EditUserComponent
   ],
   imports: [
     BrowserModule,

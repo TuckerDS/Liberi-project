@@ -1,57 +1,59 @@
-<h2> Editar el evento </h2>
-<a routerLink="/event"> Inicio </a>
+<div id="board">
+  <h2> Editar el evento </h2>
+  <a routerLink="/event"> Inicio </a>
 
-<button (click)="deleteEvent(currentEvent._id)">Borrar</button>
+  <button (click)="deleteEvent(currentEvent._id)">Borrar</button>
 
-<div class="form-container">
-  <form *ngIf="currentEvent" (ngSubmit)="submitEdition()" #myform="ngForm">
-    <div class="row">
-      <div class="input-field col s12">Título del evento
-        <input type="text" name="title" [value]="currentEvent.title" [(ngModel)]="currentEvent.title" required />
+  <div class="form-container">
+    <form *ngIf="currentEvent" (ngSubmit)="submitEdition()" #myform="ngForm">
+      <div class="row">
+        <div class="input-field col s12">Título del evento
+          <input type="text" name="title" [value]="currentEvent.title" [(ngModel)]="currentEvent.title" required />
+        </div>
       </div>
-    </div>
-    <div class="row">
-      <div class="input-field col s12">Descripción
-        <input type="text" name="description" [value]="currentEvent.description" [(ngModel)]="currentEvent.description" required />
+      <div class="row">
+        <div class="input-field col s12">Descripción
+          <input type="text" name="description" [value]="currentEvent.description" [(ngModel)]="currentEvent.description" required />
+        </div>
       </div>
-    </div>
-    <div class="row">
-      <div class="input-field col s6">
-        <div class="field"> Categoría </div>
-        <select [(ngModel)]="currentEvent.category" name="category" materialize="material_select" [materializeSelectOptions]="selectOptions" [attr.disabled]="isDisabled?true:null">
-          <option value="" disabled selected>Elige la categoría del evento</option>
-          <option value="Musica">Musica</option>
-          <option value="Poesia">Poesia</option>
-          <option value="Cine">Cine</option>
-          <option value="Teatro">Teatro</option>
-          <option value="Museos">Museos</option>
-          <option value="Deporte">Deporte</option>
-          <option value="Idiomas">Idiomas</option>
-          <option value="Naturaleza">Naturaleza</option>
-          <option value="Gastronomia">Gastronomia</option>
-        </select>
+      <div class="row">
+        <div class="input-field col s6">
+          <div class="field"> Categoría </div>
+          <select [(ngModel)]="currentEvent.category" name="category" materialize="material_select" [materializeSelectOptions]="selectOptions" [attr.disabled]="isDisabled?true:null">
+            <option value="" disabled selected>Elige la categoría del evento</option>
+            <option value="Musica">Musica</option>
+            <option value="Poesia">Poesia</option>
+            <option value="Cine">Cine</option>
+            <option value="Teatro">Teatro</option>
+            <option value="Museos">Museos</option>
+            <option value="Deporte">Deporte</option>
+            <option value="Idiomas">Idiomas</option>
+            <option value="Naturaleza">Naturaleza</option>
+            <option value="Gastronomia">Gastronomia</option>
+          </select>
+        </div>
       </div>
-    </div>
 
-    <div class="row">
-      <div class="input-field col s6"> Fecha de inicio
-        <input type="date" class="datepicker" materialize="pickadate" [(ngModel)]="starDate" #stDate="ngModel" name="startDate" />
+      <div class="row">
+        <div class="input-field col s6"> Fecha de inicio
+          <input type="date" class="datepicker" materialize="pickadate" [(ngModel)]="starDate" #stDate="ngModel" name="startDate" />
+        </div>
+        <div class="input-field col s6">Hora de inicio
+          <input type="time" class="timepicker" [(ngModel)]="startHour" #stHour="ngModel" name="startHour" />
+        </div>
       </div>
-      <div class="input-field col s6">Hora de inicio
-        <input type="time" class="timepicker" [(ngModel)]="startHour" #stHour="ngModel" name="startHour" />
-      </div>
-    </div>
 
-    <div class="row">
-      <div class="input-field col s6">Fecha de fin
-        <input type="date" class="datepicker" materialize="pickadate" [(ngModel)]="enDate" #endDate="ngModel" name="endDate" />
+      <div class="row">
+        <div class="input-field col s6">Fecha de fin
+          <input type="date" class="datepicker" materialize="pickadate" [(ngModel)]="enDate" #endDate="ngModel" name="endDate" />
+        </div>
+        <div class="input-field col s6">Hora de fin
+          <input type="time" class="timepicker" [(ngModel)]="endHour" #enHour="ngModel" name="endHour" />
+        </div>
       </div>
-      <div class="input-field col s6">Hora de fin
-        <input type="time" class="timepicker" [(ngModel)]="endHour" #enHour="ngModel" name="endHour" />
-      </div>
-    </div>
 
-    <button type="submit"> Enviar </button>
-  </form>
-  <br /><br />
+      <button type="submit"> Enviar </button>
+    </form>
+    <br /><br />
+  </div>
 </div>

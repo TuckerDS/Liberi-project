@@ -1,0 +1,45 @@
+<div id="board">
+  <h2> Editar Perfil </h2>
+  <a routerLink="/user"> Tu perfil </a>
+
+  <div class="form-container">
+    <form *ngIf="this.loggedUser" (ngSubmit)="submitEdition()" #myform="ngForm">
+      <div class="row">
+        <div class="input-field col s12">Username
+          <input type="text" name="username" [value]="this.loggedUser.username" [(ngModel)]="this.loggedUser.username" required />
+        </div>
+      </div>
+      <div class="row">
+        <div class="input-field col s12">Password
+          <input type="password" name="password" [value]="this.loggedUser.password" [(ngModel)]="this.loggedUser.password" required />
+        </div>
+      </div>
+      <div class="row">
+        <div class="input-field col s6">
+          <div class="field"> Rol </div>
+          <select [(ngModel)]="this.loggedUser.role" name="role" materialize="material_select" [materializeSelectOptions]="selectOptions" [attr.disabled]="isDisabled?true:null">
+            <option value="" disabled selected>Elige tu rol</option>
+            <option value="Particular">Particular</option>
+            <option value="Organizador">Organizador</option>
+            <option value="Artista">Artista</option>
+          </select>
+        </div>
+      </div>
+
+      <div class="row">
+        <div class="input-field col s6"> E-mail
+          <input type="email" name="email" [value]="this.loggedUser.email" [(ngModel)]="this.loggedUser.email" />
+        </div>
+      </div>
+
+      <div class="row">
+        <div class="input-field col s6"> E-mail
+          <input type="text" name="description" [value]="this.loggedUser.description" [(ngModel)]="this.loggedUser.description" />
+        </div>
+      </div>
+
+      <button type="submit"> Enviar </button>
+    </form>
+    <br /><br />
+  </div>
+</div>

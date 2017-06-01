@@ -4,9 +4,6 @@ const sessionModel = require('../models/sessionModel.js');
 const ObjectId = require('mongoose').Types.ObjectId;
 const session = require("express-session");
 
-// multer
-// const upload = require('../config/multer');
-
 // Bcrypt let us encrypt passwords
 const bcrypt = require("bcryptjs");
 const bcryptSalt = 10;
@@ -76,6 +73,7 @@ module.exports = {
 
   // userController.update()
   update: function(req, res) {
+    console.log("Llega aqui")
     var id = req.params.id;
     userModel.findOne({
       _id: id
@@ -93,10 +91,9 @@ module.exports = {
       }
 
       user.username = req.body.username ? req.body.username : user.username;
-      user.password = req.body.password ? req.body.password : user.password;
+      user.password = req.body.password ? bcrypt.hashSync(req.body.password, bcrypt.genSaltSync(bcryptSalt)) : user.password;
       user.email = req.body.email ? req.body.email : user.email;
       user.role = req.body.role ? req.body.role : user.role;
-      user.validated = req.body.validated ? req.body.validated : user.validated;
       user.description = req.body.description ? req.body.description : user.description;
 
       user.save(function(err, user) {

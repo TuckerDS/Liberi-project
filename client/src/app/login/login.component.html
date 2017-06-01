@@ -1,24 +1,26 @@
-<div *ngIf="(!user)" class="signup_container">
-  <h1>LOGIN</h1>
-  <form action="">
-    <div class="row">
-      <div class="input-field col s6">
-        Username:
-        <input [(ngModel)]="formInfo.username" name="username" type="text" placeholder="username"/>
+<div id="board">
+  <div *ngIf="(!user)">
+    <h1>LOGIN</h1>
+    <form action="">
+      <div class="row">
+        <div class="input-field col s6">
+          Username:
+          <input [(ngModel)]="formInfo.username" name="username" type="text" placeholder="username"/>
+        </div>
+
+        <div class="input-field col s6">
+          Password:
+          <input [(ngModel)]="formInfo.password"name="password" type="password" placeholder="password"/>
+        </div>
       </div>
 
-      <div class="input-field col s6">
-        Password:
-        <input [(ngModel)]="formInfo.password"name="password" type="password" placeholder="password"/>
+      <div class="button">
+        <button (click)="login()"> Log In </button>
       </div>
-    </div>
 
-    <div class="button">
-      <button (click)="login()"> Log In </button>
-    </div>
+    </form>
+    <p class="error"> {{ error }} </p>
+  </div>
 
-  </form>
-  <p class="error"> {{ error }} </p>
+  <div *ngIf="(user)">Estas logeado como {{user.username}}</div>
 </div>
-
-<div *ngIf="(user)" class="signup_container">Estas logeado como {{user.username}}</div>

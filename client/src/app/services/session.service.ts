@@ -8,11 +8,6 @@ import { Observable } from 'rxjs/Rx';
 // Para emitir eventos de cambio de autorizacion
 import {EventEmitter} from '@angular/core';
 
-// Importar objetos de la librería http
-// import { Http, Response, RequestOptions, Headers } from '@angular/http';
-// Importar la clase Observable desde la librería rxjs
-// import { Observable }     from 'rxjs/Observable';
-
 import { Cookie } from 'ng2-cookies/ng2-cookies';
 
 
@@ -28,9 +23,7 @@ export class SessionService {
   // Creamos on objeto evento
   loginEvent: EventEmitter<any> = new EventEmitter();
 
-  // BASEURL: 'http://localhost:3000/api/user';
-options: {withCredentials: true};
-
+  options: {withCredentials: true};
 
   constructor(
     @Inject('BASE_ENDPOINT') private BASE: string,
@@ -41,11 +34,16 @@ options: {withCredentials: true};
 
   // Escucha eventos
   getLogginEmitter(): EventEmitter<any> {
-      return this.loginEvent;
+    return this.loginEvent;
   }
 
   handleError(e) {
     return Observable.throw(e.json().message);
+  }
+
+  editUser(user) {
+    return this.http.put(`${this.ENDPOINT}${this.USER_ROUTE}/${user._id}`, user, this.options)
+      .map((res) => res.json());
   }
 
   signup(user) {

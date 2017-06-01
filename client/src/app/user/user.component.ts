@@ -21,8 +21,10 @@ export class UserComponent implements OnInit {
         if (user) {
           this.loggedUser = user;
         } else { this.router.navigate(['/login']); }
-        console.log(this.loggedUser)
       });
   }
 
+  editUser() {
+    this.router.navigate(['/user/edit']);
+  }
 }

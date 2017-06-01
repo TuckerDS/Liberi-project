@@ -21,8 +21,6 @@ export class EditEventComponent implements OnInit {
   starDate = '';
   enDate = '';
 
-  feedback: string;
-
   constructor(
     @Inject('BASE_ENDPOINT') private BASE: string,
     @Inject('API_ENDPOINT') private API: string,
