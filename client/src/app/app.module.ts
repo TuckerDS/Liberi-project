@@ -23,11 +23,13 @@ import { EditEventComponent } from './edit-event/edit-event.component';
 // Maps
 import { AgmCoreModule } from 'angular2-google-maps/core';
 import { MapComponent } from './map/map.component';
+import { MapEventsComponent } from './map-events/map-events.component';
 // Servicios
 import { EventService } from './services/event.service';
 import { SessionService } from './services/session.service';
 import { CategoriesService } from './services/categories.service';
 import { MapService } from './services/map.service';
+
 
 
 @NgModule({
@@ -42,7 +44,9 @@ import { MapService } from './services/map.service';
     UserSignupComponent,
     UserLoginComponent,
     EditEventComponent,
-    MapComponent
+    MapComponent,
+    MapEventsComponent,
+
   ],
   imports: [
     BrowserModule,

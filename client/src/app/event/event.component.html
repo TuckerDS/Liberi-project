@@ -13,6 +13,7 @@
               <span class="card-title"><a routerLink="/event/{{event._id}}"> {{ event.title }} </a></span>
               <p> Fecha: {{ event.startDate | date: 'dd/MM/y  HH:mm' }} </p>
               <p> Lugar: {{ event.description }} </p>
+              <a href='https://www.google.es/maps?q={{event.latitude}}+{{event.longitude}}'> Ver en Google Maps</a>
             </div>
             <div class="card-action" [ngClass]="eventsCategory">
               <div *ngIf="loggedUser && (loggedUser._id == event.userId)">
