@@ -57,10 +57,15 @@ export class MapEventsComponent implements OnInit {
     this.eventService.getEvents().subscribe( eventsArray => {
       this.events = eventsArray;
       this.events.map(e => {
-        let currentDate = new Date();
+        let currentDate00 = new Date();
+        currentDate00.setHours(0);
+        currentDate00.setMinutes(0);
+        let currentDate24 = new Date();
+        currentDate24.setHours(23);
+        currentDate24.setMinutes(59);
         let endDate = new Date(e.endDate)
         let startDate = new Date(e.startDate)
-        if(currentDate <= endDate && currentDate  >= startDate ) {
+        if((currentDate00<=startDate && currentDate24>=startDate) ||(currentDate00<=endDate && currentDate24>=endDate)) {
           this.markers.push({
             id: e._id,
             lat: e.latitude,
