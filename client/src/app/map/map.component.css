@@ -1,10 +1,17 @@
 
 .location-form {
-  height: 100vh;
+  background-color: rgb(0, 121, 191);
+  padding: 10px;
+  /*height: 80vh;*/
 }
 
-.first-row{
-  padding: 0px 50px;
+.search-row{
+  color: #fff;
+  padding: 10px;
+}
+
+.form-control{
+  width: 90%;
 }
 
 .map-row {
@@ -16,6 +23,6 @@
   height: 80vh;
 }
 
-.button-row {
-  padding: 10px;
+.map-container {
+
 }

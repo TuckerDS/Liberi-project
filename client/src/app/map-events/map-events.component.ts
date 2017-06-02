@@ -12,6 +12,7 @@ import { SessionService } from '../services/session.service';
 import { EventService } from '../services/event.service';
 import { BrowserModule } from '@angular/platform-browser';
 import { NgModule } from '@angular/core';
+import { Injectable, Inject } from '@angular/core';
 
 @Component({
   selector: 'app-map-events',
@@ -19,6 +20,8 @@ import { NgModule } from '@angular/core';
   styleUrls: ['./map-events.component.css']
 })
 export class MapEventsComponent implements OnInit {
+
+  baseUrl: string;
 
   // google maps zoom level
   zoom = 10;
@@ -44,10 +47,12 @@ export class MapEventsComponent implements OnInit {
               private route: ActivatedRoute, myElement: ElementRef,
               private mapsAPILoader: MapsAPILoader,
               private ngZone: NgZone,
-              private sessionService: SessionService
+              private sessionService: SessionService,
+              @Inject('BASE_ENDPOINT') private BASE: string
   ) { }
 
   ngOnInit() {
+    this.baseUrl = this.BASE + "/uploads/";
 
     this.eventService.getEvents().subscribe( eventsArray => {
       this.events = eventsArray;
@@ -61,14 +66,26 @@ export class MapEventsComponent implements OnInit {
             lat: e.latitude,
             lng: e.longitude,
             label: e.title,
-            draggable: false
+            draggable: false,
+            info: e.description,
+            picture: this.baseUrl + e.picture,
+            start: e.startDate,
+            end: e.endDate
           });
         }
       })
     })
 
 
-
+    // Get current position
+    if (navigator.geolocation) {
+      navigator.geolocation.getCurrentPosition(function(position) {
+           this.latitude = position.coords.latitude;
+           this.longitude = position.coords.longitude;
+           this.lat = position.coords.latitude;
+           this.lng = position.coords.longitude;
+      });
+    }
 
 
     //  create search FormControl
@@ -130,13 +147,14 @@ export class MapEventsComponent implements OnInit {
   }
 
   clickedMarker(label: string, index: number, lat: number, lng: number) {
-    window.location.href = 'https://www.google.es/maps?q=' + lat + '+' + lng;
+    //window.location.href = 'https://www.google.es/maps?q=' + lat + '+' + lng;
     console.log(`clicked the marker: ${label || index}`)
   }
 
   mapClicked($event: MouseEvent) {
     console.log("map clicked");
     console.log(this.markers);
+
     // this.markers.push({
     //   lat: $event['coords'].lat,
     //   lng: $event['coords'].lng,

@@ -23,9 +23,19 @@
           [latitude]="m.lat"
           [longitude]="m.lng"
           [label]="m.label"
-
           [markerDraggable]="m.draggable"
           (dragEnd)="markerDragEnd(m, $event)">
+            <sebm-google-map-info-window>
+              <strong><a routerLink="/event/{{m.id}}">{{m.label}}</a></strong>
+              <p>
+              <strong>Descripcion: </strong>{{m.info}} <br>
+              <strong>Inicio: </strong> {{m.start}} <br>
+              <strong>Fin: </strong> {{m.end}}
+            </p>
+              <img style='width: 100px' src="{{m.picture}}" alt="foto">
+              <br>
+              <a href='https://www.google.es/maps?q={{m.lat}}+{{m.lng}}'>ver en Google Maps</a>
+            </sebm-google-map-info-window>
           </sebm-google-map-marker>
 
 
@@ -33,8 +43,8 @@
     </div>
 
     <div class="button-row">
-      <button (click)="goBack()" class="btn waves-effect waves-light" type="submit" name="action">Back to Categories
-        <i class="material-icons left">home</i>
+      <button (click)="goBack()" class="btn waves-effect waves-light" type="submit" name="action">Volver a Categorías
+        <i class="material-icons left">undo</i>
       </button>
     </div>
 

@@ -1,9 +1,9 @@
-<div class="card-panel teal" class="container-fluid location-form">
-  <div class="row first-row">
-    <input autocorrect="off" autocapitalize="off" spellcheck="off" type="text" class="form-control" #search />
+<div class="card-panel teal container-fluid location-form">
+  <div class="search-row">
+    <i class="small material-icons left">search</i><input autocorrect="off" autocapitalize="off" spellcheck="off" type="text" class="form-control" #search />
   </div>
 
- <div class="container-fluid map-container">
+  <div class="container-fluid map-container">
     <div class="container-fluid map-row">
       <sebm-google-map [latitude]="latitude"
                        [longitude]="longitude"
@@ -21,5 +21,5 @@
     </sebm-google-map>
     </div>
 
- </div>
+  </div>
 </div>

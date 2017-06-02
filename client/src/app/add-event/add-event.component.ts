@@ -16,8 +16,8 @@ export class AddEventComponent implements OnInit {
   EVENT_ROUTE = '/event';
   ENDPOINT: string;
   uploader: FileUploader;
-  longitude: number;
-  latitude: number;
+  longitude = 0;
+  latitude = 0;
 
   // Corrige los errores de compilación de angular,
   // las propiedades deben existir previamente.
@@ -30,13 +30,14 @@ export class AddEventComponent implements OnInit {
     title: '',
     description: '',
     category: '',
-    latitude: 0,
-    longitude: 0,
+    latitude: 40.3919145,
+    longitude: -3.6990801,
     permanent: false,
     startDate: new Date(),
     endDate: new Date(),
     picture: ''
   };
+
   startHour = '';
   endHour = '';
   start = '';
@@ -57,15 +58,12 @@ export class AddEventComponent implements OnInit {
       this.uploader = new FileUploader({
         url: this.ENDPOINT + this.EVENT_ROUTE
       });
-
-
-
     }
 
   ngOnInit() {
     // Route Guard
     this.loggedUser = this.sessionService.loggedUser;
-    if( this.loggedUser ){
+    if ( this.loggedUser ) {
       this.newEvent.user_id =  this.sessionService.loggedUser._id;
     } else {
       this.router.navigate(['/login']);
@@ -77,8 +75,8 @@ export class AddEventComponent implements OnInit {
         } else {
           this.router.navigate(['/login']);
         }
-      });
-
+      }
+    );
 
     this.uploader.onSuccessItem = (item, response) => {
       this.feedback = JSON.parse(response).message;
@@ -87,27 +85,29 @@ export class AddEventComponent implements OnInit {
     this.uploader.onErrorItem = (item, response, status, headers) => {
       this.feedback = JSON.parse(response).message;
     };
+
+    // get current position
+    if (navigator.geolocation) {
+      navigator.geolocation.getCurrentPosition(function(position) {
+           this.newEvent.latitude = position.coords.latitude;
+           this.newEvent.longitude = position.coords.longitude;
+      });
+    }
   }
 
 
   submitForm(myForm) {
 
-    this.newEvent.startDate.setTime(Date.parse(this.start + " " + this.startHour));
-    this.newEvent.endDate.setTime(Date.parse(this.end + " " + this.endHour));
+    this.newEvent.startDate.setTime(Date.parse(this.start + ' ' + this.startHour));
+    this.newEvent.endDate.setTime(Date.parse(this.end + ' ' + this.endHour));
 
     if (this.uploader.queue.length === 0) {
-      console.log("lalocalizacion que se envia sin foto")
-      console.log(this.newEvent.latitude);
-      console.log(this.newEvent.longitude);
       this.ev.addEvent(this.newEvent)
         .subscribe( event => {
           this.newEvent = event;
           this.router.navigate(['']);
-        })
+        });
     } else {
-      console.log("lalocalizacion que se envia CON foto")
-      console.log(this.newEvent.latitude);
-      console.log(this.newEvent.longitude);
       this.uploader.onBuildItemForm = (item, form) => {
         form.append('user_id', this.loggedUser._id);
         form.append('title', this.newEvent.title);
@@ -126,10 +126,8 @@ export class AddEventComponent implements OnInit {
 
   updatePosition(e) {
     this.newEvent.latitude = e.latitude;
-     this.newEvent.longitude = e.longitude ;
+    this.newEvent.longitude = e.longitude ;
     this.longitude = e.longitude;
     this.latitude = e.latitude;
-    console.log('updatePosition!!!!!');
-    console.log(e);
   }
 }
