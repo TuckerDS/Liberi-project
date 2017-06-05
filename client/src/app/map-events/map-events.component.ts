@@ -147,8 +147,8 @@ export class MapEventsComponent implements OnInit {
   }
 
   clickedMarker(label: string, index: number, lat: number, lng: number) {
-    //window.location.href = 'https://www.google.es/maps?q=' + lat + '+' + lng;
-    console.log(`clicked the marker: ${label || index}`)
+    // window.location.href = 'https://www.google.es/maps?q=' + lat + '+' + lng;
+    // console.log(`clicked the marker: ${label || index}`)
   }
 
   mapClicked($event: MouseEvent) {
@@ -161,7 +161,7 @@ export class MapEventsComponent implements OnInit {
   }
 
   markerDragEnd(m, $event: MouseEvent) {
-    console.log('dragEnd', m, $event);
+    // console.log('dragEnd', m, $event);
   }
 
   goBack() {

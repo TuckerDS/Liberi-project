@@ -73,7 +73,6 @@ module.exports = {
 
   // userController.update()
   update: function(req, res) {
-    console.log("Llega aqui")
     var id = req.params.id;
     userModel.findOne({
       _id: id
