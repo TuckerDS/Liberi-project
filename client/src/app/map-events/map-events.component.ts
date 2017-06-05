@@ -12,6 +12,10 @@ import { SessionService } from '../services/session.service';
 import { EventService } from '../services/event.service';
 import { BrowserModule } from '@angular/platform-browser';
 import { NgModule } from '@angular/core';
+<<<<<<< HEAD
+=======
+import { Injectable, Inject } from '@angular/core';
+>>>>>>> dev
 
 @Component({
   selector: 'app-map-events',
@@ -20,6 +24,11 @@ import { NgModule } from '@angular/core';
 })
 export class MapEventsComponent implements OnInit {
 
+<<<<<<< HEAD
+=======
+  baseUrl: string;
+
+>>>>>>> dev
   // google maps zoom level
   zoom = 10;
 
@@ -44,31 +53,72 @@ export class MapEventsComponent implements OnInit {
               private route: ActivatedRoute, myElement: ElementRef,
               private mapsAPILoader: MapsAPILoader,
               private ngZone: NgZone,
+<<<<<<< HEAD
               private sessionService: SessionService
   ) { }
 
   ngOnInit() {
+=======
+              private sessionService: SessionService,
+              @Inject('BASE_ENDPOINT') private BASE: string
+  ) { }
+
+  ngOnInit() {
+    this.baseUrl = this.BASE + "/uploads/";
+>>>>>>> dev
 
     this.eventService.getEvents().subscribe( eventsArray => {
       this.events = eventsArray;
       this.events.map(e => {
+<<<<<<< HEAD
         let currentDate = new Date();
         let endDate = new Date(e.endDate)
         let startDate = new Date(e.startDate)
         if(currentDate <= endDate && currentDate  >= startDate ) {
+=======
+        let currentDate00 = new Date();
+        currentDate00.setHours(0);
+        currentDate00.setMinutes(0);
+        let currentDate24 = new Date();
+        currentDate24.setHours(23);
+        currentDate24.setMinutes(59);
+        let endDate = new Date(e.endDate)
+        let startDate = new Date(e.startDate)
+        if((currentDate00<=startDate && currentDate24>=startDate) ||(currentDate00<=endDate && currentDate24>=endDate)) {
+>>>>>>> dev
           this.markers.push({
             id: e._id,
             lat: e.latitude,
             lng: e.longitude,
             label: e.title,
+<<<<<<< HEAD
             draggable: false
+=======
+            draggable: false,
+            info: e.description,
+            picture: this.baseUrl + e.picture,
+            start: e.startDate,
+            end: e.endDate
+>>>>>>> dev
           });
         }
       })
     })
 
 
+<<<<<<< HEAD
 
+=======
+    // Get current position
+    if (navigator.geolocation) {
+      navigator.geolocation.getCurrentPosition(function(position) {
+           this.latitude = position.coords.latitude;
+           this.longitude = position.coords.longitude;
+           this.lat = position.coords.latitude;
+           this.lng = position.coords.longitude;
+      });
+    }
+>>>>>>> dev
 
 
     //  create search FormControl
@@ -130,13 +180,21 @@ export class MapEventsComponent implements OnInit {
   }
 
   clickedMarker(label: string, index: number, lat: number, lng: number) {
+<<<<<<< HEAD
     window.location.href = 'https://www.google.es/maps?q=' + lat + '+' + lng;
+=======
+    //window.location.href = 'https://www.google.es/maps?q=' + lat + '+' + lng;
+>>>>>>> dev
     console.log(`clicked the marker: ${label || index}`)
   }
 
   mapClicked($event: MouseEvent) {
     console.log("map clicked");
     console.log(this.markers);
+<<<<<<< HEAD
+=======
+
+>>>>>>> dev
     // this.markers.push({
     //   lat: $event['coords'].lat,
     //   lng: $event['coords'].lng,

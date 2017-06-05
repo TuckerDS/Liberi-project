@@ -5,3 +5,8 @@
 .error {
   color: red;
 }
+
+.button-send {
+  margin-top: 15px;
+  padding: 5px;
+}

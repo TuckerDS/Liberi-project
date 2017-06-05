@@ -1,10 +1,25 @@
 
 .location-form {
+<<<<<<< HEAD
   height: 100vh;
 }
 
 .first-row{
   padding: 0px 50px;
+=======
+  background-color: rgb(0, 121, 191);
+  padding: 10px;
+  /*height: 80vh;*/
+}
+
+.search-row{
+  color: #fff;
+  padding: 10px;
+}
+
+.form-control{
+  width: 90%;
+>>>>>>> dev
 }
 
 .map-row {
@@ -16,6 +31,11 @@
   height: 80vh;
 }
 
+<<<<<<< HEAD
 .button-row {
   padding: 10px;
+=======
+.map-container {
+
+>>>>>>> dev
 }

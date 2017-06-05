@@ -83,7 +83,11 @@
       </div>
         <div class="file-field input-field">
           <div class="btn">
+<<<<<<< HEAD
             <span>Imagen</span>
+=======
+            <span><i class="material-icons left">perm_media</i>Imagen</span>
+>>>>>>> dev
               <input name="file" type="file" [(ngModel)]="newEvent.picture" ng2FileSelect [uploader]="uploader" class="form-control">
           </div>
           <div class="file-path-wrapper">
@@ -91,6 +95,7 @@
           </div>
         </div>
       <app-map (onChangePosition)='updatePosition($event)'></app-map>
+<<<<<<< HEAD
     <br />
 
     <button class="btn waves-effect waves-light" type="submit" name="action" (click)="login()">Save
@@ -99,6 +104,14 @@
 
   </form>
   <br /><br />
+=======
+      <div class="button_send">
+        <button class="btn waves-effect waves-light" type="submit" name="action" (click)="login()">Guardar
+          <i class="material-icons right">send</i>
+        </button>
+      </div>
+  </form>
+>>>>>>> dev
   <div>
   </div>
 </div>
