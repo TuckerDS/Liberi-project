@@ -16,8 +16,13 @@ export class AddEventComponent implements OnInit {
   EVENT_ROUTE = '/event';
   ENDPOINT: string;
   uploader: FileUploader;
+<<<<<<< HEAD
+  longitude: number;
+  latitude: number;
+=======
   longitude = 0;
   latitude = 0;
+>>>>>>> dev
 
   // Corrige los errores de compilación de angular,
   // las propiedades deben existir previamente.
@@ -30,14 +35,22 @@ export class AddEventComponent implements OnInit {
     title: '',
     description: '',
     category: '',
+<<<<<<< HEAD
+    latitude: 0,
+    longitude: 0,
+=======
     latitude: 40.3919145,
     longitude: -3.6990801,
+>>>>>>> dev
     permanent: false,
     startDate: new Date(),
     endDate: new Date(),
     picture: ''
   };
+<<<<<<< HEAD
+=======
 
+>>>>>>> dev
   startHour = '';
   endHour = '';
   start = '';
@@ -58,12 +71,22 @@ export class AddEventComponent implements OnInit {
       this.uploader = new FileUploader({
         url: this.ENDPOINT + this.EVENT_ROUTE
       });
+<<<<<<< HEAD
+
+
+
+=======
+>>>>>>> dev
     }
 
   ngOnInit() {
     // Route Guard
     this.loggedUser = this.sessionService.loggedUser;
+<<<<<<< HEAD
+    if( this.loggedUser ){
+=======
     if ( this.loggedUser ) {
+>>>>>>> dev
       this.newEvent.user_id =  this.sessionService.loggedUser._id;
     } else {
       this.router.navigate(['/login']);
@@ -75,8 +98,13 @@ export class AddEventComponent implements OnInit {
         } else {
           this.router.navigate(['/login']);
         }
+<<<<<<< HEAD
+      });
+
+=======
       }
     );
+>>>>>>> dev
 
     this.uploader.onSuccessItem = (item, response) => {
       this.feedback = JSON.parse(response).message;
@@ -85,6 +113,8 @@ export class AddEventComponent implements OnInit {
     this.uploader.onErrorItem = (item, response, status, headers) => {
       this.feedback = JSON.parse(response).message;
     };
+<<<<<<< HEAD
+=======
 
     // get current position
     if (navigator.geolocation) {
@@ -93,21 +123,40 @@ export class AddEventComponent implements OnInit {
            this.newEvent.longitude = position.coords.longitude;
       });
     }
+>>>>>>> dev
   }
 
 
   submitForm(myForm) {
 
+<<<<<<< HEAD
+    this.newEvent.startDate.setTime(Date.parse(this.start + " " + this.startHour));
+    this.newEvent.endDate.setTime(Date.parse(this.end + " " + this.endHour));
+
+    if (this.uploader.queue.length === 0) {
+      console.log("lalocalizacion que se envia sin foto")
+      console.log(this.newEvent.latitude);
+      console.log(this.newEvent.longitude);
+=======
     this.newEvent.startDate.setTime(Date.parse(this.start + ' ' + this.startHour));
     this.newEvent.endDate.setTime(Date.parse(this.end + ' ' + this.endHour));
 
     if (this.uploader.queue.length === 0) {
+>>>>>>> dev
       this.ev.addEvent(this.newEvent)
         .subscribe( event => {
           this.newEvent = event;
           this.router.navigate(['']);
+<<<<<<< HEAD
+        })
+    } else {
+      console.log("lalocalizacion que se envia CON foto")
+      console.log(this.newEvent.latitude);
+      console.log(this.newEvent.longitude);
+=======
         });
     } else {
+>>>>>>> dev
       this.uploader.onBuildItemForm = (item, form) => {
         form.append('user_id', this.loggedUser._id);
         form.append('title', this.newEvent.title);
@@ -126,7 +175,11 @@ export class AddEventComponent implements OnInit {
 
   updatePosition(e) {
     this.newEvent.latitude = e.latitude;
+<<<<<<< HEAD
+     this.newEvent.longitude = e.longitude ;
+=======
     this.newEvent.longitude = e.longitude ;
+>>>>>>> dev
     this.longitude = e.longitude;
     this.latitude = e.latitude;
   }

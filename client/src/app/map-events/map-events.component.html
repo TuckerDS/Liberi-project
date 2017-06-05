@@ -23,6 +23,11 @@
           [latitude]="m.lat"
           [longitude]="m.lng"
           [label]="m.label"
+<<<<<<< HEAD
+
+          [markerDraggable]="m.draggable"
+          (dragEnd)="markerDragEnd(m, $event)">
+=======
           [markerDraggable]="m.draggable"
           (dragEnd)="markerDragEnd(m, $event)">
             <sebm-google-map-info-window>
@@ -36,6 +41,7 @@
               <br>
               <a href='https://www.google.es/maps?q={{m.lat}}+{{m.lng}}'>ver en Google Maps</a>
             </sebm-google-map-info-window>
+>>>>>>> dev
           </sebm-google-map-marker>
 
 
@@ -43,8 +49,13 @@
     </div>
 
     <div class="button-row">
+<<<<<<< HEAD
+      <button (click)="goBack()" class="btn waves-effect waves-light" type="submit" name="action">Back to Categories
+        <i class="material-icons left">home</i>
+=======
       <button (click)="goBack()" class="btn waves-effect waves-light" type="submit" name="action">Volver a Categorías
         <i class="material-icons left">undo</i>
+>>>>>>> dev
       </button>
     </div>
 

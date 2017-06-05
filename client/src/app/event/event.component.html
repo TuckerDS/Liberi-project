@@ -17,11 +17,15 @@
             </div>
             <div class="card-action" [ngClass]="eventsCategory">
               <div *ngIf="loggedUser && (loggedUser._id == event.userId)">
+<<<<<<< HEAD
+                <button (click)="editEvent(event._id)">Editar / Borrar Evento</button>
+=======
                 <div class="button">
                   <button class="btn waves-effect waves-light" type="submit" name="action" (click)="editEvent(event._id)">Editar / Borrar Evento
                     <i class="material-icons right">mode_edit</i>
                   </button>
                 </div>
+>>>>>>> dev
               </div>
             </div>
           </div>
