@@ -35,7 +35,7 @@ export class HeaderComponent implements OnInit {
   };
 
   logError(err) {
-    console.log(err);
+    // console.log(err);
   };
 
   logout() {
