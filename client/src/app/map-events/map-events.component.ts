@@ -152,9 +152,6 @@ export class MapEventsComponent implements OnInit {
   }
 
   mapClicked($event: MouseEvent) {
-    console.log("map clicked");
-    console.log(this.markers);
-
     // this.markers.push({
     //   lat: $event['coords'].lat,
     //   lng: $event['coords'].lng,

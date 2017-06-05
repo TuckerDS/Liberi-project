@@ -44,7 +44,6 @@ export class CategoriesPageComponent implements OnInit {
   deleteEvent(evId) {
     this.evs.removeEvent(evId)
       .subscribe(() => {
-        console.log("Borrado");
       });
   }
 }
