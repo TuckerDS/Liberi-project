@@ -31,13 +31,11 @@ export class HeaderComponent implements OnInit {
   }
 
   logged(user) {
-    console.log(user);
     this.loggedUser = user;
-    console.log('LOOOOOOGEED');
   };
 
   logError(err) {
-    console.log('ERROR EN NAVBAR' + err);
+    console.log(err);
   };
 
   logout() {
