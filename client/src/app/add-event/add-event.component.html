@@ -1,7 +1,11 @@
 <div *ngIf="loggedUser">
 <div id="board">
   <h2> Nuevo evento </h2>
-  <a routerLink="/event"> Inicio </a>
+  <div class="button-row">
+    <button (click)="goBack()" class="btn waves-effect waves-light" type="submit" name="action">Volver a Categorías
+      <i class="material-icons left">undo</i>
+    </button>
+  </div>
 
   <div class="form-container">
     <form (ngSubmit)="submitForm(myForm)" #myform="ngForm">
@@ -83,11 +87,7 @@
       </div>
         <div class="file-field input-field">
           <div class="btn">
-<<<<<<< HEAD
-            <span>Imagen</span>
-=======
             <span><i class="material-icons left">perm_media</i>Imagen</span>
->>>>>>> dev
               <input name="file" type="file" [(ngModel)]="newEvent.picture" ng2FileSelect [uploader]="uploader" class="form-control">
           </div>
           <div class="file-path-wrapper">
@@ -95,23 +95,14 @@
           </div>
         </div>
       <app-map (onChangePosition)='updatePosition($event)'></app-map>
-<<<<<<< HEAD
-    <br />
 
-    <button class="btn waves-effect waves-light" type="submit" name="action" (click)="login()">Save
-      <i class="material-icons right">send</i>
-    </button>
-
-  </form>
-  <br /><br />
-=======
       <div class="button_send">
         <button class="btn waves-effect waves-light" type="submit" name="action" (click)="login()">Guardar
           <i class="material-icons right">send</i>
         </button>
       </div>
   </form>
->>>>>>> dev
+
   <div>
   </div>
 </div>

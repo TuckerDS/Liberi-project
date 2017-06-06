@@ -49,4 +49,8 @@ export class SingleEventComponent implements OnInit {
    logged(user) {
      this.loggedUser = user;
    };
+
+   goBack() {
+     this.router.navigate(['/']);
+   };
 }

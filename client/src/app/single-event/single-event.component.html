@@ -1,5 +1,9 @@
 <div id="ev-board">
-  <a routerLink="/">Inicio</a>
+  <div class="button-row">
+    <button (click)="goBack()" class="btn waves-effect waves-light" type="submit" name="action">Volver a Categorías
+      <i class="material-icons left">undo</i>
+    </button>
+  </div>
   <div id="title">
     <h2 *ngIf="(singleEvent)">{{singleEvent.title}}</h2>
   </div>

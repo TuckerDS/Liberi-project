@@ -1,18 +1,16 @@
 <div *ngIf="loggedUser">
 <div id="board">
   <h2> Editar el evento </h2>
-  <a routerLink="/event"> Inicio </a>
-
-<<<<<<< HEAD
-  <button (click)="deleteEvent(currentEvent._id)">Borrar</button>
-=======
+  <div class="button-row">
+    <button (click)="goBack()" class="btn waves-effect waves-light" type="submit" name="action">Volver
+      <i class="material-icons left">undo</i>
+    </button>
+  </div>
   <div class="button">
     <button class="btn waves-effect waves-light" type="submit" name="action" (click)="deleteEvent(currentEvent._id)">Borrar
       <i class="material-icons right">delete</i>
     </button>
   </div>
->>>>>>> dev
-
   <div class="form-container">
     <form *ngIf="currentEvent" action="" #myform="ngForm">
       <div class="row">
@@ -42,7 +40,6 @@
           </select>
         </div>
       </div>
-
       <div class="row">
         <div class="input-field col s6 m6 l6"> Fecha de inicio
           <input type="date" class="datepicker" materialize="pickadate" [(ngModel)]="starDate" #stDate="ngModel" name="startDate" />
@@ -51,7 +48,6 @@
           <input type="time" class="timepicker" [(ngModel)]="startHour" #stHour="ngModel" name="startHour" />
         </div>
       </div>
-
       <div class="row">
         <div class="input-field col s6 m6 l6">Fecha de fin
           <input type="date" class="datepicker" materialize="pickadate" [(ngModel)]="enDate" #endDate="ngModel" name="endDate" />
@@ -61,13 +57,8 @@
         </div>
       </div>
       <div class="button">
-<<<<<<< HEAD
-        <button class="btn waves-effect waves-light" type="submit" name="action" (click)="submitEdition()">Enviar
-          <i class="material-icons right">send</i>
-=======
         <button class="btn waves-effect waves-light" type="submit" name="action" (click)="submitEdition()">Guardar
           <i class="material-icons right">done</i>
->>>>>>> dev
         </button>
       </div>
     </form>

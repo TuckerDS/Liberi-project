@@ -36,4 +36,8 @@ export class EventComponent implements OnInit {
     this.router.navigate(['/event/'+e+'/edit']);
   }
 
+  goBack() {
+    this.router.navigate(['/']);
+  };
+
 }

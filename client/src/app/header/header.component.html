@@ -5,15 +5,10 @@
   <a class='dropdown-button btn' href='#' data-activates='dropdown1'>Menu</a>
   <!-- Dropdown Structure -->
   <ul id='dropdown1' class='dropdown-content'>
-<<<<<<< HEAD
-    <li><a [routerLink]="['/map/now']">Today!</a></li>
-    <li *ngIf="loggedUser"><a [routerLink]="['/add']">Añadir evento</a></li>
-    <li *ngIf="loggedUser"><a [routerLink]="['/user']">Mi Perfil</a></li>
-=======
+
     <li><a [routerLink]="['/map/now']"><i class="material-icons left">star</i>Hoy!</a></li>
     <li *ngIf="loggedUser"><a [routerLink]="['/add']"><i class="material-icons left">location_on</i>Nuevo evento</a></li>
     <li *ngIf="loggedUser"><a [routerLink]="['/user']"><i class="material-icons left">perm_identity</i>Perfil</a></li>
->>>>>>> dev
     <li class="divider"></li>
     <li *ngIf="loggedUser"><a class="linked" (click)="logout()">Logout</a></li>
     <li *ngIf="!loggedUser"><a [routerLink]="['/login']">Login</a></li>
